@@ -1,0 +1,22 @@
+diff --git a/dist/index.js b/dist/index.js
+index 253c0016fdc902edf52ebaaf5f8f95b7a4f3caa4..3f4d147fcd612e5b846a21c2251d0958ccbcb104 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1,6 +1,5 @@
+ import compressible from 'compressible';
+ import { Elysia, mapResponse } from 'elysia';
+-import { gzipSync, deflateSync } from 'bun';
+ import { CompressionStream } from './stream';
+ import { isReadableStream } from './utils';
+ const shouldCompress = (res) => {
+@@ -40,8 +39,8 @@ export const compression = ({ type = 'gzip', options = {}, encoding = 'utf-8' }
+         const compressedBody = isReadableStream(stream)
+             ? stream.pipeThrough(new CompressionStream(type))
+             : type === 'gzip'
+-                ? gzipSync(toBuffer(ctx.response, encoding), options)
+-                : deflateSync(toBuffer(ctx.response, encoding), options);
++                ? Bun.gzipSync(toBuffer(ctx.response, encoding), options)
++                : Bun.deflateSync(toBuffer(ctx.response, encoding), options);
+         ctx.response = new Response(compressedBody, {
+             headers: res.headers,
+         });

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package qq_entity;
+
+option go_package = "_/_qq__";
+
+message QureauDomainablePrincipalBlob {
+  reserved 1 to 200254;
+  reserved 200258;
+
+  string principalId = 200255 [json_name = "principalId"];
+  string principalService = 200256 [json_name = "principalClaims"];
+  string principalAccess = 200257 [json_name = "principalBearer"];
+}

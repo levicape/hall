@@ -1,0 +1,23 @@
+syntax = "proto3";
+package qq_useractivitylog_queue;
+
+import "queue/user/activitylog/queue.user.activitylog.accepted.login.proto";
+
+option go_package = "_/_qq__";
+
+enum QureauActivityLogAcceptedMethods {
+  reserved 1 to 1129999;
+  __QUREAU_ACTIVITYLOG_ACCEPTED__METHOD_DEFAULT__ = 0;
+  QureauActivityLogAcceptedLoginReceiverMethod = 1140000;
+  QureauActivityLogAcceptedIdentityReceiverMethod = 1150000;
+  QureauActivityLogAcceptedAuditReceiverMethod = 1160000;
+}
+
+message QureauActivityLogAcceptedReceiverMessage {
+  reserved 1 to 255;
+  reserved 268;
+  string method = 256 [json_name = "method"];
+  oneof data {
+    QureauActivityLogAcceptedLogin login = 257 [json_name = "data"];
+  }
+}

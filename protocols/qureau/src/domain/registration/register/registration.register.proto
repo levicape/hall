@@ -1,0 +1,107 @@
+syntax = "proto3";
+package qq_registration;
+
+import "domain/registration/register/registration.register.user._.request.proto";
+import "domain/registration/register/registration.register.user._.response.proto";
+import "domain/registration/register/registration.register.user.registration.request.proto";
+import "domain/registration/register/registration.register.user.registration.response.proto";
+
+option go_package = "_/_qq__";
+
+message RegistrationRegisterInferred {
+  reserved 1 to 1024;
+  string rootId = 1029;
+  string meeloId = 1030;
+  string requestId = 1031;
+  string responseId = 1032;
+  string zugV1 = 1033;
+}
+
+message RegistrationRegisterRequest {
+  message Location {
+    string city = 3053931;
+    string country = 420960151;
+    double latitude = 366236566;
+    double longitude = 137365935;
+    string region = 397924621;
+    string zipcode = 281146226;
+    string displayString = 198816912;
+  }
+
+  message EventInfo {
+    message EventInfoData {
+      // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+      int64 lastAccessedInstant = 345894426;
+      string name = 3373707;
+      string type = 3575610;
+    }
+
+    EventInfoData data = 3076010;
+    string deviceDescription = 228402235;
+    string deviceName = 244118018;
+    string deviceType = 244319921;
+    string ipAddress = 23420112;
+    Location location = 290430904;
+    string os = 3556;
+    string userAgent = 311430650;
+  }
+
+  reserved 1 to 255;
+  bool disableDomainBlock = 426017248;
+  bool generateAuthenticationToken = 119062870;
+  RegistrationRegisterUserRegistrationRequest registration = 276567881;
+  bool sendSetPasswordEmail = 535375913;
+  bool skipRegistrationVerification = 389807600;
+  bool skipVerification = 237516489;
+  RegistrationRegisterUserRequest user = 3599307;
+  EventInfo eventInfo = 31092328;
+}
+
+message RegistrationRegisterExt {
+  reserved 1 to 3096;
+  string nonce = 3097;
+}
+
+message RegistrationRegisterCommand {
+  reserved 1 to 1024;
+  RegistrationRegisterRequest request = 1025;
+  RegistrationRegisterExt ext = 1026;
+}
+
+message RegistrationRegister {
+  reserved 1 to 1024;
+  RegistrationRegisterRequest request = 1025;
+  RegistrationRegisterInferred inferred = 1026;
+  RegistrationRegisterExt ext = 1027;
+}
+
+message RegistrationRegisterResponse {
+  reserved 1;
+
+  message RegisteredResponse {
+    message RegistrationPreventedResponse {
+      string actionId = 45559314;
+      string actionerUserId = 53352842;
+      // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+      int64 expiry = 215417551;
+      string localizedName = 159677607;
+      string localizedOption = 52203569;
+      string localizedReason = 513902177;
+      string name = 3373707;
+      string option = 473266060;
+      string reason = 398093757;
+      string reasonCode = 185266770;
+    }
+
+    string refreshToken = 56506402;
+    string refreshTokenId = 56506403;
+    RegistrationRegisterUserRegistrationResponse registration = 276567881;
+    string registrationVerificationId = 399327664;
+    string registrationVerificationOneTimeCode = 235191092;
+    string token = 110541305;
+    // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+    int64 tokenExpirationInstant = 212633800;
+    RegistrationRegisterUserResponse user = 3599307;
+  }
+  RegisteredResponse registered = 2;
+}

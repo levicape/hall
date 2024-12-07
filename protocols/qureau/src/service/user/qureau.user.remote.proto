@@ -1,0 +1,67 @@
+syntax = "proto3";
+package qq_service;
+
+import "domain/user/retrieve/user.retrieve.proto";
+import "domain/user/retrievePrincipal/user.retrievePrincipal.remote.proto";
+import "domain/user/retrieveWithId/user.retrieveWithId.proto";
+import "domain/user/searchByQuery/user.searchByQuery.proto";
+import "service/qureau._.proto";
+
+option go_package = "_/_qq__";
+
+service QureauUserServiceRemote {
+  // rpc CreateUser (CreateUserRequest) returns (UserResponse);
+  // rpc CreateUserWithId (CreateUserWithIdRequest) returns (UserResponse);
+  // rpc UpdateUserWithId (UpdateUserWithIdRequest) returns (UserResponse);
+  // rpc ImportUsersWithId (ImportUsersWithIdRequest) returns (google.protobuf.Empty);
+  // rpc PatchUserWithId (PatchUserWithIdRequest) returns (UserResponse);
+  // rpc DeleteUserWithId (DeleteUserWithIdRequest) returns (google.protobuf.Empty);
+  // rpc DeleteUserBulk (DeleteUserBulkRequest) returns (UserDeleteResponse);
+
+  // rpc CreateUserLinkWithId (CreateUserLinkWithIdRequest) returns (IdentityProviderLinkResponse);
+  // rpc DeleteUserLinkWithId (DeleteUserLinkWithIdRequest) returns (IdentityProviderLinkResponse);
+
+  rpc PrincipalUser(qq_user.UserRetrievePrincipalCommand) returns (QureauResponse);
+  rpc RetrieveUser(qq_user.UserRetrieveCommand) returns (QureauResponse);
+  rpc RetrieveUserWithId(qq_user.UserRetrieveWithIdCommand) returns (QureauResponse);
+  // rpc RetrieveUserRecentLogin (RetrieveUserRecentLoginRequest) returns (RecentLoginResponse);
+  // rpc RetrieveUserChangePassword (RetrieveUserChangePasswordRequest) returns (google.protobuf.Empty);
+  // rpc RetrieveUserInfoFromAccessTokenWithId (google.protobuf.Empty) returns (TODO_OBJECT_MAPPING);
+
+  // rpc RetrieveDeviceUserCode (google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // rpc SearchUsersByIdsWithId (SearchUsersByIdsWithIdRequest) returns (SearchResponse);
+  rpc SearchUsersByQueryWithId(qq_user.UserSearchByQueryCommand) returns (QureauResponse);
+
+  // rpc CommentOnUserWithId (CommentOnUserWithIdRequest) returns (UserCommentResponse);
+  // rpc RetrieveUserCommentsWithId (RetrieveUserCommentsWithIdRequest) returns (UserCommentResponse);
+  // rpc SearchUserCommentsWithId (SearchUserCommentsWithIdRequest) returns (UserCommentSearchResponse);
+
+  // rpc CreateUserVerifyEmail (CreateUserVerifyEmailRequest) returns (google.protobuf.Empty);
+  // rpc UpdateUserVerifyEmail (UpdateUserVerifyEmailRequest) returns (VerifyEmailResponse);
+
+  // rpc CreateUserConsent (CreateUserConsentRequest) returns (UserConsentResponse);
+  // rpc CreateUserConsentWithId (CreateUserConsentWithIdRequest) returns (UserConsentResponse);
+  // rpc UpdateUserConsentWithId (UpdateUserConsentWithIdRequest) returns (UserConsentResponse);
+  // rpc PatchUserConsentWithId (PatchUserConsentWithIdRequest) returns (UserConsentResponse);
+  // rpc RetrieveUserConsentWithId (RetrieveUserConsentWithIdRequest) returns (UserConsentResponse);
+  // rpc RetrieveUserConsentsWithId (RetrieveUserConsentsWithIdRequest) returns (UserConsentResponse);
+  // rpc RevokeUserConsentWithId (RevokeUserConsentWithIdRequest) returns (google.protobuf.Empty);
+
+  // rpc CreateUserAction (CreateUserActionRequest) returns (UserActionResponse);
+  // rpc CreateUserActionWithId (CreateUserActionWithIdRequest) returns (UserActionResponse);
+  // rpc CreateUserActionReason (CreateUserActionReasonRequest) returns (UserActionReasonResponse);
+  // rpc CreateUserActionReasonWithId (CreateUserActionReasonWithIdRequest) returns (UserActionReasonResponse);
+  // rpc UpdateUserActionReasonWithId (UpdateUserActionReasonWithIdRequest) returns (UserActionReasonResponse);
+  // rpc UpdateUserActionWithId (UpdateUserActionWithIdRequest) returns (UserActionResponse);
+  // rpc DeleteUserActionReasonWithId (DeleteUserActionReasonWithIdRequest) returns (google.protobuf.Empty);
+  // rpc ActionUserWithId (ActionUserWithIdRequest) returns (ActionResponse);
+  // rpc DeleteUserActionWithId (DeleteUserActionWithIdRequest) returns (google.protobuf.Empty);
+  // rpc PatchUserActionReasonWithId (PatchUserActionReasonWithIdRequest) returns (UserActionReasonResponse);
+  // rpc PatchUserActionWithId (PatchUserActionWithIdRequest) returns (UserActionResponse);
+  // rpc RetrieveUserAction (RetrieveUserActionRequest) returns (UserActionResponse);
+  // rpc RetrieveUserActionReason (google.protobuf.Empty) returns (UserActionReasonResponse);
+  // rpc RetrieveUserActionReasonWithId (RetrieveUserActionReasonWithIdRequest) returns (UserActionReasonResponse);
+  // rpc RetrieveUserActionWithId (RetrieveUserActionWithIdRequest) returns (UserActionResponse);
+  // rpc RetrieveUserActioning (RetrieveUserActioningRequest) returns (ActionResponse);
+}

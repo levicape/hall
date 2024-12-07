@@ -1,0 +1,77 @@
+syntax = "proto3";
+package qq_table;
+
+option go_package = "_/_qq__";
+
+enum QureauUserActivityTableRingSize {
+  reserved 4 to 99;
+  QureauUserActivityTableRingSize_IGNORE = 0;
+  QureauUserActivityTableRingSizePerimeter = 504;
+}
+
+enum QureauUserActivityTableEntityPrimaryKey {
+  reserved 4 to 99;
+  qureau_at_USERID_sc_APPLICATIONID_x_YYYYMM_ = 0;
+}
+
+enum QureauUserActivityTableEntitySortKey {
+  reserved 10 to 99;
+  _and_User_x_Audit_sc_ = 0;
+  _and_User_x_Audit_and_TIMESTAMP_sc_ = 2;
+  _and_User_x_Login_and_TIMESTAMP_sc_ = 3;
+  _and_User_x_Identity_and_TIMESTAMP_sc_ = 1;
+}
+
+enum QureauDatabaseUserActivityTable {
+  reserved 4 to 1099;
+  qureau_useractivity_by_gsi1 = 0;
+}
+
+message QureauTableUserActivityEntity {
+  reserved 1 to 255;
+  reserved 350;
+  string pk = 256 [json_name = "pk"];
+  string sk = 257 [json_name = "sk"];
+  //
+  string gsi1_pk___tenant = 258 [json_name = "gsi1_pk___tenant"];
+  int32 gsis_pk___shard = 300 [json_name = "gsis_pk___shard"];
+  int32 gsip_pk___perimeter = 299 [json_name = "gsip_pk___perimeter"];
+  string gsi1_sk___pk = 289 [json_name = "gsi1_sk___pk"];
+  string gsi2_pk__pk___username = 279 [json_name = "gsi2_pk__pk___username"];
+  string gsi7_pk__pk___applicationId__username = 292 [json_name = "gsi7_pk__pk___applicationId__username"];
+  string gsi3_pk__pk___pk__applicationId__email = 280 [json_name = "gsi3_pk__pk___pk__applicationId__email"];
+  string gsi4_pk__pk___pk__applicationId__providerResolvedId = 281 [json_name = "gsi4_pk__pk___pk__applicationId__providerResolvedId"];
+  string gsi5_pk__pk___pk__applicationId__tokenId = 282 [json_name = "gsi5_pk__pk___pk__applicationId__tokenId"];
+  string gsi6_pk__pk___pk__applicationId__userRegistrationId = 290 [json_name = "gsi6_pk__pk___pk__applicationId__userRegistrationId"];
+
+  //
+
+  string jsondata = 259 [json_name = "jsondata"];
+  bytes binpb = 273 [json_name = "binpb"];
+
+  int64 protocol = 261 [json_name = "protocol"];
+  int64 application = 262 [json_name = "application"];
+
+  string created = 263 [json_name = "created"];
+  string updated = 264 [json_name = "updated"];
+  string deleted = 265 [json_name = "deleted"];
+  int64 expiry_unix_second = 266 [json_name = "expiry_unix_second"];
+  int64 monotonic = 267 [json_name = "monotonic"];
+
+  string owner_blob = 268 [json_name = "owner_blob"];
+  string genesis_blob = 269 [json_name = "genesis_blob"];
+  string signature_blob = 283 [json_name = "signature_blob"];
+  bytes signature_salt = 291 [json_name = "signature_salt"];
+
+  string principal_blob = 270 [json_name = "principal_blob"];
+  string request_blob = 271 [json_name = "request_blob"];
+  string scrypt_blob = 284 [json_name = "scrypt_blob"];
+
+  bytes owner_pb = 274 [json_name = "owner_pb"];
+  bytes principal_pb = 276 [json_name = "principal_pb"];
+  bytes genesis_pb = 275 [json_name = "genesis_pb"];
+
+  bytes request_pb = 277 [json_name = "request_pb"];
+  bytes signature_pb = 286 [json_name = "signature_pb"];
+  bytes scrypt_pb = 287 [json_name = "scrypt_pb"];
+}

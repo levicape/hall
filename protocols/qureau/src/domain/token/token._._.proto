@@ -1,0 +1,49 @@
+syntax = "proto3";
+package qq_token;
+
+option go_package = "_/_qq__";
+
+enum TokenType {
+  TokenType___ = 0;
+  TokenType_BEARER = 1;
+  TokenType_MAC = 2;
+}
+
+message RefreshToken {
+  message RefreshTokenData {}
+
+  message MetaData {
+    message DeviceInfo {
+      string description = 2;
+      string lastAccessedAddress = 3;
+      // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+      int64 lastAccessedInstant = 4;
+      string name = 5;
+      string type = 6;
+    }
+    message Metal {}
+    message ScopeLike {
+      string scope = 2;
+    }
+    map<string, Metal> data = 2;
+    DeviceInfo device = 3;
+    repeated ScopeLike scopes = 4;
+  }
+
+  string id = 2;
+  string userId = 3;
+  string tenantId = 4;
+  string token = 5;
+  string applicationId = 6;
+  map<string, RefreshTokenData> data = 7;
+  MetaData metaData = 9;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 startInstant = 10;
+}
+
+message Token {
+  TokenType tokenType = 2;
+  RefreshToken bearer = 3;
+  string scope = 4;
+  int32 expiresIn = 5;
+}

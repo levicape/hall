@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "types": ["vinxi/client"],
+    
+    "target": "ES2022",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+
+    // Best practices
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+        
+    
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["app/*"],
+      "#protocols/*": ["./app/_protocols/*"],
+    },
+  }
+}

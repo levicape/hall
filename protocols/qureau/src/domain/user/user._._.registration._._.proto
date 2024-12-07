@@ -1,0 +1,36 @@
+syntax = "proto3";
+package qq_user;
+
+import "domain/user/user._._.proto";
+
+option go_package = "_/_qq__";
+
+message UserRegistration {
+  repeated string preferredLanguages = 2;
+  string applicationId = 3;
+  string authenticationToken = 4;
+  string cleanSpeakId = 5;
+  string id = 6;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 lastLoginInstant = 7;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 lastUpdateInstant = 8;
+  message Role {
+    message Permission {
+      string entity = 2;
+      string resource = 3;
+      string access = 4;
+    }
+    string name = 2;
+    repeated Permission permissions = 3;
+  }
+
+  repeated Role roles = 9;
+  // Timezone Identifier
+  string timezone = 10;
+  string username = 11;
+  UserContentStatus usernameStatus = 12;
+  bool verified = 13;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 verifiedInstant = 14;
+}

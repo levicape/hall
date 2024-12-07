@@ -1,0 +1,42 @@
+{
+  "name": "@levicape/qureau-model",
+  "config": {
+    "packagemanager": "pnpm",
+    "packageexecutor": "pnpm exec",
+    "lintpaths": "./src",
+    "outpaths": "./module"
+  },
+  "dependencies": {
+    "@levicape/spork": "catalog:",
+    "@types/node": "catalog:types",
+    "typescript": "catalog:dev",
+    "zod": "catalog:core"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:lint",
+    "publint": "catalog:package"
+  },
+  "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf",
+  "private": true,
+  "scripts": {
+    "build": "$npm_package_config_packageexecutor tsc",
+    "build:ci": "$npm_package_config_packagemanager run clean:install && $npm_package_config_packageexecutor ci && $npm_package_config_packagemanager run build",
+    "clean": "rm -rf $npm_package_config_outpaths || true",
+    "clean:install": "echo \"Clean node_modules if npm\"",
+    "dx:prepublish": "$npm_package_config_packagemanager run build:ci && $npm_package_config_packagemanager run lint:write && $npm_package_config_packagemanager run package:format && $npm_package_config_packagemanager run prepublish",
+    "lint": "$npm_package_config_packageexecutor biome check $npm_package_config_lintpaths",
+    "lint:format": "$npm_package_config_packageexecutor biome format --write $npm_package_config_lintpaths",
+    "lint:unsafe": "$npm_package_config_packageexecutor biome check --write --unsafe $npm_package_config_lintpaths",
+    "lint:write": "$npm_package_config_packageexecutor biome check --write $npm_package_config_lintpaths",
+    "package:deps": "$npm_package_config_packageexecutor depcheck",
+    "package:fix": "$npm_package_config_packageexecutor syncpack fix-mismatches",
+    "package:format": "$npm_package_config_packageexecutor syncpack format",
+    "package:lockfile": "$npm_package_config_packagemanager install --lockfile-only --lockfile-dir .",
+    "package:update": "$npm_package_config_packageexecutor syncpack update",
+    "postinstall": "$npm_package_config_packagemanager run package:lockfile",
+    "prebuild": "$npm_package_config_packagemanager run clean",
+    "prelint": "$npm_package_config_packageexecutor biome format $npm_package_config_lintpaths",
+    "prepublish": "$npm_package_config_packageexecutor publint --strict"
+  },
+  "type": "module"
+}

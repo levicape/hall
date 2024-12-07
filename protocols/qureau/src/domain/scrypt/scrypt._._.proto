@@ -1,0 +1,63 @@
+syntax = "proto3";
+package qq_scrypt;
+
+option go_package = "_/_qq__";
+
+message QureauScryptZugComponents {
+  reserved 1 to 200254;
+  reserved 200258;
+
+  message CanonicalRequest {
+    // <HTTPMethod>\n
+    string method = 1;
+    // <CanonicalURI>\n
+    string uri = 2;
+    // <CanonicalQueryString>\n
+    string query = 3;
+    // <Headers>\n
+    string headers = 4;
+    // <SignedHeaders>\n
+    string signedHeaders = 5;
+    // <HashedPayload>
+    string hexSha256Payload = 6;
+  }
+  string sigAlg = 200255 [json_name = "sigAlg"];
+  string timestamp = 200256 [json_name = "timestamp"];
+  string scope = 200257 [json_name = "scope"];
+  CanonicalRequest request = 20025232 [json_name = "canonicalRequest"];
+}
+
+message QureauScryptZugSigningSecret {
+  reserved 1 to 200254;
+
+  string hmacSha256SecretPlusYYYYMMDD_ = 200255 [json_name = "hmacSha256SecretPlusYYYYMMDD_"];
+  string hmacOfRegionUsingKey_ = 200256 [json_name = "hmacOfRegionUsingKey_"];
+  string hmacOfServiceUsingRegion_ = 200257 [json_name = "hmacOfServiceUsingRegion_"];
+  string signingKeyFromHmacOfStaticUsingService = 200258 [json_name = "signingKeyFromHmacOfStaticUsingService"];
+}
+
+message QureauScryptZugSigningKey {
+  reserved 1 to 200254;
+
+  string hmacSha256SecretPlusYYYYMMDD_ = 200255 [json_name = "hmacSha256SecretPlusYYYYMMDD_"];
+  string hmacOfRegionUsingKey_ = 200256 [json_name = "hmacOfRegionUsingKey_"];
+  string hmacOfServiceUsingRegion_ = 200257 [json_name = "hmacOfServiceUsingRegion_"];
+  string signingKeyFromHmacOfStaticUsingService = 200258 [json_name = "signingKeyFromHmacOfStaticUsingService"];
+}
+
+message QureauScryptZugSignature {
+  reserved 1 to 200254;
+  reserved 200258;
+
+  string signingKey_ = 200256 [json_name = "signingKey_"];
+  string stringToSign = 200257 [json_name = "stringToSign"];
+}
+
+message QureauScryptZug {
+  reserved 1 to 200254;
+
+  QureauScryptZugComponents components = 200255 [json_name = "components_"];
+  QureauScryptZugSigningKey signingKey = 200256 [json_name = "signingKey_"];
+  QureauScryptZugSignature signature = 200257 [json_name = "signature_"];
+  string signatureFromHmacSha256StringToSignUsingSigningKey = 200258 [json_name = "signatureFromHmacSha256StringToSignUsingSigningKey"];
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+package qq_user;
+
+import "domain/user/retrieve/user.retrieve.proto";
+import "domain/user/retrieveWithId/user.retrieveWithId.proto";
+import "domain/user/searchByQuery/user.searchByQuery.proto";
+
+option go_package = "_/_qq__";
+
+message UserResponse {
+  reserved 1;
+  oneof user {
+    UserRetrieveResponse retrieve = 2;
+    UserRetrieveWithIdResponse retrieveWithId = 3;
+    UserSearchByQueryResponse searchByQuery = 4;
+  }
+}

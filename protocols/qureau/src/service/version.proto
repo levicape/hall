@@ -1,0 +1,50 @@
+syntax = "proto3";
+package qq_service;
+
+option go_package = "_/_qq__";
+
+enum QureauVersionEnum {
+  option allow_alias = true;
+  reserved 1 to 2;
+  __QUREAU__VERSION__UNSPECIFIED = 0;
+  QUREAU_V_V1 = 3;
+  QUREAU_V_EVER__READONLY = 15;
+  QUREAU_V_STABLE__READONLY = 3;
+  QUREAU_V_STAGING__READONLY = 3;
+  QUREAU_V_LATEST__READONLY = 3;
+}
+
+enum QureauResponseVersionEnum {
+  option allow_alias = true;
+  __QUREAU_RESPONSE__VERSION__UNSPECIFIED = 0;
+  reserved 1 to 1023;
+  QUREAU_R_V0 = 1024;
+  QUREAU_R_V1 = 1025;
+  QUREAU_R_EVER = 9999;
+  reserved 10000;
+  QUREAU_R_STABLE = 1024;
+  QUREAU_R_STAGING = 1025;
+  QUREAU_R_LATEST = 1025;
+}
+
+enum QureauProtocolVersionEnum {
+  option allow_alias = true;
+  reserved 1 to 28785780;
+  __QUREAU_PROTOCOL__VERSION__UNSPECIFIED = 0;
+  QUREAU_P_V0 = 28785781;
+  QUREAU_P_VSCRYPT = 28785782;
+  reserved 28785783 to 28798955;
+  QUREAU_P_VUSERSREMOTE = 28798956;
+  QUREAU_P_VBUF = 28798957;
+  QUREAU_P_VELYSIA = 28798958;
+  QUREAU_P_VBUN = 28798959;
+  reserved 28798960 to 43862669;
+  QUREAU_P_Y2K38 = 43862670;
+  reserved 43862671 to 99999998;
+  QUREAU_P_VEVER = 99999999;
+  reserved 100000000 to 999999998;
+  QUREAU_P_STABLE = 28785781;
+  QUREAU_P_STAGING = 28798957;
+  QUREAU_P_LATEST = 28798958;
+  QUREAU_P_RESERVED_MAX = 999999999;
+}

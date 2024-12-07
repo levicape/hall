@@ -1,0 +1,31 @@
+syntax = "proto3";
+package qq_login;
+
+option go_package = "_/_qq__";
+
+enum TOTPAlgorithm {
+  TOTPAlgorithm_HMACSHA1 = 0;
+  TOTPAlgorithm_HMACSHA256 = 1;
+  TOTPAlgorithm_HMACSHA512 = 2;
+}
+
+enum ChangePasswordReason {
+  ChangePasswordReason_ADMINISTRATIVE = 0;
+  ChangePasswordReason_BREACHED = 1;
+  ChangePasswordReason_EXPIRED = 2;
+  ChangePasswordReason_VALIDATION = 3;
+}
+
+enum BreachedPasswordStatus {
+  BreachedPasswordStatus_NONE = 0;
+  BreachedPasswordStatus_EXACTMATCH = 1;
+  BreachedPasswordStatus_SUBADDRESSMATCH = 2;
+  BreachedPasswordStatus_PASSWORDONLY = 3;
+  BreachedPasswordStatus_COMMONPASSWORD = 4;
+}
+
+enum ContentStatus {
+  ContentStatus_ACTIVE = 0;
+  ContentStatus_PENDING = 1;
+  ContentStatus_REJECTED = 2;
+}

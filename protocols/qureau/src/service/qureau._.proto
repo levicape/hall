@@ -1,0 +1,46 @@
+syntax = "proto3";
+package qq_service;
+
+import "domain/login/login._.response.proto";
+import "domain/registration/registration._.response.proto";
+import "domain/token/token._.response.proto";
+import "domain/user/user._.response.proto";
+import "service/version.proto";
+
+option go_package = "_/_qq__";
+
+message QureauNoBody {}
+message QureauResponse {
+  reserved 1;
+  message ErrorResponse {
+    reserved 1;
+    string code = 2;
+    string field = 4;
+    string message = 5;
+    string entity = 8;
+    bool unrecoverable = 7;
+    ErrorResponse cause = 3;
+    repeated ErrorResponse validations = 9;
+  }
+
+  message DataResponse {
+    reserved 1;
+    oneof qureau {
+      qq_token.TokenResponse token = 2;
+      qq_login.LoginResponse login = 3;
+      qq_registration.RegistrationResponse registration = 4;
+      qq_user.UserResponse user = 5;
+    }
+  }
+  message VersionResponse {
+    reserved 1;
+    QureauResponseVersionEnum response = 2;
+    QureauVersionEnum qureau = 3;
+  }
+
+  VersionResponse version = 2;
+  oneof response {
+    ErrorResponse error = 3;
+    DataResponse data = 4;
+  }
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+package qq_token;
+
+import "domain/token/create/token.create.proto";
+import "domain/token/issueJwtWithId/token.issueJwtWithId.proto";
+import "domain/token/refresh/retrieveByIdWithId/token.refresh.retrieveByIdWithId.proto";
+
+option go_package = "_/_qq__";
+
+message TokenResponse {
+  reserved 1;
+  oneof token {
+    TokenCreateResponse create = 2;
+    TokenIssueJwtWithIdResponse issueJwtWithId = 3;
+    TokenRefreshRetrieveByIdWithIdResponse refreshRetrieveByIdWithId = 4;
+  }
+}

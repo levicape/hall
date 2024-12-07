@@ -1,0 +1,34 @@
+syntax = "proto3";
+package qq_service;
+
+import "domain/token/create/token.create.proto";
+import "domain/token/issueJwtWithId/token.issueJwtWithId.proto";
+import "domain/token/refresh/retrieveByIdWithId/token.refresh.retrieveByIdWithId.proto";
+
+option go_package = "_/_qq__";
+// import "domain/token.get.proto";
+// import "domain/token.redrive.proto";
+// import "domain/token.list.proto";
+
+service QureauTokenService {
+  // rpc VendJWTWithId (VendJWTWithIdRequest) returns (JWTVendResponse);
+  // rpc ValidateJWTWithId (google.protobuf.Empty) returns (ValidateResponse);
+  // rpc RetrieveJwtPublicKey (RetrieveJwtPublicKeyRequest) returns (PublicKeyResponse);
+  // rpc RetrieveJsonWebKeySetWithId (google.protobuf.Empty) returns (JWKSResponse);
+  // rpc ReconcileJWTWithId (ReconcileJWTWithIdRequest) returns (LoginResponse);
+
+  //   rpc RefreshSession (RefreshSessionRequest) returns (SessionResponse);
+  rpc CreateToken(qq_token.TokenCreate) returns (qq_token.TokenCreateResponse);
+  rpc IssueJwtWithId(qq_token.TokenIssueJwtWithId) returns (qq_token.TokenIssueJwtWithIdResponse);
+  rpc RetrieveRefreshTokenByIdWithId(qq_token.TokenRefreshRetrieveByIdWithId) returns (qq_token.TokenRefreshRetrieveByIdWithIdResponse);
+
+  // rpc ValidateSession (ValidateSessionRequest) returns (SessionValidationResponse);
+  // rpc ExchangeRefreshTokenForJWTWithId (qq_token.ExchangeRefreshTokenForJWTWithIdRequest) returns (JWTRefreshResponse);
+  // rpc ImportRefreshTokensWithId (ImportRefreshTokensWithIdRequest) returns (google.protobuf.Empty);
+  // rpc RevokeRefreshTokenByIdWithId (RevokeRefreshTokenByIdWithIdRequest) returns (google.protobuf.Empty);
+  // rpc DeleteJwtRefresh (qq_token.DeleteJwtRefreshRequest) returns (google.protobuf.Empty);
+
+  // /me
+  // rpc RetrieveRefreshTokensWithId (RetrieveRefreshTokensWithIdRequest) returns (RefreshTokenResponse);
+  // rpc RetrieveUserInfoFromAccessTokenWithId (google.protobuf.Empty) returns (string);
+}

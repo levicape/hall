@@ -1,0 +1,35 @@
+syntax = "proto3";
+package qq_registration;
+
+option go_package = "_/_qq__";
+
+enum RegistrationTOTPAlgorithm {
+  RegistrationTOTPAlgorithm___ = 0;
+  RegistrationTOTPAlgorithm_HMACSHA1 = 1;
+  RegistrationTOTPAlgorithm_HMACSHA256 = 2;
+  RegistrationTOTPAlgorithm_HMACSHA512 = 3;
+}
+
+enum RegistrationContentStatus {
+  RegistrationContentStatus___ = 0;
+  RegistrationContentStatus_ACTIVE = 1;
+  RegistrationContentStatus_PENDING = 2;
+  RegistrationContentStatus_REJECTED = 3;
+}
+
+enum RegistrationChangePasswordReason {
+  RegistrationChangePasswordReason___ = 0;
+  RegistrationChangePasswordReason_ADMINISTRATIVE = 1;
+  RegistrationChangePasswordReason_BREACHED = 2;
+  RegistrationChangePasswordReason_EXPIRED = 3;
+  RegistrationChangePasswordReason_VALIDATION = 4;
+}
+
+enum RegistrationBreachedPasswordStatus {
+  RegistrationBreachedPasswordStatus____ = 0;
+  RegistrationBreachedPasswordStatus_NONE = 1;
+  RegistrationBreachedPasswordStatus_EXACTMATCH = 2;
+  RegistrationBreachedPasswordStatus_SUBADDRESSMATCH = 3;
+  RegistrationBreachedPasswordStatus_PASSWORDONLY = 4;
+  RegistrationBreachedPasswordStatus_COMMONPASSWORD = 5;
+}

@@ -1,0 +1,108 @@
+syntax = "proto3";
+package qq_login;
+
+import "domain/login/login._._.proto";
+import "domain/login/withId/login.withId.user.response.proto";
+
+option go_package = "_/_qq__";
+
+message LoginWithIdInferred {
+  reserved 1 to 1024;
+  string rootId = 1029;
+  string meeloId = 1030;
+  string requestId = 1031;
+  string responseId = 1032;
+  string zugV1 = 1033;
+}
+
+message LoginWithIdRequest {
+  message DeviceInfo {
+    string description = 113933319;
+    string lastAccessedAddress = 229931013;
+    // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+    int64 lastAccessedInstant = 345894426;
+    string name = 3373707;
+    string type = 3575610;
+  }
+
+  message MetaData {
+    message Metal {}
+    message ScopeLike {
+      string scope = 3813153;
+    }
+    map<string, Metal> data = 3076010;
+    DeviceInfo device = 261415340;
+    repeated ScopeLike scopes = 370897762;
+  }
+  reserved 1 to 255;
+  string loginId = 342344292;
+  string oneTimePassword = 471732725;
+  string password = 143243933;
+  string twoFactorTrustId = 46789208;
+  string applicationId = 474482038;
+  string ipAddress = 23420112;
+  MetaData metaData = 450957489;
+  bool newDevice = 502006763;
+  bool noJWT = 104968006;
+}
+
+message LoginWithIdExt {
+  reserved 1 to 3096;
+  string nonce = 3097;
+}
+
+message LoginWithIdCommand {
+  reserved 1 to 1024;
+  LoginWithIdRequest request = 1025;
+  LoginWithIdExt ext = 1026;
+}
+
+message LoginWithId {
+  reserved 1 to 1024;
+  LoginWithIdRequest request = 1025;
+  LoginWithIdInferred inferred = 1026;
+  LoginWithIdExt ext = 1027;
+}
+
+message LoginWithIdResponse {
+  reserved 1;
+
+  message AuthenticatedResponse {
+    message LoginPreventedResponse {
+      string actionId = 45559314;
+      string actionerUserId = 53352842;
+      // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+      int64 expiry = 215417551;
+      string localizedName = 159677607;
+      string localizedOption = 52203569;
+      string localizedReason = 513902177;
+      string name = 3373707;
+      string option = 473266060;
+      string reason = 398093757;
+      string reasonCode = 185266770;
+    }
+
+    message LoginState {}
+
+    repeated LoginPreventedResponse actions = 88061701;
+    string changePasswordId = 141401321;
+    qq_login.ChangePasswordReason changePasswordReason = 478168207;
+    repeated string configurableMethods = 350197194;
+    string emailVerificationId = 365386581;
+    repeated qq_login.TwoFactorMethod methods = 418663347;
+    string pendingIdPLinkId = 224226863;
+    string refreshToken = 56506402;
+    string refreshTokenId = 458183067;
+    string registrationVerificationId = 399327664;
+    map<string, LoginState> state = 109757585;
+    repeated string threatsDetected = 235436231;
+    string token = 110541305;
+    // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+    int64 tokenExpirationInstant = 212633800;
+    string trustToken = 2309505;
+    string twoFactorId = 298190137;
+    string twoFactorTrustId = 46789208;
+    qq_login.LoginWithIdUserResponse user = 3599307;
+  }
+  AuthenticatedResponse authenticated = 2;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package qq_entity;
+
+option go_package = "_/_qq__";
+
+message QureauDomainableRequestBlob {
+  reserved 1;
+  string idempotencyId = 2 [json_name = "idempotencyId"];
+  string resourceVersion = 3 [json_name = "resourceVersion"];
+  string executorId = 4 [json_name = "executorId"];
+  string requestId = 5 [json_name = "requestId"];
+  string responseId = 6 [json_name = "responseId"];
+  string now = 7 [json_name = "now"];
+}

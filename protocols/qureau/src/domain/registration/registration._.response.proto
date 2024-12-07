@@ -1,0 +1,13 @@
+syntax = "proto3";
+package qq_registration;
+
+import "domain/registration/register/registration.register.proto";
+
+option go_package = "_/_qq__";
+
+message RegistrationResponse {
+  reserved 1;
+  oneof registration {
+    RegistrationRegisterResponse register = 2;
+  }
+}

@@ -1,0 +1,64 @@
+syntax = "proto3";
+package qq_table;
+
+option go_package = "_/_qq__";
+
+enum QureauDatabaseTable {
+  reserved 4 to 99;
+  qureau_users = 0;
+  qureau_users_activity = 100;
+  // qureau_log = 400;
+}
+
+enum QureauTableEntityKey {
+  reserved 2 to 9999;
+  pk = 0;
+  sk = 1;
+}
+
+enum QureauTableEntityGSII {
+  reserved 2 to 9999;
+  sk____gsii = 0;
+  pk____gsii = 1;
+}
+
+enum QureauTableEntityGSIS {
+  reserved 2 to 9999;
+  gsis_pk___shard = 0;
+  pk____gsis = 1;
+}
+
+enum QureauTableEntityGSIP {
+  reserved 2 to 9999;
+  gsip_pk___perimeter = 0;
+  pk____gsip = 1;
+}
+
+enum QureauTableEntityGSI0 {
+  reserved 2 to 9999;
+  gsi1_pk___tenant = 0;
+  pk____gsi0 = 1;
+}
+
+enum QureauTableEntityGSI2 {
+  reserved 2 to 9999;
+  gsi2_pk__pk___username____gsi2 = 0;
+  gsi2_sk___pk____gsi2 = 1;
+}
+
+enum QureauTableEntityGSI3 {
+  reserved 2 to 9999;
+  gsi3_pk__pk___email____gsi3 = 0;
+  gsi3_sk___pk____gsi3 = 1;
+}
+
+enum QureauTableEntityGSI4 {
+  reserved 2 to 9999;
+  gsi4_pk__pk___providerResolvedId____gsi4 = 0;
+  gsi4_sk___pk____gsi4 = 1;
+}
+
+enum QureauTableEntityGSI5 {
+  reserved 2 to 9999;
+  gsi5_pk__pk___pk__tokenId____gsi5 = 0;
+}

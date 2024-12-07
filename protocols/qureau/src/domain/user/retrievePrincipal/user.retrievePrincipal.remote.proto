@@ -1,0 +1,15 @@
+syntax = "proto3";
+package qq_user;
+
+option go_package = "_/_qq__";
+
+message UserRetrievePrincipalRequest {}
+
+message UserRetrievePrincipalExt {
+  string nonce = 3;
+}
+
+message UserRetrievePrincipalCommand {
+  UserRetrievePrincipalRequest request = 4;
+  UserRetrievePrincipalExt ext = 5;
+}

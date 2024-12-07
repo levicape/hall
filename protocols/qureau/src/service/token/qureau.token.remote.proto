@@ -1,0 +1,29 @@
+syntax = "proto3";
+package qq_service;
+
+import "domain/token/create/token.create.proto";
+import "domain/token/issueJwtWithId/token.issueJwtWithId.proto";
+import "domain/token/refresh/retrieveByIdWithId/token.refresh.retrieveByIdWithId.proto";
+import "service/qureau._.proto";
+
+option go_package = "_/_qq__";
+
+service QureauTokenServiceRemote {
+  // rpc VendJWTWithId (VendJWTWithIdRequest) returns (JWTVendResponse);
+  // rpc ValidateJWTWithId (google.protobuf.Empty) returns (ValidateResponse);
+  // rpc RetrieveJwtPublicKey (RetrieveJwtPublicKeyRequest) returns (PublicKeyResponse);
+  // rpc RetrieveJsonWebKeySetWithId (google.protobuf.Empty) returns (JWKSResponse);
+  // rpc ReconcileJWTWithId (ReconcileJWTWithIdRequest) returns (LoginResponse);
+
+  rpc CreateToken(qq_token.TokenCreateCommand) returns (QureauResponse);
+  rpc IssueJwtWithId(qq_token.TokenIssueJwtWithIdCommand) returns (QureauResponse);
+  rpc RetrieveRefreshTokenByIdWithId(qq_token.TokenRefreshRetrieveByIdWithIdCommand) returns (QureauResponse);
+  // rpc ExchangeRefreshTokenForJWTWithId (qq_token.ExchangeRefreshTokenForJWTWithIdRequest) returns (QureauResponse);
+  // rpc ImportRefreshTokensWithId (ImportRefreshTokensWithIdRequest) returns (google.protobuf.Empty);
+  // rpc RevokeRefreshTokenByIdWithId (RevokeRefreshTokenByIdWithIdRequest) returns (google.protobuf.Empty);
+  // rpc DeleteJwtRefresh (qq_token.DeleteJwtRefreshRequest) returns (QureauResponse);
+
+  // /me
+  // rpc RetrieveRefreshTokensWithId (RetrieveRefreshTokensWithIdRequest) returns (RefreshTokenResponse);
+  // rpc RetrieveUserInfoFromAccessTokenWithId (google.protobuf.Empty) returns (QureauResponse);
+}

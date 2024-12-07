@@ -1,0 +1,22 @@
+syntax = "proto3";
+package qq_service;
+
+import "domain/registration/register/registration.register.proto";
+import "service/qureau._.proto";
+
+option go_package = "_/_qq__";
+
+service QureauRegistrationServiceRemote {
+  rpc Register(qq_registration.RegistrationRegisterCommand) returns (QureauResponse) {
+    // option (google.api.http) = {
+    //     post: "~/v1/Qureau/Users/!+!/"
+    // };
+  }
+  // rpc RegisterWithId (RegisterWithIdRequest) returns (RegistrationResponse);
+  // rpc UpdateRegistrationWithId (UpdateRegistrationWithIdRequest) returns (RegistrationResponse);
+  // rpc PatchRegistrationWithId (PatchRegistrationWithIdRequest) returns (RegistrationResponse);
+  // rpc RetrieveRegistrationWithId (RetrieveRegistrationWithIdRequest) returns (RegistrationResponse);
+  // rpc VerifyUserRegistrationWithId (VerifyUserRegistrationWithIdRequest) returns (google.protobuf.Empty);
+  // rpc UpdateUserVerifyRegistration (UpdateUserVerifyRegistrationRequest) returns (VerifyRegistrationResponse);
+  // rpc DeleteUserRegistrationWithId (DeleteUserRegistrationWithIdRequest) returns (google.protobuf.Empty);
+}

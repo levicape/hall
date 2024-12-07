@@ -1,0 +1,15 @@
+syntax = "proto3";
+package qq_useractivitylog_queue;
+
+option go_package = "_/_qq__";
+
+enum QureauUserActivityLogQueue {
+  reserved 9 to 1140000;
+  QUREAU_USER_ACTIVITYLOG_QUEUE_UNSPECIFIED = 0;
+  qureau_user_activitylog_accepted = 2;
+  qureau_user_activitylog_created = 3;
+  qureau_user_activitylog_changed = 4;
+  qureau_user_activitylog_external = 5;
+  qureau_user_activitylog_inbound = 6;
+  qureau_user_activitylog_outbound = 7;
+}

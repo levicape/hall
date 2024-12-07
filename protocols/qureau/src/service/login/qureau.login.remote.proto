@@ -1,0 +1,17 @@
+syntax = "proto3";
+package qq_service;
+
+import "domain/login/withId/login.withId.proto";
+import "service/qureau._.proto";
+
+option go_package = "_/_qq__";
+
+service QureauLoginServiceRemote {
+  // rpc CreateLogout (CreateLogoutRequest) returns (google.protobuf.Empty);
+  rpc LoginWithId(qq_login.LoginWithIdCommand) returns (QureauResponse);
+  // rpc LoginPingWithId (LoginPingWithIdRequest) returns (LoginResponse);
+  // rpc LoginPingWithRequestWithId (LoginPingWithRequestWithIdRequest) returns (LoginResponse);
+  // rpc PasswordlessLoginWithId (PasswordlessLoginWithIdRequest) returns (LoginResponse);
+  // rpc StartPasswordlessLoginWithId (StartPasswordlessLoginWithIdRequest) returns (PasswordlessStartResponse);
+  // rpc ReconcileJWTWithId (ReconcileJWTWithIdRequest) returns (LoginResponse);
+}

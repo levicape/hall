@@ -1,0 +1,14 @@
+syntax = "proto3";
+package qq_queue;
+
+option go_package = "_/_qq__";
+
+message QureauQueueableRequestBlob {
+  reserved 1 to 100261;
+  string idempotencyId = 100262 [json_name = "idempotencyId"];
+  string resourceVersion = 100263 [json_name = "resourceVersion"];
+  string executorId = 100264 [json_name = "executorId"];
+  string requestId = 100265 [json_name = "requestId"];
+  string responseId = 100266 [json_name = "responseId"];
+  string now = 100267 [json_name = "now"];
+}

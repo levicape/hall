@@ -1,0 +1,15 @@
+syntax = "proto3";
+package qq_userdelta_queue;
+
+option go_package = "_/_qq__";
+
+enum QureauUserDeltaQueue {
+  reserved 99 to 1140000;
+  QUREAU_USERDELTA_QUEUE_UNSPECIFIED = 0;
+  qureau_user_delta_accepted = 2;
+  qureau_user_delta_created = 7;
+  qureau_user_delta_changed = 8;
+  qureau_user_delta_external = 5;
+  qureau_user_delta_inbound = 3;
+  qureau_user_delta_outbound = 4;
+}

@@ -1,0 +1,130 @@
+syntax = "proto3";
+package qq_registration;
+
+import "domain/registration/registration._._.proto";
+
+option go_package = "_/_qq__";
+
+message RegistrationRegisterUserRequest {
+  message AuthenticatorConfiguration {
+    qq_registration.RegistrationTOTPAlgorithm algorithm = 225490031;
+    int32 codeLength = 61804751;
+    int32 timeStep = 466772170;
+  }
+
+  message TwoFactorMethod {
+    AuthenticatorConfiguration authenticator = 204387702;
+    string email = 96619420;
+    string id = 3355;
+    bool lastUsed = 385632399;
+    string method = 3813153;
+    string mobilePhone = 254225942;
+    string secret = 369406289;
+  }
+
+  message UserData {}
+
+  message UserTwoFactorConfiguration {
+    repeated TwoFactorMethod methods = 418663347;
+    repeated string recoveryCodes = 335484308;
+  }
+
+  message GroupMember {
+    message GroupData {}
+
+    GroupData data = 3076010;
+    string groupId = 293428218;
+    string id = 3355;
+    // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+    int64 insertInstant = 372320490;
+    // RegistrationWithIdUserRequest user = 3599307;
+    string userId = 299159995;
+  }
+
+  message UserRegistration {
+    message Role {
+      message Permission {
+        string entity = 3373707;
+        string resource = 3373708;
+        string access = 3373709;
+      }
+      string name = 3373707;
+      repeated Permission permissions = 3373708;
+    }
+
+    message UserRegistrationData {}
+
+    map<string, UserRegistrationData> data = 3076010;
+    repeated string preferredLanguages = 339897501;
+    map<string, string> tokens = 331315815;
+
+    string applicationId = 474482038;
+    string authenticationToken = 261010019;
+    string cleanSpeakId = 413644284;
+    string id = 3355;
+
+    // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+    int64 insertInstant = 372320490;
+    // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+    int64 lastRegistrationInstant = 198839279;
+    // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+    int64 lastUpdateInstant = 517881377;
+    repeated Role roles = 108695229;
+
+    // Timezone Identifier
+    string timezone = 465614858;
+    string username = 265713450;
+    RegistrationContentStatus usernameStatus = 376714139;
+    bool verified = 383770939;
+    // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+    int64 verifiedInstant = 368307707;
+  }
+
+  repeated string preferredLanguages = 339897501;
+  bool active = 349208828;
+  // A date without a time-zone in the ISO-8601 calendar system, such as 2007-12-03.
+  string birthDate = 136290037;
+  string cleanSpeakId = 413644284;
+  UserData data = 3076010;
+  string email = 96619420;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 expiry = 215417551;
+  string firstName = 132835675;
+  string fullName = 257110460;
+  string imageUrl = 322739693;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 insertInstant = 372320490;
+  string lastName = 385857985;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 lastUpdateInstant = 517881377;
+  string middleName = 281348673;
+  string mobilePhone = 254225942;
+  string parentEmail = 454110483;
+  string tenantId = 232951965;
+  // Timezone Identifier
+  string timezone = 465614858;
+  UserTwoFactorConfiguration twoFactor = 444940613;
+  repeated GroupMember memberships = 328430431;
+  repeated UserRegistration registrations = 16330460;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 breachedPasswordLastCheckedInstant = 199312070;
+  RegistrationBreachedPasswordStatus breachedPasswordStatus = 233066179;
+  string connectorId = 114171467;
+  string encryptionScheme = 349814009;
+  int32 factor = 208406195;
+  string id = 3355;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 lastRegistrationInstant = 198839279;
+  string password = 143243933;
+  RegistrationChangePasswordReason passwordChangeReason = 13831250;
+  bool passwordChangeRequired = 207073561;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 passwordLastUpdateInstant = 152793224;
+  string salt = 3522646;
+  string uniqueUsername = 267511867;
+  string username = 265713450;
+  RegistrationContentStatus usernameStatus = 376714139;
+  bool verified = 383770939;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 verifiedInstant = 368307707;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package qq_login;
+
+import "domain/login/withId/login.withId.proto";
+
+option go_package = "_/_qq__";
+
+message LoginResponse {
+  reserved 1;
+  oneof login {
+    LoginWithIdResponse withId = 2;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "config": {
+    "packagemanager": "pnpm",
+    "packageexecutor": "pnpm exec",
+    "lintpaths": "./src"
+  },
+  "dependencies": {
+    "@levicape/paloma": "catalog:",
+    "knex": "catalog:database",
+    "pg": "catalog:database"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:lint",
+    "publint": "catalog:package",
+    "syncpack": "catalog:package",
+    "typescript": "catalog:dev"
+  },
+  "private": true,
+  "scripts": {
+    "dx:prepublish": "$npm_package_config_packagemanager run package:format",
+    "package:deps": "$npm_package_config_packageexecutor depcheck",
+    "package:fix": "$npm_package_config_packageexecutor syncpack fix-mismatches",
+    "package:format": "$npm_package_config_packageexecutor syncpack format",
+    "package:lockfile": "$npm_package_config_packagemanager install --lockfile-only --lockfile-dir .",
+    "package:update": "$npm_package_config_packageexecutor syncpack update",
+    "postinstall": "$npm_package_config_packagemanager run package:lockfile"
+  },
+  "type": "module"
+}

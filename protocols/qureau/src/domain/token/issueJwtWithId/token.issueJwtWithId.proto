@@ -1,0 +1,49 @@
+syntax = "proto3";
+package qq_token;
+
+option go_package = "_/_qq__";
+
+message TokenIssueJwtWithIdInferred {
+  reserved 1 to 1024;
+  string principalId = 1025;
+  string principalService = 1026;
+  string resourceVersion = 1027;
+  string idempotencyId = 1028;
+  string requestId = 1029;
+  string responseId = 1030;
+}
+
+message TokenIssueJwtWithIdRequest {
+  reserved 1 to 255;
+  string applicationId = 1000;
+  string refreshToken = 20000;
+}
+
+message TokenIssueJwtWithIdExt {
+  reserved 1 to 3096;
+  string nonce = 3097;
+}
+
+message TokenIssueJwtWithIdCommand {
+  reserved 1 to 1024;
+  TokenIssueJwtWithIdRequest request = 1025;
+  TokenIssueJwtWithIdExt ext = 1026;
+}
+
+message TokenIssueJwtWithId {
+  reserved 1 to 1024;
+  TokenIssueJwtWithIdRequest request = 1025;
+  TokenIssueJwtWithIdInferred inferred = 1026;
+  TokenIssueJwtWithIdExt ext = 1027;
+}
+
+message TokenIssueJwtWithIdResponse {
+  reserved 1;
+
+  message IssueTokenResponse {
+    string refreshToken = 56506402;
+    string token = 110541305;
+  }
+
+  IssueTokenResponse issued = 2;
+}

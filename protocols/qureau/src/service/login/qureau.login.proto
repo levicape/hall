@@ -1,0 +1,47 @@
+syntax = "proto3";
+package qq_service;
+
+import "domain/login/withId/login.withId.proto";
+
+option go_package = "_/_qq__";
+
+service QureauLoginService {
+  // rpc CreateLogout (CreateLogoutRequest) returns (google.protobuf.Empty);
+  rpc LoginWithId(qq_login.LoginWithId) returns (qq_login.LoginWithIdResponse);
+  // rpc LoginPingWithId (LoginPingWithIdRequest) returns (LoginResponse);
+  // rpc LoginPingWithRequestWithId (LoginPingWithRequestWithIdRequest) returns (LoginResponse);
+  // rpc PasswordlessLoginWithId (PasswordlessLoginWithIdRequest) returns (LoginResponse);
+  // rpc StartPasswordlessLoginWithId (StartPasswordlessLoginWithIdRequest) returns (PasswordlessStartResponse);
+  // rpc ReconcileJWTWithId (ReconcileJWTWithIdRequest) returns (LoginResponse);
+}
+
+// message CreateLogoutRequest {
+//     // When this value is set to true all the refresh tokens issued to the owner of the provided token will be revoked.
+//     string global = 1;
+//     // The refresh_token as a request parameter instead of coming in via a cookie. If provided this takes precedence over the cookie.
+//     string refreshToken = 2;
+//     LogoutRequest logoutRequest = 3;
+// }
+
+// message ReconcileJWTWithIdRequest {
+//     IdentityProviderLoginRequest identityProviderLoginRequest = 1;
+// }
+
+// message LoginPingWithIdRequest {
+//     // The Id of the user that was logged in.
+//     string userId = 1;
+//     // The Id of the application that they logged into.
+//     string applicationId = 2;
+//     // The IP address of the end-user that is logging in. If a null value is provided the IP address will be that of the client or last proxy that sent the request.
+//     string callerIPAddress = 3;
+//     // The unique Id of the tenant used to scope this API request. Only required when there is more than one tenant and the API key is not tenant-scoped.
+//     string qureauTenantId = 4;
+
+//   }
+
+//   message LoginPingWithRequestWithIdRequest {
+//     // The unique Id of the tenant used to scope this API request. Only required when there is more than one tenant and the API key is not tenant-scoped.
+//     string qureauTenantId = 1;
+//     LoginPingRequest loginPingRequest = 2;
+
+//   }

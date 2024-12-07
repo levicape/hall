@@ -1,0 +1,38 @@
+syntax = "proto3";
+package qq_registration;
+
+import "domain/registration/registration._._.proto";
+
+option go_package = "_/_qq__";
+
+message RegistrationRegisterUserRegistrationResponse {
+  repeated string preferredLanguages = 339897501;
+  string applicationId = 474482038;
+  string authenticationToken = 261010019;
+  string cleanSpeakId = 413644284;
+  string id = 3355;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 insertInstant = 372320490;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 lastLoginInstant = 198839279;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 lastUpdateInstant = 517881377;
+  message Role {
+    message Permission {
+      string entity = 3373707;
+      string resource = 3373708;
+      string access = 3373709;
+    }
+    string name = 3373707;
+    repeated Permission permissions = 3373708;
+  }
+
+  repeated Role roles = 108695229;
+  // Timezone Identifier
+  string timezone = 465614858;
+  string username = 265713450;
+  RegistrationContentStatus usernameStatus = 376714139;
+  bool verified = 383770939;
+  // The number of milliseconds since the unix epoch: January 1, 1970 00:00:00 UTC. This value is always in UTC.
+  int64 verifiedInstant = 368307707;
+}
