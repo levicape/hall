@@ -21,9 +21,7 @@
     "package:deps": "$npm_package_config_packageexecutor depcheck",
     "package:fix": "$npm_package_config_packageexecutor syncpack fix-mismatches",
     "package:format": "$npm_package_config_packageexecutor syncpack format",
-    "package:lockfile": "$npm_package_config_packagemanager install --lockfile-only --lockfile-dir .",
-    "package:update": "$npm_package_config_packageexecutor syncpack update",
-    "postinstall": "$npm_package_config_packagemanager run package:lockfile"
+    "package:update": "$npm_package_config_packageexecutor syncpack update"
   },
   "type": "module"
 }

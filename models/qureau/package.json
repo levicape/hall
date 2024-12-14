@@ -20,10 +20,10 @@
   "private": true,
   "scripts": {
     "build": "$npm_package_config_packageexecutor tsc",
-    "build:ci": "$npm_package_config_packagemanager run clean:install && $npm_package_config_packageexecutor ci && $npm_package_config_packagemanager run build",
     "clean": "rm -rf $npm_package_config_outpaths || true",
     "clean:install": "echo \"Clean node_modules if npm\"",
-    "dx:prepublish": "$npm_package_config_packagemanager run build:ci && $npm_package_config_packagemanager run lint:write && $npm_package_config_packagemanager run package:format && $npm_package_config_packagemanager run prepublish",
+    "compile": "$npm_package_config_packagemanager run build",
+    "dx:prepublish": "$npm_package_config_packagemanager run compile && $npm_package_config_packagemanager run lint:write && $npm_package_config_packagemanager run package:format && $npm_package_config_packagemanager run prepublish",
     "lint": "$npm_package_config_packageexecutor biome check $npm_package_config_lintpaths",
     "lint:format": "$npm_package_config_packageexecutor biome format --write $npm_package_config_lintpaths",
     "lint:unsafe": "$npm_package_config_packageexecutor biome check --write --unsafe $npm_package_config_lintpaths",
@@ -33,7 +33,6 @@
     "package:format": "$npm_package_config_packageexecutor syncpack format",
     "package:lockfile": "$npm_package_config_packagemanager install --lockfile-only --lockfile-dir .",
     "package:update": "$npm_package_config_packageexecutor syncpack update",
-    "postinstall": "$npm_package_config_packagemanager run package:lockfile",
     "prebuild": "$npm_package_config_packagemanager run clean",
     "prelint": "$npm_package_config_packageexecutor biome format $npm_package_config_lintpaths",
     "prepublish": "$npm_package_config_packageexecutor publint --strict"

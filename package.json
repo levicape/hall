@@ -1,6 +1,17 @@
 {
+	"config": {
+	  "packagemanager": "pnpm",
+	  "packageexecutor": "pnpm exec",
+	  "outpaths": "./module",
+	  "binpath": "./src/cli/bin.mts",
+	  "clipath": "./module/cli/bin.mjs",
+	  "lintpaths": "./src ./canary ./iac",
+	  "protocols": "./src/_protocols",
+	  "server": "module/app/router/hono/HonoHttpSpork.mjs"
+	},
 	"devDependencies": {
 		"ci": "catalog:package",
+		"@levicape/fourtwo": "catalog:",
 		"depcheck": "catalog:package",
 		"publint": "catalog:package",
 		"syncpack": "catalog:package",
