@@ -10,7 +10,7 @@
 					"PAKETO_BUILDER": "heroku/builder:24"
 				},
 				"commands": [
-					"npx nx run iac-images:cli:pack build $DEFAULT_IMAGE_NAME --buildpack $PAKETO_BUILDPACK --builder $PAKETO_BUILDER --default-process cli  --cache 'type=build;format=bind;source=/tmp/docker-cache;type=launch;format=volume;'"
+					"NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false npx nx run iac-images:cli:pack build $DEFAULT_IMAGE_NAME -e NPM_CONFIG_UPDATE_NOTIFIER=false --buildpack $PAKETO_BUILDPACK --builder $PAKETO_BUILDER --default-process cli --cache 'type=build;format=bind;source=/tmp/docker-cache;type=launch;format=volume;'"
 				]
 			}
 		}

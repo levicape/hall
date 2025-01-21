@@ -33,8 +33,8 @@
   },
   "private": true,
   "scripts": {
-    "build": "$npm_package_config_packageexecutor nx nx:compile",
-    "build:tsc": "$npm_package_config_packageexecutor tsc",
+    "build": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor nx nx:compile",
+    "build:tsc": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor tsc",
     "clean": "rm -rf $npm_package_config_outpaths || true",
     "dx:lint": "$npm_package_config_packagemanager run build && $npm_package_config_packagemanager run lint && $npm_package_config_packagemanager run package:format",
     "dx:precommit": "$npm_package_config_packageexecutor nx dx:precommit:pre && $npm_package_config_packageexecutor nx package:deps",
@@ -50,9 +50,8 @@
     "package:format": "$npm_package_config_packageexecutor syncpack format",
     "package:lockfile": "$npm_package_config_packagemanager install --lockfile-only --lockfile-dir .",
     "package:update": "$npm_package_config_packageexecutor syncpack update",
-    "prebuild": "$npm_package_config_packagemanager run clean",
     "precommit": "$npm_package_config_packageexecutor nx dx:prepublish --no-cloud --verbose",
-    "predx:lint": "$npm_package_config_packageexecutor nx clean",
+    "predx:lint": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packagemanager run clean",
     "prelint": "$npm_package_config_packageexecutor biome format $npm_package_config_lintpaths",
     "prepublish": "$npm_package_config_packageexecutor nx exec -- publint --strict"
   },

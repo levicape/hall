@@ -4,7 +4,12 @@
   "config": {
     "packagemanager": "pnpm",
     "packagebin": "corepack pnpm",
-    "packageexecutor": "corepack pnpm exec"
+    "packageexecutor": "corepack pnpm exec",
+    "modulepath": "**/module",
+    "commonjspath": "**/commonjs",
+    "i18n": "**/_i18n",
+    "protocols": "**/_protocols",
+    "models": "**/_models"
   },
   "dependencies": {
     "aws-lambda-ric": "catalog:aws",
@@ -19,6 +24,9 @@
     "publint": "catalog:package",
     "syncpack": "catalog:package",
     "tsx": "catalog:dev"
+  },
+  "engines": {
+    "node": ">=23.6.0"
   },
   "files": [
     "i18n",
@@ -46,9 +54,10 @@
       },
       "nx:clean": {
         "dependsOn": [
-          "@levicape/model-greathall-qureau:clean",
-          "@levicape/greathall-server:clean",
-          "@levicape/greathall-server-canary:clean"
+          "clean:commonjs",
+          "clean:modules",
+          "clean:models",
+          "clean:protocols"
         ]
       },
       "nx:compile": {
@@ -93,9 +102,13 @@
   },
   "repository": "github:levicape/great-hall",
   "scripts": {
-    "build": "$npm_package_config_packageexecutor nx nx:compile",
+    "build": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor nx nx:compile",
     "clean": "$npm_package_config_packageexecutor nx nx:clean --verbose",
+    "clean:commonjs": "rm -rf $npm_package_config_commonjspath",
+    "clean:models": "rm -rf $npm_package_config_models",
+    "clean:modules": "rm -rf $npm_package_config_modulepath",
     "clean:packages": "rm -rf **/node_modules && $npm_package_config_packageexecutor nx reset",
+    "clean:protocols": "pwd && rm -rf $npm_package_config_protocols",
     "dx:commit": "$npm_package_config_packagebin run clean:packages && $npm_package_config_packageexecutor nx dx:precommit --no-cloud --verbose",
     "dx:lint": "$npm_package_config_packagemanager run build && $npm_package_config_packagemanager run lint:format && $npm_package_config_packagemanager run package:format",
     "dx:precommit": "$npm_package_config_packageexecutor nx dx:precommit:pre && $npm_package_config_packageexecutor nx dx:sync && $npm_package_config_packageexecutor nx package:deps",
@@ -104,7 +117,6 @@
     "dx:prepublish:pre": "echo \"Starting prepublish dx. This will compile packages, run dx:lint and format package.json and verify all exports are valid. \"",
     "dx:sync": "$npm_package_config_packageexecutor nx dx:sync:pre && $npm_package_config_packageexecutor nx nx:sync",
     "dx:sync:pre": "echo \"Starting sync dx. This will generate all the workflows and sync them with the repository.\"",
-    "heroku-prebuild": "npm rebuild aws-lambda-ric",
     "lint": "$npm_package_config_packageexecutor nx nx:lint --verbose",
     "lint:format": "$npm_package_config_packageexecutor nx nx:lint:format --verbose",
     "package:deps": "$npm_package_config_packageexecutor depcheck",

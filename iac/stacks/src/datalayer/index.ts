@@ -94,7 +94,7 @@ export = async () => {
 			{
 				fileSystemId: filesystem.id,
 				rootDirectory: {
-					path: "/paloma",
+					path: "/greathall",
 					creationInfo: {
 						ownerGid: 1000,
 						ownerUid: 1000,
@@ -256,8 +256,8 @@ export = async () => {
 			cloudmapNamespaceHostedZone,
 		]) => {
 			return {
-				_PALOMA_DATALAYER_PROPS: jsonProps,
-				paloma_datalayer_iam: {
+				_GREATHALL_DATALAYER_PROPS: jsonProps,
+				greathall_datalayer_iam: {
 					roles: {
 						lambda: {
 							arn: iamRoleLambdaArn,
@@ -265,7 +265,7 @@ export = async () => {
 						},
 					},
 				},
-				paloma_datalayer_ec2: {
+				greathall_datalayer_ec2: {
 					vpc: {
 						vpcId: ec2VpcId,
 						subnetIds: ec2SubnetIds,
@@ -274,7 +274,7 @@ export = async () => {
 						securityGroupId: ec2SecurityGroupId,
 					},
 				},
-				paloma_datalayer_efs: {
+				greathall_datalayer_efs: {
 					filesystem: {
 						arn: efsFilesystemArn,
 						kmsKeyId: efsFilesystemKmsKeyId,
@@ -286,7 +286,7 @@ export = async () => {
 						rootDirectory: efsAccessPointRootDirectory,
 					},
 				},
-				paloma_datalayer_cloudmap: {
+				greathall_datalayer_cloudmap: {
 					namespace: {
 						name: cloudmapNamespaceName,
 						arn: cloudmapNamespaceArn,

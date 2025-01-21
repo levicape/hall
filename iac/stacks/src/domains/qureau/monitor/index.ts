@@ -154,7 +154,7 @@ export = async () => {
 
 		// Bootstrap container lambda with empty image.
 		const ecrCredentials = await getAuthorizationToken({});
-		new Image(_(`${name}-kickstart-image`), {
+		const kickstartImage = new Image(_(`${name}-kickstart-image`), {
 			tags: [`${codestar.ecr.repository.url}:kickstart`],
 			push: true,
 			pull: true,
@@ -232,7 +232,7 @@ export = async () => {
 		};
 
 		const lambda = new LambdaFn(
-			_(`${name}-handler-lambda`),
+			_(`${name}-fn`),
 			{
 				role: roleArn,
 				architectures: ["arm64"],
@@ -266,17 +266,18 @@ export = async () => {
 				}),
 			},
 			{
+				dependsOn: [kickstartImage],
 				ignoreChanges: ["imageUri"],
 			},
 		);
 
-		const version = new Version(_(`${name}-handler-version`), {
+		const version = new Version(_(`${name}-version`), {
 			functionName: lambda.name,
 			description: `(${getStack()}) Version ${stage}`,
 		});
 
 		const alias = new Alias(
-			_(`${name}-handler-alias`),
+			_(`${name}-alias`),
 			{
 				name: stage,
 				functionName: lambda.name,
@@ -319,10 +320,10 @@ export = async () => {
 	} as const;
 
 	const canary = {
-		server: await handler(
+		register: await handler(
 			{
-				entrypoint: "canaryserver",
-				name: "canaryserver",
+				entrypoint: "qureaucanaryregister",
+				name: "register",
 			},
 			deps,
 			cloudwatch,
@@ -488,7 +489,7 @@ export = async () => {
 	})();
 
 	const codepipeline = (() => {
-		const pipeline = new Pipeline(_("schedule-handler-pipeline"), {
+		const pipeline = new Pipeline(_("pipeline-deploy-schedule"), {
 			pipelineType: "V2",
 			roleArn: farRole.arn,
 			executionMode: "QUEUED",
@@ -525,7 +526,7 @@ export = async () => {
 					name: "ScheduleCanary",
 					actions: [
 						{
-							canary: canary.server,
+							canary: canary.register,
 							prefix: "Register",
 							artifactPrefix: "schedulecanaryregister",
 						},
@@ -654,7 +655,7 @@ export = async () => {
 
 					return acc;
 				},
-				[[]] as Array<[string, typeof canary.server.lambda][]>,
+				[[]] as Array<[string, typeof canary.register.lambda][]>,
 			)
 			.filter((group) => group.length > 0);
 

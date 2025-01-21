@@ -115,14 +115,14 @@ export = async () => {
 			codedeployDeploymentConfigName,
 		]) => {
 			return {
-				paloma_codestar_ecr: {
+				greathall_codestar_ecr: {
 					repository: {
 						arn: ecrRepositoryArn,
 						url: ecrRepositoryUrl,
 						name: ecrRepositoryName,
 					},
 				},
-				paloma_codestar_codedeploy: {
+				greathall_codestar_codedeploy: {
 					application: {
 						arn: codedeployApplicationArn,
 						name: codedeployApplicationName,

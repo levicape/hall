@@ -12,7 +12,7 @@ import {
 
 let data = (
 	<DevfileX
-		metadata={<DevfileMetadataX name={"spork"} />}
+		metadata={<DevfileMetadataX name={"greathall"} />}
 		components={[<DevfileSourceComponentX name={"source"} />]}
 		events={
 			<DevfileEventX

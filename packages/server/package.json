@@ -63,16 +63,22 @@
   "license": "AGPL-3.0-only",
   "nx": {
     "targets": {
+      "build:tsc": {
+        "dependsOn": [
+          "generate:protocols",
+          "generate:models"
+        ]
+      },
       "dx:test": {
         "dependsOn": [
           "dx:lint",
           "nx:test"
         ]
       },
-      "build:tsc": {
+      "dx:precommit": {
         "dependsOn": [
-          "generate:protocols",
-          "generate:models"
+          "@levicape/greathall-server:dx:prepublish",
+          "nx:test"
         ]
       },
       "nx:compile": {
@@ -94,12 +100,12 @@
   },
   "repository": "github:levicape/great-hall",
   "scripts": {
-    "build": "$npm_package_config_packageexecutor nx nx:compile",
-    "build:tsc": "$npm_package_config_packageexecutor tsc",
+    "build": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor nx nx:compile",
+    "build:tsc": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor tsc",
     "clean": "rm -rf $npm_package_config_outpaths || true",
-    "generate:i18n": "$npm_package_config_packageexecutor spork code gen --root \"../../i18n\" --command \"$(which $npm_package_config_packagemanager) run build\" --artifact module --destination $npm_package_config_i18n --clean",
-    "generate:models": "$npm_package_config_packageexecutor spork code gen --root \"../../models\" --command \"$(which $npm_package_config_packagemanager) run build\" --artifact module --destination $npm_package_config_models --clean",
-    "generate:protocols": "$npm_package_config_packageexecutor spork code gen --root \"../../protocols\" --command \"$(which $npm_package_config_packagemanager) run build\" --artifact gen --destination $npm_package_config_protocols --clean",
+    "generate:i18n": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor spork code gen --root \"../../i18n\" --command \"$(which $npm_package_config_packagemanager) --silent run build\" --artifact module --destination $npm_package_config_i18n --clean",
+    "generate:models": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor spork code gen --root \"../../models\" --command \"$(which $npm_package_config_packagemanager) --silent run build\" --artifact module --destination $npm_package_config_models --clean",
+    "generate:protocols": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor spork code gen --root \"../../protocols\" --command \"$(which $npm_package_config_packagemanager) --silent run build\" --artifact gen --destination $npm_package_config_protocols --clean",
     "lambda:http": "$npm_package_config_packageexecutor aws-lambda-ric $npm_package_config_handlerhttplambda",
     "lint": "$npm_package_config_packageexecutor biome check $npm_package_config_srcpaths",
     "lint:format": "$npm_package_config_packageexecutor biome format --write $npm_package_config_srcpaths",

@@ -156,6 +156,7 @@ Actions:
             - Run: npm exec n $NODEJS_VERSION
             - Run: npm exec pnpm config set store-dir /tmp/pnpm-store
             - Run: npm exec pnpm install --prefer-offline --ignore-scripts
+            - Run: sudo yum install -y g++ make cmake unzip libcurl-devel automake autoconf libtool
             - Run: python3 -c "print('ok')" || true
             - Run: npm rebuild node-gyp
             - Run: npm rebuild knex better-sqlite3
@@ -222,7 +223,9 @@ Actions:
             - Run: npm exec n $NODEJS_VERSION
             - Run: npm exec pnpm config set store-dir /tmp/pnpm-store
             - Run: npm exec pnpm install --prefer-offline --ignore-scripts
+            - Run: sudo yum install -y g++ make cmake unzip libcurl-devel automake autoconf libtool
             - Run: npm rebuild node-gyp
+            - Run: sudo npm install --global aws-lambda-ric
             - Run: npm rebuild knex better-sqlite3
             - Run: npm exec pnpm exec nx pack:build iac-images-application --verbose
             - Run: docker save $APPLICATION_IMAGE_NAME | gzip > _images/application.tar.gz
@@ -234,7 +237,7 @@ Actions:
           - Install
         Timeout: 14
         Environment:
-          Name: current
+          Name: c000
         Caching:
           FileCaching:
             a64_npm_global:
@@ -264,7 +267,7 @@ Actions:
             - Name: APPLICATION_IMAGE_NAME
               Value: greathall
             - Name: CI_ENVIRONMENT
-              Value: current
+              Value: c000
             - Name: AWS_REGION
               Value: us-west-2
             - Name: FRONTEND_HOSTNAME
@@ -361,7 +364,7 @@ Actions:
         Identifier: aws/build@v1.0.0
         Timeout: 10
         Environment:
-          Name: current
+          Name: c000
         Caching:
           FileCaching:
             a64_npm_global:
@@ -389,7 +392,7 @@ Actions:
             - Name: AWS_REGION
               Value: us-west-2
             - Name: CI_ENVIRONMENT
-              Value: current
+              Value: c000
           Artifacts:
             - images
             - pulumi
@@ -439,7 +442,7 @@ Actions:
 ########################################
 #**:_$~- {"$$":"head","filename":"[push(b:main)][schedule(0_0_*_*_?_*)]CI.yml","source":"iac/workflows/codecatalyst/push/CI.js"}
 #**:_$~- {"$$":"script","generator":"codegen/codecatalyst/GenerateCodeCatalystWorkflow.mjs"}
-#**:_$~- {"$$":"body","hashed":"c3c79128f09907faf261182d8a8b3134f42d4b90cad31c370661210f443fead6"}
-#**:_$~- {"$$":"footer","started":"2025-01-21T03:54:06.990Z","now":"2025-01-21T03:54:07.001Z","elapsed":"11ms"}
+#**:_$~- {"$$":"body","hashed":"11687c528a74125aeb387607b67c3c6557080cb8dcd2fc6a99914b0cc4729d00"}
+#**:_$~- {"$$":"footer","started":"2025-01-21T13:36:49.009Z","now":"2025-01-21T13:36:49.017Z","elapsed":"8ms"}
 # END OF GENERATED FILE
 

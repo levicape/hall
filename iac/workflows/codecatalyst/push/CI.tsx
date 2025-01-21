@@ -279,6 +279,7 @@ export default async () => {
 												run={`npm exec pnpm config set store-dir ${PNP_STORE}`}
 											/>
 											<CodeCatalystStepX run="npm exec pnpm install --prefer-offline --ignore-scripts" />
+											<CodeCatalystStepX run="sudo yum install -y g++ make cmake unzip libcurl-devel automake autoconf libtool" />
 											<CodeCatalystStepX
 												run={`python3 -c "print('ok')" || true`}
 											/>
@@ -349,7 +350,9 @@ export default async () => {
 												run={`npm exec pnpm config set store-dir ${PNP_STORE}`}
 											/>
 											<CodeCatalystStepX run="npm exec pnpm install --prefer-offline --ignore-scripts" />
+											<CodeCatalystStepX run="sudo yum install -y g++ make cmake unzip libcurl-devel automake autoconf libtool" />
 											<CodeCatalystStepX run="npm rebuild node-gyp" />
+											<CodeCatalystStepX run="sudo npm install --global aws-lambda-ric" />
 											<CodeCatalystStepX run="npm rebuild knex better-sqlite3" />
 											<CodeCatalystStepX
 												run={
@@ -390,7 +393,7 @@ export default async () => {
 												_$_("Secrets.GITHUB_LEVICAPE_PAT"),
 											),
 											register("APPLICATION_IMAGE_NAME", APPLICATION),
-											register("CI_ENVIRONMENT", "current"),
+											register("CI_ENVIRONMENT", "c000"),
 											register("AWS_REGION", "us-west-2"),
 											register("FRONTEND_HOSTNAME", "greathall.levicape.cloud"),
 											register("PULUMI_HOME", PULUMI_CACHE),
@@ -406,7 +409,7 @@ export default async () => {
 										],
 									}}
 									environment={{
-										Name: "current",
+										Name: "c000",
 									}}
 									steps={
 										<>
@@ -517,12 +520,12 @@ export default async () => {
 											),
 											register("APPLICATION_IMAGE_NAME", APPLICATION),
 											register("AWS_REGION", "us-west-2"),
-											register("CI_ENVIRONMENT", "current"),
+											register("CI_ENVIRONMENT", "c000"),
 										],
 										Artifacts: ["images", "pulumi"],
 									}}
 									environment={{
-										Name: "current",
+										Name: "c000",
 									}}
 									steps={
 										<>

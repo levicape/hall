@@ -150,7 +150,7 @@ export = async () => {
 
 		// Bootstrap container lambda with empty image.
 		const ecrCredentials = await getAuthorizationToken({});
-		new Image(_("lambda-kickstart-image"), {
+		const kickstartImage = new Image(_("image-kickstart"), {
 			tags: [`${codestar.ecr.repository.url}:kickstart`],
 			push: true,
 			pull: true,
@@ -228,7 +228,7 @@ export = async () => {
 		};
 
 		const lambda = new LambdaFn(
-			_("lambda"),
+			_("fn"),
 			{
 				role: roleArn,
 				architectures: ["arm64"],
@@ -262,6 +262,7 @@ export = async () => {
 				}),
 			},
 			{
+				dependsOn: [kickstartImage],
 				ignoreChanges: ["imageUri"],
 			},
 		);
@@ -271,13 +272,13 @@ export = async () => {
 				?.map((host) => [`https://${host}`, `https://www.${host}`])
 				.reduce((acc, current) => [...acc, ...current], []) ?? [];
 
-		const version = new Version(_("lambda-handler-http-version"), {
+		const version = new Version(_("version"), {
 			functionName: lambda.name,
 			description: `(${getStack()}) Version ${stage}`,
 		});
 
 		const alias = new Alias(
-			_("lambda-alias"),
+			_("alias"),
 			{
 				name: stage,
 				functionName: lambda.name,
@@ -288,7 +289,7 @@ export = async () => {
 			},
 		);
 
-		const url = new FunctionUrl(_("lambda-url"), {
+		const url = new FunctionUrl(_("url"), {
 			functionName: lambda.name,
 			qualifier: alias.name,
 			authorizationType: context.environment.isProd ? "AWS_IAM" : "NONE",
@@ -519,7 +520,7 @@ export = async () => {
 	})();
 
 	const codepipeline = (() => {
-		const pipeline = new Pipeline(_("http-handler-pipeline"), {
+		const pipeline = new Pipeline(_("pipeline-deploy"), {
 			pipelineType: "V2",
 			roleArn: farRole.arn,
 			executionMode: "QUEUED",
@@ -648,7 +649,7 @@ export = async () => {
 				},
 			}),
 		});
-		const pipeline = new EventTarget(_("event-target-http-pipeline"), {
+		const pipeline = new EventTarget(_("event-target-pipeline"), {
 			rule: rule.name,
 			arn: codepipeline.pipeline.arn,
 			roleArn: farRole.arn,
