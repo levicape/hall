@@ -1,5 +1,6 @@
 {
-  "name": "@levicape/qureau-model",
+  "name": "@levicape/model-greathall-qureau",
+  "version": "0.0.0-local.0",
   "config": {
     "packagemanager": "pnpm",
     "packageexecutor": "pnpm exec",
@@ -16,14 +17,30 @@
     "@biomejs/biome": "catalog:lint",
     "publint": "catalog:package"
   },
-  "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf",
+  "nx": {
+    "targets": {
+      "dx:precommit": {
+        "dependsOn": [
+          "dx:prepublish"
+        ]
+      },
+      "nx:compile": {
+        "dependsOn": [
+          "build:tsc"
+        ]
+      }
+    }
+  },
   "private": true,
   "scripts": {
-    "build": "$npm_package_config_packageexecutor tsc",
+    "build": "$npm_package_config_packageexecutor nx nx:compile",
+    "build:tsc": "$npm_package_config_packageexecutor tsc",
     "clean": "rm -rf $npm_package_config_outpaths || true",
-    "clean:install": "echo \"Clean node_modules if npm\"",
-    "compile": "$npm_package_config_packagemanager run build",
-    "dx:prepublish": "$npm_package_config_packagemanager run compile && $npm_package_config_packagemanager run lint:write && $npm_package_config_packagemanager run package:format && $npm_package_config_packagemanager run prepublish",
+    "dx:lint": "$npm_package_config_packagemanager run build && $npm_package_config_packagemanager run lint && $npm_package_config_packagemanager run package:format",
+    "dx:precommit": "$npm_package_config_packageexecutor nx dx:precommit:pre && $npm_package_config_packageexecutor nx package:deps",
+    "dx:precommit:pre": "echo \"Starting precommit dx. This will check package.json dependencies.\"",
+    "dx:prepublish": "$npm_package_config_packageexecutor nx dx:prepublish:pre && $npm_package_config_packageexecutor nx dx:lint && $npm_package_config_packageexecutor nx prepublish",
+    "dx:prepublish:pre": "echo \"Starting prepublish dx. This will run dx:lint and format package.json and verify all exports are valid. \"",
     "lint": "$npm_package_config_packageexecutor biome check $npm_package_config_lintpaths",
     "lint:format": "$npm_package_config_packageexecutor biome format --write $npm_package_config_lintpaths",
     "lint:unsafe": "$npm_package_config_packageexecutor biome check --write --unsafe $npm_package_config_lintpaths",
@@ -34,8 +51,10 @@
     "package:lockfile": "$npm_package_config_packagemanager install --lockfile-only --lockfile-dir .",
     "package:update": "$npm_package_config_packageexecutor syncpack update",
     "prebuild": "$npm_package_config_packagemanager run clean",
+    "precommit": "$npm_package_config_packageexecutor nx dx:prepublish --no-cloud --verbose",
+    "predx:lint": "$npm_package_config_packageexecutor nx clean",
     "prelint": "$npm_package_config_packageexecutor biome format $npm_package_config_lintpaths",
-    "prepublish": "$npm_package_config_packageexecutor publint --strict"
+    "prepublish": "$npm_package_config_packageexecutor nx exec -- publint --strict"
   },
   "type": "module"
 }

@@ -1,25 +1,46 @@
 packages:
-  - 'canary/*'
+  - '.'
+  - 'iac/*'
   - 'packages/*'
-  - 'packages/schema/*'
   - 'protocols/*'
   - 'models/*'
   - 'i18n/*'
+  - 'canary/*'
+  
 catalog:
-  "@levicape/paloma": "0.0.6-main.6"
-  "@levicape/fourtwo": "0.0.3-main.3"
-  "@levicape/spork": "0.1.0-main.1"
+  "@levicape/paloma": "0.1.0-main.2"
+  "@levicape/fourtwo": "0.6.3-main.10"
+  "@levicape/fourtwo-pulumi": "0.6.3-main.10"
+  "@levicape/fourtwo-builders": "0.6.3-main.10"
+  "@levicape/spork": "0.2.0-main.1"
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 catalogs:
   core:
+    "jsonc-parser": "^3.3.1"
     "long": "^5.2.3"
-    "zod": "3.23.8"
-    "yaml": "^2.6.1"
+    "zod": "3.24.1"
+    "yaml": "^2.7.0"
     "ini": "^5.0.0"
     "pify": "^6.1.0"
     "verror": "^1.10.0"
     "pretty-ms": "^9.2.0"
     "fast-xml-parser": "^4.5.0"
+    "js-yaml": "^4.1.0"
   id:
     "@paralleldrive/cuid2": "^2.2.2"
     "ksuid": "^3.0.0"
@@ -28,45 +49,45 @@ catalogs:
     "slugid": "^5.0.1"
     "nanoid": "^5.0.9"
   protobuf:
-    "@bufbuild/protobuf": "^2.2.2"
+    "@bufbuild/protobuf": "^2.2.3"
     "@bufbuild/buf": "^1.44.0"
-    "ts-proto": "^2.5.0"
+    "ts-proto": "^2.6.1"
   server:
-    "consola": "^3.2.3"
+    "consola": "^3.4.0"
     "hookable": "^5.5.3"
     "@stricjs/cluster": "^2.0.0"
     "@stricjs/utils": "^2.0.7"
-
     "node-html-parser": "^6.1.13"
     "lru-cache": "^11.0.2"
     "unzipper": "^0.12.3"
   aws:
-    "@aws-sdk/client-dynamodb": "^3.705.0"
-    "@aws-sdk/client-secrets-manager": "^3.699.0"
-    "@aws-sdk/client-sqs": "^3.699.0"
-    "@aws-sdk/lib-dynamodb": "^3.705.0"
-    "@aws-sdk/util-dynamodb": "^3.705.0"
+    "@aws-sdk/client-dynamodb": "^3.731.0"
+    "@aws-sdk/client-secrets-manager": "^3.731.0"
+    "@aws-sdk/client-sqs": "^3.731.0"
+    "@aws-sdk/lib-dynamodb": "^3.731.0"
+    "@aws-sdk/util-dynamodb": "^3.731.0"
     "aws4fetch": "^1.0.20"
     "pino-lambda": "^4.4.1"
+    "@aws/codecatalyst-workflows-sdk": "0.1.5-preview.6"
+    "aws-lambda-ric": "^3.2.1"
   database:
     "better-sqlite3": "^11.6.0"
-    "slonik": "^46.2.0"
+    "slonik": "^46.4.0"
     "knex": "^3.1.0"
     "pg": "^8.13.1"
   cli:
-    "@stricli/core": "^1.1.0"
+    "@stricli/core": "^1.1.1"
     "enquirer": "^2.4.1"
   hono:
-    "hono": "^4.6.12"
+    "hono": "^4.6.16"
     "@hono/node-server": "^1.13.7"
-    "@hono/zod-validator": "^0.4.1"
+    "@hono/zod-validator": "^0.4.2"
     "compressible": "^2.0.18"
     "hono-rate-limiter": "^0.4.2"
   dev:
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
     "tsx": "^4.19.2"
   types:
-
     "@total-typescript/ts-reset": "^0.6.1"
     "tslib": "^2.8.1"
     "@types/bcryptjs": "^2.4.6"
@@ -75,27 +96,25 @@ catalogs:
     "@types/qrcode": "^1.5.5"
     "@types/react": "^19.0.0"
     "@types/react-dom": "^19.0.0"
-
-
     "@types/folder-hash": "^4.0.4"
-    "@types/node": "^22.10.1"
+    "@types/node": "^22.10.3"
     "@types/unzipper": "^0.10.10"
     "@types/compressible": "^2.0.2"
     "@types/jsonwebtoken": "^9.0.7"
     "@types/module-alias": "^2.0.4"
     "@types/ini": "^4.1.1"
     "@types/verror": "^1.10.10"
-
+    "@types/js-yaml": "^4.0.9"
   test:
     "expect": "^29.7.0"
   lint:
     "@biomejs/biome": "^1.9.4"
   package:
     "depcheck": "^1.4.7"
-    "publint": "^0.2.12"
+    "publint": "^0.3.2"
     "syncpack": "^13.0.0"
     "ci": "^2.3.0"
-
+    "nx": "20.3.2"
   crypto:
     # TODO: ???
     "crypto-js": "^4.2.0"
@@ -104,11 +123,9 @@ catalogs:
   http:
     "http-status-codes": "^2.3.0"
     "odata-filter-parser": "^0.5.5"
-
     "cookie": "^1.0.2"
     "cookie-signature": "^1.2.2"
     "isbot": "^4.4.0"
-
   build:
     "node-gyp": "^10.2.0"
     "autoprefixer": "^10.4.20"
@@ -168,18 +185,17 @@ catalogs:
   web-cloudscape:
     "@cloudscape-design/components": "^3.0.839"
     "@cloudscape-design/global-styles": "^1.0.32"
-
   pulumi:
     "@pulumi/docker-build": "^0.0.7"
     "@pulumi/synced-folder": "^0.11.1"
     "@pulumi/aws": "^6.64.0"
     "@pulumi/awsx": "^2.19.0"
+    "@pulumi/aws-native": "1.24.0"
     "@pulumi/command": "^1.0.1"
     "@pulumi/docker": "^4.5.7"
     "@pulumi/kubernetes": "^4.18.4"
     "@pulumi/pulumi": "^3.142.0"
     "@pulumi/random": "^4.16.7"
     "@pulumiverse/time": "^0.1.0"
-
   kubernetes:
     "@kubernetes-models/postgres-operator": "^0.4.2"

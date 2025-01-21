@@ -1,21 +1,122 @@
 {
-	"config": {
-	  "packagemanager": "pnpm",
-	  "packageexecutor": "pnpm exec",
-	  "outpaths": "./module",
-	  "binpath": "./src/cli/bin.mts",
-	  "clipath": "./module/cli/bin.mjs",
-	  "lintpaths": "./src ./canary ./iac",
-	  "protocols": "./src/_protocols",
-	  "server": "module/app/router/hono/HonoHttpSpork.mjs"
-	},
-	"devDependencies": {
-		"ci": "catalog:package",
-		"@levicape/fourtwo": "catalog:",
-		"depcheck": "catalog:package",
-		"publint": "catalog:package",
-		"syncpack": "catalog:package",
-		"tsx": "catalog:dev"
-	},
-	"packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
+  "name": "@levicape/greathall",
+  "version": "0.0.0-local-0",
+  "config": {
+    "packagemanager": "pnpm",
+    "packagebin": "corepack pnpm",
+    "packageexecutor": "corepack pnpm exec"
+  },
+  "dependencies": {
+    "aws-lambda-ric": "catalog:aws",
+    "better-sqlite3": "catalog:database",
+    "knex": "catalog:database"
+  },
+  "devDependencies": {
+    "@levicape/fourtwo": "catalog:",
+    "@levicape/spork": "catalog:",
+    "depcheck": "catalog:package",
+    "nx": "catalog:package",
+    "publint": "catalog:package",
+    "syncpack": "catalog:package",
+    "tsx": "catalog:dev"
+  },
+  "files": [
+    "i18n",
+    "iac",
+    "protocols"
+  ],
+  "license": "AGPL-3.0-only",
+  "nx": {
+    "targets": {
+      "dx:test": {
+        "dependsOn": [
+          "dx:lint",
+          "nx:test"
+        ]
+      },
+      "dx:precommit": {
+        "dependsOn": [
+          "dx:prepublish",
+          "@levicape/model-greathall-qureau:dx:precommit",
+          "@levicape/greathall-iac-stacks:dx:precommit",
+          "@levicape/greathall-server:dx:precommit",
+          "@levicape/greathall-server-canary:dx:precommit",
+          "iac-workflows:dx:precommit"
+        ]
+      },
+      "nx:clean": {
+        "dependsOn": [
+          "@levicape/model-greathall-qureau:clean",
+          "@levicape/greathall-server:clean",
+          "@levicape/greathall-server-canary:clean"
+        ]
+      },
+      "nx:compile": {
+        "dependsOn": [
+          "@levicape/greathall-server:nx:compile",
+          "@levicape/greathall-server-canary:nx:compile"
+        ]
+      },
+      "nx:sync": {
+        "dependsOn": [
+          "iac-workflows:nx:sync"
+        ]
+      },
+      "nx:test": {
+        "dependsOn": [
+          "@levicape/greathall-server:nx:test",
+          "@levicape/greathall-server-canary:nx:test"
+        ]
+      },
+      "nx:lint": {
+        "dependsOn": [
+          "@levicape/greathall-server:lint",
+          "@levicape/greathall-server-canary:lint",
+          "@levicape/greathall-iac-stacks:lint",
+          "iac-workflows:lint"
+        ]
+      },
+      "nx:lint:format": {
+        "dependsOn": [
+          "@levicape/greathall-server:lint:format",
+          "@levicape/greathall-iac-stacks:lint:format",
+          "@levicape/greathall-server-canary:lint:format",
+          "iac-workflows:lint:format"
+        ]
+      }
+    }
+  },
+  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": "github:levicape/great-hall",
+  "scripts": {
+    "build": "$npm_package_config_packageexecutor nx nx:compile",
+    "clean": "$npm_package_config_packageexecutor nx nx:clean --verbose",
+    "clean:packages": "rm -rf **/node_modules && $npm_package_config_packageexecutor nx reset",
+    "dx:commit": "$npm_package_config_packagebin run clean:packages && $npm_package_config_packageexecutor nx dx:precommit --no-cloud --verbose",
+    "dx:lint": "$npm_package_config_packagemanager run build && $npm_package_config_packagemanager run lint:format && $npm_package_config_packagemanager run package:format",
+    "dx:precommit": "$npm_package_config_packageexecutor nx dx:precommit:pre && $npm_package_config_packageexecutor nx dx:sync && $npm_package_config_packageexecutor nx package:deps",
+    "dx:precommit:pre": "echo \"Starting precommit dx. This will recompile iac files and check package.json dependencies.\"",
+    "dx:prepublish": "$npm_package_config_packageexecutor nx dx:prepublish:pre && $npm_package_config_packageexecutor nx dx:lint && $npm_package_config_packageexecutor nx prepublish",
+    "dx:prepublish:pre": "echo \"Starting prepublish dx. This will compile packages, run dx:lint and format package.json and verify all exports are valid. \"",
+    "dx:sync": "$npm_package_config_packageexecutor nx dx:sync:pre && $npm_package_config_packageexecutor nx nx:sync",
+    "dx:sync:pre": "echo \"Starting sync dx. This will generate all the workflows and sync them with the repository.\"",
+    "heroku-prebuild": "npm rebuild aws-lambda-ric",
+    "lint": "$npm_package_config_packageexecutor nx nx:lint --verbose",
+    "lint:format": "$npm_package_config_packageexecutor nx nx:lint:format --verbose",
+    "package:deps": "$npm_package_config_packageexecutor depcheck",
+    "package:fix": "$npm_package_config_packageexecutor syncpack fix-mismatches",
+    "package:format": "$npm_package_config_packageexecutor syncpack format",
+    "package:update": "$npm_package_config_packageexecutor syncpack update",
+    "postclean:packages": "$npm_package_config_packagebin install",
+    "precommit": "$npm_package_config_packageexecutor nx dx:prepublish --no-cloud --verbose",
+    "predx:lint": "$npm_package_config_packageexecutor nx clean",
+    "prepublish": "$npm_package_config_packageexecutor nx exec -- publint --strict",
+    "test": "$npm_package_config_packageexecutor nx nx:test --verbose",
+    "xx:workflow": "$npm_package_config_packageexecutor nx run-many -t build,lint,test --parallel=1 --verbose --no-cloud"
+  },
+  "type": "commonjs"
 }

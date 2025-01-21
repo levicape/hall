@@ -1,0 +1,9 @@
+ignores: 
+- "@levicape/*"
+- "tsx" 
+- "nx"
+- "@bufbuild/protobuf"
+- "ts-proto"
+- "aws-lambda-ric"
+- "knex"
+- "better-sqlite3"

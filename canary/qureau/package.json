@@ -1,0 +1,95 @@
+{
+  "name": "@levicape/greathall-server-canary",
+  "version": "0.0.0-local-0",
+  "config": {
+    "packagemanager": "pnpm",
+    "packageexecutor": "pnpm exec",
+    "lintpaths": "./src",
+    "outpaths": "./module",
+    "canaryregister": "./module/canary/Register"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "catalog:protobuf",
+    "@levicape/paloma": "catalog:",
+    "@levicape/spork": "catalog:",
+    "aws-lambda-ric": "catalog:aws",
+    "expect": "catalog:test",
+    "knex": "catalog:database",
+    "ksuid": "catalog:id",
+    "ts-proto": "catalog:protobuf",
+    "zod": "catalog:core"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:lint",
+    "@types/node": "catalog:types",
+    "publint": "catalog:package",
+    "syncpack": "catalog:package",
+    "typescript": "catalog:dev"
+  },
+  "exports": {
+    ".": "./module/index.mjs"
+  },
+  "files": [
+    "module"
+  ],
+  "nx": {
+    "targets": {
+      "dx:precommit": {
+        "dependsOn": [
+          "dx:prepublish",
+          "nx:test"
+        ]
+      },
+      "dx:test": {
+        "dependsOn": [
+          "dx:lint",
+          "nx:test"
+        ]
+      },
+      "nx:compile": {
+        "dependsOn": [
+          "build:tsc"
+        ]
+      },
+      "nx:test": {
+        "dependsOn": []
+      },
+      "build:tsc": {
+        "dependsOn": []
+      }
+    }
+  },
+  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": "github:levicape/great-hall",
+  "scripts": {
+    "build": "$npm_package_config_packageexecutor nx nx:compile",
+    "build:tsc": "$npm_package_config_packageexecutor tsc",
+    "clean": "rm -rf $npm_package_config_outpaths || true",
+    "commit": "$npm_package_config_packageexecutor nx dx:precommit --no-cloud --verbose",
+    "dx:config:post": "$npm_package_config_packagemanager config set recursive-install true",
+    "dx:config:pre": "$npm_package_config_packagemanager config set recursive-install false",
+    "dx:lint": "$npm_package_config_packageexecutor nx nx:compile && $npm_package_config_packageexecutor nx lint:format && $npm_package_config_packageexecutor nx package:format",
+    "dx:precommit": "$npm_package_config_packageexecutor nx dx:precommit:pre && $npm_package_config_packageexecutor nx package:deps",
+    "dx:precommit:pre": "echo \"Starting precommit dx. This will check package.json dependencies.\"",
+    "dx:prepublish": "$npm_package_config_packageexecutor nx dx:prepublish:pre && $npm_package_config_packageexecutor nx dx:lint && $npm_package_config_packageexecutor nx prepublish",
+    "dx:prepublish:pre": "echo \"Starting prepublish dx. This will compile the package, lint it, format package.json and verify all exports are valid. \"",
+    "lambda:canary:register": "$npm_package_config_packageexecutor aws-lambda-ric $npm_package_config_canaryregister.LambdaHandler",
+    "lint": "$npm_package_config_packageexecutor nx exec -- biome check $npm_package_config_lintpaths",
+    "lint:format": "$npm_package_config_packageexecutor nx exec -- biome check --write $npm_package_config_lintpaths",
+    "lint:unsafe": "$npm_package_config_packageexecutor nx exec -- biome check --write --unsafe $npm_package_config_lintpaths",
+    "package:deps": "$npm_package_config_packageexecutor nx exec -- depcheck",
+    "package:fix": "$npm_package_config_packageexecutor nx exec -- syncpack fix-mismatches",
+    "package:format": "$npm_package_config_packageexecutor nx exec -- syncpack format",
+    "package:update": "$npm_package_config_packageexecutor nx exec -- syncpack update",
+    "precommit": "$npm_package_config_packageexecutor nx dx:prepublish --no-cloud --verbose",
+    "prelint": "$npm_package_config_packageexecutor nx exec -- biome format $npm_package_config_lintpaths",
+    "prepublish": "$npm_package_config_packageexecutor publint --strict",
+    "start:canary:register": "node $npm_package_config_canaryregister.mjs",
+    "test": "$npm_package_config_packageexecutor nx nx:test --no-cloud --verbose"
+  },
+  "type": "module",
+  "types": "module/index.d.mts"
+}

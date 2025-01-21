@@ -1,5 +1,5 @@
 {
-  "name": "@levicape/great-hall-server",
+  "name": "@levicape/greathall-server",
   "description": "Server for the Qureau protocol",
   "version": "0.0.0-local.0",
   "author": "Pedro Cardona",
@@ -9,9 +9,11 @@
     "outpath": "./module",
     "srcpaths": "./src/app",
     "lintpaths": "./src ./canary ./iac",
+    "i18n": "./src/_i18n",
     "protocols": "./src/_protocols",
     "models": "./src/_models",
-    "server": "./module/cli/HonoHttpServer.mjs"
+    "moduleserver": "./module/cli/HonoHttpServer.mjs",
+    "handlerhttplambda": "./module/lambda/HttpHandler.GreatHallLambda"
   },
   "dependencies": {
     "@bufbuild/protobuf": "catalog:protobuf",
@@ -22,6 +24,7 @@
     "@stricjs/cluster": "catalog:server",
     "@stricjs/utils": "catalog:server",
     "@stricli/core": "catalog:cli",
+    "aws-lambda-ric": "catalog:aws",
     "aws4fetch": "catalog:aws",
     "compressible": "catalog:hono",
     "consola": "catalog:server",
@@ -49,16 +52,41 @@
     "typescript": "catalog:dev"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=23.0.0"
   },
   "exports": {
-    "./app": "./module/app/index.mjs",
-    "./cli": "./module/cli/index.mjs"
+    "./app": "./module/app/index.mjs"
   },
   "files": [
     "module"
   ],
   "license": "AGPL-3.0-only",
+  "nx": {
+    "targets": {
+      "dx:test": {
+        "dependsOn": [
+          "dx:lint",
+          "nx:test"
+        ]
+      },
+      "build:tsc": {
+        "dependsOn": [
+          "generate:protocols",
+          "generate:models"
+        ]
+      },
+      "nx:compile": {
+        "dependsOn": [
+          "build:tsc"
+        ]
+      },
+      "nx:test": {
+        "dependsOn": [
+          "test:module"
+        ]
+      }
+    }
+  },
   "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf",
   "private": true,
   "publishConfig": {
@@ -66,20 +94,13 @@
   },
   "repository": "github:levicape/great-hall",
   "scripts": {
-    "build": "$npm_package_config_packageexecutor tsc",
+    "build": "$npm_package_config_packageexecutor nx nx:compile",
+    "build:tsc": "$npm_package_config_packageexecutor tsc",
     "clean": "rm -rf $npm_package_config_outpaths || true",
-    "clean:install": "rm -rf ./node_modules",
-    "compile": "$npm_package_config_packagemanager run generate && $npm_package_config_packagemanager run build",
-    "dx:lint": "$npm_package_config_packagemanager run compile && $npm_package_config_packagemanager run lint:format && $npm_package_config_packagemanager run package:format",
-    "dx:prepublish": "$npm_package_config_packagemanager run dx:prepublish:pre && $npm_package_config_packagemanager run dx:lint && $npm_package_config_packagemanager run dx:sync && $npm_package_config_packagemanager run prepublish",
-    "dx:prepublish:pre": "echo \"Starting prepublish dx. This will compile the package, lint it, format package.json and verify all exports are valid. \"",
-    "dx:sync": "echo 'dx:sync -- Not supported yet'",
-    "dx:test": "$npm_package_config_packagemanager run clean && $npm_package_config_packagemanager run build && $npm_package_config_packagemanager run test",
-    "ft:gha:push:main": "$npm_package_config_packageexecutor fourtwo github workflows gen \"../../iac/server/workflows/github/push/GithubMainPushPipeline.js\" --output",
-    "generate": "$npm_package_config_packagemanager run generate:protocols && $npm_package_config_packagemanager run generate:models",
-    "generate:i18n": "$npm_package_config_packageexecutor spork code gen --root \"../../i18n\" --command \"$(which $npm_package_config_packagemanager) run compile\" --artifact gen --destination \"./src/_i18n\" --clean",
-    "generate:models": "$npm_package_config_packageexecutor spork code gen --root \"../../models\" --command \"$(which $npm_package_config_packagemanager) run compile\" --artifact module --destination \"./src/_models\" --clean",
-    "generate:protocols": "$npm_package_config_packageexecutor spork code gen --root \"../../protocols\" --command \"$(which $npm_package_config_packagemanager) run compile\" --artifact gen --destination $npm_package_config_protocols --clean",
+    "generate:i18n": "$npm_package_config_packageexecutor spork code gen --root \"../../i18n\" --command \"$(which $npm_package_config_packagemanager) run build\" --artifact module --destination $npm_package_config_i18n --clean",
+    "generate:models": "$npm_package_config_packageexecutor spork code gen --root \"../../models\" --command \"$(which $npm_package_config_packagemanager) run build\" --artifact module --destination $npm_package_config_models --clean",
+    "generate:protocols": "$npm_package_config_packageexecutor spork code gen --root \"../../protocols\" --command \"$(which $npm_package_config_packagemanager) run build\" --artifact gen --destination $npm_package_config_protocols --clean",
+    "lambda:http": "$npm_package_config_packageexecutor aws-lambda-ric $npm_package_config_handlerhttplambda",
     "lint": "$npm_package_config_packageexecutor biome check $npm_package_config_srcpaths",
     "lint:format": "$npm_package_config_packageexecutor biome format --write $npm_package_config_srcpaths",
     "lint:unsafe": "$npm_package_config_packageexecutor biome check --write --unsafe $npm_package_config_srcpaths",
@@ -88,11 +109,12 @@
     "package:fix": "$npm_package_config_packageexecutor syncpack fix-mismatches",
     "package:format": "$npm_package_config_packageexecutor syncpack format",
     "package:update": "$npm_package_config_packageexecutor syncpack update",
-    "prebuild": "$npm_package_config_packagemanager run clean",
+    "predx:lint": "$npm_package_config_packagemanager run clean",
     "prelint": "$npm_package_config_packageexecutor biome format $npm_package_config_srcpaths",
     "prepublish": "$npm_package_config_packageexecutor publint --strict",
-    "start": "$npm_package_config_packageexecutor spork server start $npm_package_config_server",
-    "test": "echo \"Error: no test specified\""
+    "start": "$npm_package_config_packageexecutor spork server start $npm_package_config_moduleserver",
+    "test": "$npm_package_config_packageexecutor nx nx:test --verbose",
+    "test:module": "echo 'node --test  \"module/**/*.test.js\"'"
   },
   "type": "module",
   "types": "module/app/index.d.mts"
