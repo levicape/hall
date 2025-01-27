@@ -1,7 +1,7 @@
 ########################################
 # THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY
 ########################################
-name: "on Release: [released] Publish @levicape/(greathall-server, greathall-acolyte, protobuf-greathall-qureau) to Github"
+name: "on Release: [released] Publish @levicape/(greathall-qureau-io, greathall-adept-ui, protobuf-greathall-qureau) to Github"
 on:
   release:
     types:
@@ -10,15 +10,15 @@ env:
   NPM_REGISTRY_PROTOCOL: https
   NPM_REGISTRY_HOST: npm.pkg.github.com
 jobs:
-  publish_greathall-server:
-    name: "@levicape/greathall-server: Compile and publish to Github"
+  publish_greathall-qureau-io:
+    name: "@levicape/greathall-qureau-io: Compile and publish to Github"
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
     defaults:
       run:
-        working-directory: packages/server
+        working-directory: packages/qureau-io
     steps:
       - name: Verify registry URL
         continue-on-error: true
@@ -81,8 +81,8 @@ jobs:
         name: Publish to npm
         continue-on-error: true
         run: pnpm publish --no-git-checks;
-  publish_greathall-acolyte:
-    name: "@levicape/greathall-acolyte: Compile and publish to Github"
+  publish_greathall-adept-ui:
+    name: "@levicape/greathall-adept-ui: Compile and publish to Github"
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -228,7 +228,7 @@ jobs:
 ########################################
 #**:_$~- {"$$":"head","filename":"[release(released)]Publish tagged module to npm.yml","source":"iac/workflows/github/release/Publish tagged module to npm.js"}
 #**:_$~- {"$$":"script","generator":"codegen/github/GenerateGithubWorkflow.mjs"}
-#**:_$~- {"$$":"body","hashed":"8bceb8a6c8a49376615d88bb77110a51b103eba7465ee5cd5e3f57a13e1cc579"}
-#**:_$~- {"$$":"footer","started":"2025-01-20T20:25:45.765Z","now":"2025-01-20T20:25:45.775Z","elapsed":"10ms"}
+#**:_$~- {"$$":"body","hashed":"eb680fe92c00906e9797a0dbd91a64f9811b0849ddd0e3d9bb0962d66c164d20"}
+#**:_$~- {"$$":"footer","started":"2025-01-27T07:35:51.625Z","now":"2025-01-27T07:35:51.631Z","elapsed":"6ms"}
 # END OF GENERATED FILE
 

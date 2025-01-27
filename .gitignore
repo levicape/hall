@@ -186,3 +186,6 @@ _models
 
 .nx/cache
 .nx/workspace-data
+schema/qureau/package.json
+schema/qureau/sql/1725858122000._entity_tables.sql
+schema/qureau/src/postgres.ts

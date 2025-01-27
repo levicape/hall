@@ -57,7 +57,7 @@ export const GreathallQureauHttpStackExportsZod = z.object({
 			name: z.string(),
 		}),
 	}),
-	greathall_qureau_http_pipeline: z.object({
+	greathall_qureau_http_codepipeline: z.object({
 		pipeline: z.object({
 			arn: z.string(),
 			name: z.string(),

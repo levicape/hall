@@ -145,12 +145,12 @@ export default (
 )({
 	compileAndPublish: [
 		{
-			packageName: "@levicape/greathall-server",
-			cwd: "packages/server",
+			packageName: "@levicape/greathall-qureau-io",
+			cwd: "packages/qureau-io",
 			compile: "build",
 		},
 		{
-			packageName: "@levicape/greathall-acolyte",
+			packageName: "@levicape/greathall-adept-ui",
 			cwd: "packages/client",
 			compile: "build",
 		},

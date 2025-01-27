@@ -1,11 +1,11 @@
 {
-  "name": "@levicape/greathall-server-canary",
+  "name": "@levicape/greathall-qureau-io-canary",
   "version": "0.0.0-local-0",
   "config": {
     "packagemanager": "pnpm",
     "packageexecutor": "pnpm exec",
-    "outpath": "./module",
     "lintpaths": "./src",
+    "outpaths": "./module",
     "protocols": "./src/_protocols",
     "canaryregister": "./module/canary/Register"
   },
@@ -13,15 +13,15 @@
     "@bufbuild/protobuf": "catalog:protobuf",
     "@levicape/paloma": "catalog:",
     "@levicape/spork": "catalog:",
-    "aws-lambda-ric": "catalog:aws",
     "expect": "catalog:test",
-    "knex": "catalog:database",
+    "knex": "catalog:database-sql",
     "ksuid": "catalog:id",
     "ts-proto": "catalog:protobuf",
     "zod": "catalog:core"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:lint",
+    "@bufbuild/buf": "catalog:protobuf",
     "@types/node": "catalog:types",
     "publint": "catalog:package",
     "syncpack": "catalog:package",
@@ -35,6 +35,11 @@
   ],
   "nx": {
     "targets": {
+      "build:module": {
+        "dependsOn": [
+          "build:tsc"
+        ]
+      },
       "build:tsc": {
         "dependsOn": [
           "generate:protocols"
@@ -42,8 +47,21 @@
       },
       "dx:precommit": {
         "dependsOn": [
-          "@levicape/greathall-server-canary:dx:prepublish",
-          "nx:test"
+          "dx:prepublish",
+          "dx:test"
+        ]
+      },
+      "dx:prepublish": {
+        "dependsOn": [
+          "dx:prepublish:pre",
+          "dx:lint"
+        ]
+      },
+      "dx:lint": {
+        "dependsOn": [
+          "nx:compile",
+          "lint:format",
+          "package:format"
         ]
       },
       "dx:test": {
@@ -52,9 +70,14 @@
           "nx:test"
         ]
       },
+      "nx:clean": {
+        "dependsOn": [
+          "clean:module"
+        ]
+      },
       "nx:compile": {
         "dependsOn": [
-          "build:tsc"
+          "build:module"
         ]
       },
       "nx:test": {
@@ -70,19 +93,19 @@
   },
   "repository": "github:levicape/great-hall",
   "scripts": {
-    "build": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor nx nx:compile",
-    "build:tsc": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor tsc",
-    "clean": "rm -rf $npm_package_config_outpath || true",
-    "commit": "$npm_package_config_packageexecutor nx dx:precommit --no-cloud --verbose",
+    "build": "$npm_package_config_packageexecutor nx nx:compile",
+    "build:tsc": "$npm_package_config_packageexecutor tsc",
+    "canary:harness": "node $npm_package_config_canaryharness",
+    "canary:server": "nohup node $npm_package_config_canaryserverhttp & node $npm_package_config_canaryserver",
+    "clean": "$npm_package_config_packageexecutor nx nx:clean",
+    "clean:module": "rm -rf $npm_package_config_outpaths || true",
     "dx:config:post": "$npm_package_config_packagemanager config set recursive-install true",
     "dx:config:pre": "$npm_package_config_packagemanager config set recursive-install false",
-    "dx:lint": "$npm_package_config_packageexecutor nx nx:compile && $npm_package_config_packageexecutor nx lint:format && $npm_package_config_packageexecutor nx package:format",
     "dx:precommit": "$npm_package_config_packageexecutor nx dx:precommit:pre && $npm_package_config_packageexecutor nx package:deps",
     "dx:precommit:pre": "echo \"Starting precommit dx. This will check package.json dependencies.\"",
-    "dx:prepublish": "$npm_package_config_packageexecutor nx dx:prepublish:pre && $npm_package_config_packageexecutor nx dx:lint && $npm_package_config_packageexecutor nx prepublish",
+    "dx:prepublish": "$npm_package_config_packageexecutor nx prepublish",
     "dx:prepublish:pre": "echo \"Starting prepublish dx. This will compile the package, lint it, format package.json and verify all exports are valid. \"",
     "generate:protocols": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor spork code gen --root \"../../protocols\" --command \"$(which $npm_package_config_packagemanager) --silent run build\" --artifact gen --destination $npm_package_config_protocols --clean",
-    "lambda:canary:register": "$npm_package_config_packageexecutor aws-lambda-ric $npm_package_config_canaryregister.LambdaHandler",
     "lint": "$npm_package_config_packageexecutor nx exec -- biome check $npm_package_config_lintpaths",
     "lint:format": "$npm_package_config_packageexecutor nx exec -- biome check --write $npm_package_config_lintpaths",
     "lint:unsafe": "$npm_package_config_packageexecutor nx exec -- biome check --write --unsafe $npm_package_config_lintpaths",
@@ -91,6 +114,7 @@
     "package:format": "$npm_package_config_packageexecutor nx exec -- syncpack format",
     "package:update": "$npm_package_config_packageexecutor nx exec -- syncpack update",
     "precommit": "$npm_package_config_packageexecutor nx dx:prepublish --no-cloud --verbose",
+    "predx:lint": "$npm_package_config_packageexecutor nx clean",
     "prelint": "$npm_package_config_packageexecutor nx exec -- biome format $npm_package_config_lintpaths",
     "prepublish": "$npm_package_config_packageexecutor publint --strict",
     "start:canary:register": "node $npm_package_config_canaryregister.mjs",

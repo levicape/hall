@@ -1,4 +1,8 @@
 cli: pnpm run dx:cli:mjs
+cli-fourtwo: pnpm exec fourtwo
+cli-paloma: pnpm run paloma
+cli-spork: pnpm run dx:cli:mjs
+deploy: pnpm --filter $DEPLOY_FILTER --prod --node-linker=hoisted deploy $DEPLOY_OUTPUT || true; ls -la $DEPLOY_OUTPUT || true; echo 'rebuilding $DEPLOY_FILTER'; pnpm -c $DEPLOY_OUTPUT rebuild || true; echo 'procfile deploy to $DEPLOY_OUTPUT complete'; sleep 1200s
+project: pnpm run -C $PROJECT_PATH
 test: pnpm run test
-qureauhttp: pnpm run -C packages/server lambda:http
-qureaucanaryregister: pnpm run -C canary/qureau lambda:canary:register
+wait: sleep 1200s
