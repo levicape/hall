@@ -1,0 +1,26 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_task;
+
+message TaskGetRequest {
+  reserved 1 to 255;
+
+  string taskId = 256;
+}
+
+message TaskGetResponse {
+  reserved 1;
+
+  message TaskDefinitionResponse {
+    reserved 1;
+
+    string name = 2;
+    string command = 3;
+  }    
+  string taskId = 2;
+  TaskDefinitionResponse definition = 3;
+  string created = 4;
+  string observed = 5;
+  string completed = 6;  
+}

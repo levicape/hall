@@ -1,37 +1,37 @@
 {
-  "name": "@levicape/greathall-qureau-io-canary",
+  "name": "@levicape/hall-qureau-io-canary",
   "version": "0.0.0-local-0",
   "config": {
     "packagemanager": "pnpm",
     "packageexecutor": "pnpm exec",
     "lintpaths": "./src",
     "outpaths": "./module",
-    "protocols": "./src/_protocols",
-    "canaryregister": "./module/canary/Register"
-  },
+    "canaryregister": "./module/canary/register.mjs",
+    "esbuildpaths": "module/canary/*.mjs",
+    "esbuildplatform": "node",
+    "esbuildpackages": "bundle",
+    "esbuildargs": "--external:better-sqlite3 --external:sqlite3 --external:tedious --external:mysql --external:mysql2 --external:oracledb --external:knex"
+  },  
   "dependencies": {
     "@bufbuild/protobuf": "catalog:protobuf",
     "@levicape/paloma": "catalog:",
-    "@levicape/spork": "catalog:",
-    "expect": "catalog:test",
-    "knex": "catalog:database-sql",
+    "effect": "catalog:effect",
     "ksuid": "catalog:id",
+    "std-env": "catalog:runtime-env",
     "ts-proto": "catalog:protobuf",
-    "zod": "catalog:core"
+    "verror": "catalog:error"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:lint",
-    "@bufbuild/buf": "catalog:protobuf",
     "@types/node": "catalog:types",
+    "esbuild": "catalog:build-esbuild",
     "publint": "catalog:package",
     "syncpack": "catalog:package",
     "typescript": "catalog:dev"
   },
-  "exports": {
-    ".": "./module/index.mjs"
-  },
   "files": [
-    "module"
+    "module",
+    "output"
   ],
   "nx": {
     "targets": {

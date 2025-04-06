@@ -1,0 +1,24 @@
+services:
+  pg:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: qwerasdf
+      POSTGRES_DB: compose
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "pg", "-d", "compose"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    ports:
+      - $ENTRI_POSTGRES:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - $ENTRI_ADMINER:8080
+volumes:
+  pgdata:

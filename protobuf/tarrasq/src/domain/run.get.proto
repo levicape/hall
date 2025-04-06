@@ -1,0 +1,83 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_run;
+
+enum TaskRunStatusResponse {
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__STATUS__RESPONSE_UNSPECIFIED = 0;
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__STATUS__RESPONSE_RESERVED_MIN = 1;
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__STATUS__RESPONSE_RESERVED_MAX = 255;
+  TASKRUN_CREATED = 256;
+  TASKRUN_STARTED = 257;
+  TASKRUN_COMPLETED = 258;
+}
+enum TaskRunEventStatusResponse {
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__EVENT_STATUS__RESPONSE_UNSPECIFIED = 0;
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__EVENT_STATUS__RESPONSE_RESERVED_MIN = 1;
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__EVENT_STATUS__RESPONSE_RESERVED_MAX = 255;
+  TASKRUNEVENT_WAITING = 256;
+  TASKRUNEVENT_STARTED = 257;
+  TASKRUNEVENT_COMPLETED = 258;
+}
+
+message TaskRunGetInferred {
+  reserved 1 to 1024;
+  string principalId = 1025;
+  string principalService = 1026;
+  string resourceVersion = 1027; 
+  string idempotencyId = 1028; 
+  string requestId = 1029; 
+  string responseId = 1030; 
+}
+
+message TaskRunGetRequest {
+  reserved 1 to 255;
+  string taskRunId = 256;
+}
+
+message TaskRunGet {
+  reserved 1 to 1024;
+  TaskRunGetRequest request = 1025;
+  TaskRunGetInferred inferred = 1026;
+}
+
+message TaskRunGetResponse {
+  reserved 1;
+  
+  message TopicResponse {
+    reserved 1;
+    string host = 2;
+    string path = 3;
+  };
+  message TaskStepResponse {
+    reserved 1;
+    string taskId = 2;
+    string args = 3;
+    TopicResponse topic = 4;
+  }  
+  message TaskRunDefinitionResponse {
+    reserved 1;
+    string name = 2;
+    repeated TaskStepResponse steps = 3;
+  }
+  message TaskRunEventResponse {
+    reserved 1;
+    string taskRunEventId = 2;
+    string taskRunAttempt = 3;
+    TaskStepResponse step = 4;
+    string taskRunStepAttempt = 5;
+    TaskRunEventStatusResponse status = 6;
+    string output = 7;
+    string input = 8;
+    string timestamp = 9;
+  }
+
+  string taskRunId = 2;
+  TaskRunStatusResponse status = 3;
+  TaskRunDefinitionResponse definition = 4;
+  repeated TaskRunEventResponse events = 5;
+  string created = 6;
+  string started = 7;  
+  string observed = 8;
+  string completed = 9;
+}

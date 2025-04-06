@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_task;
+import "domain/task.get.proto";
+
+message TaskQueryRequest {
+  reserved 1 to 255;
+
+  repeated TaskGetRequest tasks = 256;
+}
+
+message TaskQueryResponse {
+  reserved 1;
+  
+  TaskGetResponse task = 2;
+  repeated TaskGetResponse tasks = 3;
+}

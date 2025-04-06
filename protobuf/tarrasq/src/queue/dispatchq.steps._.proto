@@ -1,0 +1,21 @@
+ syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_queue;
+import "queue/dispatchq.steps.delta.proto";
+
+enum TarrasqDispatchStepsMethods {
+  reserved 1 to 1269999;
+  __TARRASQ_DISPATCH_STEPS__METHOD_DEFAULT__ = 0; 
+  TarrasqDispatchStepsDeltaReceiverMethod = 1270000;
+}
+
+message TarrasqDispatchStepReceiverMessage {
+  reserved 1 to 255;
+  reserved 268;
+  reserved "__TARRASQ_DISPATCH__STEPS__MESSAGE";
+  string method = 256 [json_name = "method"];
+  oneof data {
+    TarrasqDispatchStepsDelta delta = 257 [json_name = "data"];
+  }
+}

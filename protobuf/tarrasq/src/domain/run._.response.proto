@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_run;
+
+import "domain/run.create.proto";
+import "domain/run.get.proto";
+import "domain/run.redrive.proto";
+import "domain/run.list.proto";
+
+message TaskRunsResponse {
+  reserved 1;
+  oneof messages {
+    TaskRunCreateResponse create = 2;
+    TaskRunGetResponse get = 3;
+    TaskRunRedriveResponse redrive = 4;
+    TaskRunListResponse list = 5;
+  }
+}

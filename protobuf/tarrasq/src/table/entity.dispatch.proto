@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+package tq_table;
+
+enum TarrasqDispatchTableRingSize {
+  reserved 4 to 99;
+  TarrasqDispatchTableRingSize_IGNORE = 0;
+  TarrasqDispatchTableRingSizePerimeter = 504;
+}
+
+enum TarrasqDispatchTableEntityPrimaryKey {
+    reserved 4 to 99;
+    tarrasq_at_TENANTID_and_RUNID___runs = 0;
+}
+
+enum TarrasqDispatchTableEntitySortKey {
+  reserved 4 to 99;
+  _and_FNCALLID_x__sc_ = 0;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_task;
+
+import "domain/task.create.proto";
+import "domain/task.query.proto";
+
+message TasksResponse {
+  reserved 1;
+  oneof message {
+    TaskQueryResponse query = 4;
+    TaskCreateResponse create = 5;
+  }
+}

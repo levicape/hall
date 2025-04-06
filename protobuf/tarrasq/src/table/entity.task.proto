@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+package tq_table;
+
+enum TarrasqTasksTableRingSize {
+    reserved 4 to 99;
+    TarrasqTasksTableRingSize_IGNORE = 0;
+    TarrasqTasksTableRingSizePerimeter = 504;
+}
+  
+
+enum TarrasqTasksTableEntityPrimaryKey {
+    reserved 4 to 99;
+    tarrasq_at_TENANTID_and_TASKID = 0;
+}
+
+enum TarrasqTasksTableEntitySortKey {
+  reserved 4 to 99;
+  _and_Task_x__sc_ = 0;
+}

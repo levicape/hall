@@ -1,0 +1,27 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_dispatch;
+
+message DispatchUnknownRequest {
+  reserved 1 to 255;
+  reserved "__TARRASQ_DOMAIN__DISPATCH__DISPATCH_REQUEST__UNKNOWN";  
+
+  string message = 256;
+}
+
+message DispatchUnknownResponse {
+  reserved 1 to 255;
+  reserved "__TARRASQ_DOMAIN__DISPATCH__DISPATCH_RESPONSE__UNKNOWN";  
+
+  string message = 256;
+}
+
+message DispatchResponse {
+  reserved 1;
+  reserved "__TARRASQ_DOMAIN__DISPATCH__DISPATCH_RESPONSE__DISPATCH_RESPONSE";  
+  
+  oneof messages {
+    DispatchUnknownResponse unknown = 2;
+  }
+}

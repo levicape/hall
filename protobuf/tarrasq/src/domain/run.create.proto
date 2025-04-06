@@ -1,0 +1,68 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_run;
+
+message TaskRunCreateInferred {
+  reserved 1 to 1024;
+  string principalId = 1025;
+  string principalService = 1026;
+  string resourceVersion = 1027; 
+  string idempotencyId = 1028; 
+  string requestId = 1029; 
+  string responseId = 1030; 
+}
+
+message TaskRunCreateRequest {
+    reserved 1 to 255;
+  
+    message TopicRequest {
+      reserved 1 to 255;
+      string host = 256;
+      string path = 257;
+    };
+    message TaskStepRequest {
+      reserved 1 to 255;
+      string taskId = 256;
+      string args = 257;
+      TopicRequest topic = 258;
+    }  
+    message TaskRunDefinitionRequest {
+      reserved 1 to 255;
+      string name = 256;
+      repeated TaskStepRequest steps = 257;
+    }
+  
+    TaskRunDefinitionRequest definition = 256;
+}
+
+message TaskRunCreate {
+  reserved 1 to 1024;
+  TaskRunCreateRequest request = 1025;
+  TaskRunCreateInferred inferred = 1026;
+}
+
+message TaskRunCreateResponse {
+  reserved 1;
+
+  message TopicResponse {
+    reserved 1;
+    string host = 2;
+    string path = 3;
+  };
+  message TaskStepResponse {
+    reserved 1;
+    string taskId = 2;
+    string args = 3;
+    TopicResponse topic = 4;
+  }  
+  message TaskRunDefinitionResponse {
+    reserved 1;
+    string name = 2;
+    repeated TaskStepResponse steps = 3;
+  }
+
+  string taskRunId = 2;
+  TaskRunDefinitionResponse definition = 3;
+  string created = 4;  
+}

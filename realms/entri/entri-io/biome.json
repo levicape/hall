@@ -1,0 +1,36 @@
+{
+    "files": {
+      "ignore": [
+        "src/_protocols/**/*",
+        "src/_models/**/*",
+        "package.json",
+        "package-lock.json",
+        "**/package.json",
+        "**/package-lock.json"	      
+      ]
+    },
+    "linter": {
+      "rules": { 
+        "correctness": {
+          "useJsxKeyInIterable": "off",
+          "noChildrenProp": "off"
+        },
+        "suspicious": {
+            "noAssignInExpressions": "off",
+            "noUnsafeDeclarationMerging": "off",
+            "noControlCharactersInRegex": "off"
+        },
+        "style": {
+          "noUnusedTemplateLiteral": "off"
+        },
+        "complexity": {
+            "noStaticOnlyClass": "off",
+            "noForEach": "off",
+            "noBannedTypes": "off",
+            "useLiteralKeys": "off",
+            "noUselessFragments": "off",
+            "noUselessConstructor": "off"
+        }
+    }
+  }
+}

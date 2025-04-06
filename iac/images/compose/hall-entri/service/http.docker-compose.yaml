@@ -1,0 +1,40 @@
+include:
+  - "./dmesh/postgres.docker-compose.yaml"
+services:
+  http:
+    image: $APPLICATION_HALL_IMAGE
+    entrypoint: project
+    environment:      
+      NODE_OPTIONS: $NODE_OPTIONS
+      LOG_LEVEL: $LOG_LEVEL
+      STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+      PROJECT_PATH: ./realms/entri/entri-io
+      PROJECT_COMMAND: http:dev
+      PORT: $ENTRI_HTTP
+    depends_on:
+      pg:
+        condition: service_healthy
+    volumes: &workspace_volumes
+      - ../../../../..:/workspace
+    ports:
+      - $ENTRI_HTTP:$ENTRI_HTTP
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:$ENTRI_HTTP/.well-known/healthcheck"]
+      interval: 3s
+      timeout: 8s
+      retries: 5
+  # http-canary:
+  #   image: $ROOT_IMAGE
+  #   entrypoint: project
+  #   environment:
+  #     NODE_OPTIONS: $NODE_OPTIONS
+  #     LOG_LEVEL: $LOG_LEVEL
+  #     STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+  #     PROJECT_PATH: ./realms/entri/entri-io
+  #     PROJECT_COMMAND: http:canary
+  #     ENTRI_HTTP: $ENTRI_HTTP
+  #     ENTRI_UI: $ENTRI_UI
+  #   volumes: *workspace_volumes
+  #   depends_on:
+  #     http:
+  #       condition: service_healthy

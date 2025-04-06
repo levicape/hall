@@ -26,19 +26,15 @@
             "noControlCharactersInRegex": "off"
         },
         "style": {
-          "noUnusedTemplateLiteral": "off",
-          "noParameterAssign": "off",
-          "useConst": "off"
+          "noUnusedTemplateLiteral": "off"
         },
         "complexity": {
             "noStaticOnlyClass": "off",
             "noForEach": "off",
             "noBannedTypes": "off",
             "useLiteralKeys": "off",
-            "noUselessFragments": "off"
-        },
-        "performance": {
-            "noAccumulatingSpread": "off"
+            "noUselessFragments": "off",
+            "noUselessConstructor": "off"
         }
       }
     }

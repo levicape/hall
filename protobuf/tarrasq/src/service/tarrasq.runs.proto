@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_service;
+
+import "domain/run.create.proto";
+import "domain/run.get.proto";
+import "domain/run.redrive.proto";
+import "domain/run.list.proto";
+import "service/tarrasq._.proto";
+
+service TarrasqRunsService {
+    rpc Create(tq_run.TaskRunCreate) returns (tq_run.TaskRunCreateResponse);
+    rpc Get(tq_run.TaskRunGet) returns (tq_run.TaskRunGetResponse);
+    rpc Redrive(tq_run.TaskRunRedrive) returns (tq_run.TaskRunRedriveResponse);
+    rpc List(tq_run.TaskRunList) returns (tq_run.TaskRunListResponse);
+}

@@ -1,0 +1,43 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_task;
+
+enum TaskVisibility {
+  __TARRASQ_DOMAIN__TASK__TASK__VISIBILITY__UNSPECIFIED = 0;
+  __TARRASQ_DOMAIN__TASK__TASK__VISIBILITY__RESERVED_MIN = 1;
+  __TARRASQ_DOMAIN__TASK__TASK__VISIBILITY__RESERVED_MAX = 63;
+  STATIC = 64;
+}
+message Topic {
+  reserved 1 to 63;
+  string host = 64;
+  string path = 65;
+}
+
+message TaskDefinition {
+  reserved 1 to 63;
+  string name = 64;
+  string command = 65;
+}
+
+message TaskStep {
+  reserved 1 to 63;
+  string taskId = 64;
+  string args = 65;
+  Topic topic = 66;
+}
+
+message Task {
+  reserved 1 to 63;
+  reserved 70;
+
+  string taskId = 64;
+  TaskDefinition definition = 65;
+  string visibility = 69;
+
+  uint64 created = 66;
+  uint64 observed = 67;
+  uint64 completed = 68;
+}
+

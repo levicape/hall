@@ -1,0 +1,61 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_service;
+
+enum TarrasqVersionEnum {
+    option allow_alias = true;
+    reserved 1 to 65535;
+    reserved 65537;
+    reserved 70000;
+    __TARRASQ__VERSION__UNSPECIFIED = 0;
+    TARRASQ_V_V1 = 65536;
+    TARRASQ_V_EVER__READONLY = 69999;
+    TARRASQ_V_STABLE__READONLY = 65536;
+    TARRASQ_V_STAGING__READONLY = 65536;
+    TARRASQ_V_LATEST__READONLY = 65536;
+}
+
+enum TarrasqResponseVersionEnum {
+    option allow_alias = true;
+    reserved 1 to 524287;
+    reserved 524294;
+    reserved 600000;
+    __TARRASQ_RESPONSE__VERSION__UNSPECIFIED = 0;
+    TARRASQ_R_V0 = 524288;
+    TARRASQ_R_V1 = 524289;
+    TARRASQ_R_V2 = 524290;    
+    TARRASQ_R_V3 = 524291;    
+    TARRASQ_R_V4 = 524292;    
+    TARRASQ_R_V5 = 524293;    
+    TARRASQ_R_EVER = 599999;
+    TARRASQ_R_STABLE = 524288;
+    TARRASQ_R_STAGING = 524293;
+    TARRASQ_R_LATEST = 524293;
+}
+
+enum TarrasqProtocolVersionEnum {
+    option allow_alias = true;
+    reserved 1 to 28770219;
+    __TARRASQ_PROTOCOL__VERSION__UNSPECIFIED = 0;
+    TARRASQ_P_V0         =  28770220;
+    reserved 28770221 to 28770222;
+    TARRASQ_P_V28770223  =  28770223;
+    reserved 28770224 to 28770880;
+    TARRASQ_P_V28770881  =  28770881;
+    reserved 28770882 to 28772979;
+    TARRASQ_P_V28772980  =  28772980; 
+    TARRASQ_P_V28772981  =  28772981; 
+    reserved 28772982 to 28785780;
+    TARRASQ_P_V28785781  =  28785781;
+    reserved 28785782 to 43862669;
+    TARRASQ_P_Y2K38 = 43862670;
+    reserved 43862671 to 99999998;
+    TARRASQ_P_VEVER      =  99999999;
+    reserved 100000000 to 999999998;
+    TARRASQ_P_RESERVED_MAX = 999999999;
+    TARRASQ_P_STABLE     =  28770220;
+    TARRASQ_P_STAGING    =  28770881;
+    TARRASQ_P_LATEST     =  28785781;
+
+}

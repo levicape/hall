@@ -1,20 +1,17 @@
 {
-  "name": "@levicape/protobuf-greathall-qureau",
+  "name": "@levicape/protobuf-hall-qureau",
   "version": "0.0.0-local.0",
   "config": {
     "packagemanager": "pnpm",
-    "packageexecutor": "corepack pnpm exec",
+    "packageexecutor": "pnpm exec",
     "outpaths": "./gen"
   },
   "dependencies": {
     "@bufbuild/buf": "catalog:protobuf",
     "@bufbuild/protobuf": "catalog:protobuf",
-    "ts-proto": "catalog:protobuf",
-    "typescript": "catalog:dev"
+    "ts-proto": "catalog:protobuf"
   },
   "devDependencies": {
-    "@biomejs/biome": "catalog:lint",
-    "ci": "catalog:package",
     "publint": "catalog:package",
     "syncpack": "catalog:package"
   },

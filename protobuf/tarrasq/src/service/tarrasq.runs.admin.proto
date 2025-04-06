@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_service;
+
+import "domain/run.redrive.proto";
+import "service/tarrasq._.proto";
+
+service TarrasqRunsAdminRemote {
+    rpc Redrive(tq_run.TaskRunRedriveRequest) returns (TarrasqResponse);
+}

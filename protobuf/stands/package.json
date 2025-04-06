@@ -1,0 +1,21 @@
+{
+  "name": "stands",
+  "type": "module",
+  "scripts": {
+    "clean:build": "rm -rf ./gen",
+    "clean:all": "rm -rf ./gen && rm -rf ./node_modules || true",
+    "lint": "npx buf lint",
+    "format": "npx buf format -w",
+    "build": "npx buf generate"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@bufbuild/buf": "^1.44.0",
+    "ts-proto": "^2.2.2"
+  }
+}

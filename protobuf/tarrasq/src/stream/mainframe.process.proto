@@ -1,0 +1,33 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_stream;
+
+enum ProcessEventKind {
+    __TARRASQ_DOMAIN__STREAM__MAINFRAME_PROCESS__KIND__UNSPECIFIED = 0;
+    __TARRASQ_DOMAIN__STREAM__MAINFRAME_PROCESS__KIND__RESERVED_MIN = 1;
+    __TARRASQ_DOMAIN__STREAM__MAINFRAME_PROCESS__KIND__RESERVED_MAX = 63;
+    CDC = 64;
+}
+
+enum ProcessEventAction {
+    __TARRASQ_DOMAIN__STREAM__MAINFRAME_PROCESS__ACTION__UNSPECIFIED = 0;
+    __TARRASQ_DOMAIN__STREAM__MAINFRAME_PROCESS__ACTION__RESERVED_MIN = 1;
+    __TARRASQ_DOMAIN__STREAM__MAINFRAME_PROCESS__ACTION__RESERVED_MAX = 63;
+    INSERT = 64;
+    MODIFY = 65;
+    REMOVE = 66;
+}
+
+message ProcessEventMessageJson {
+    reserved 1 to 63;
+    ProcessEventKind kind = 64;
+    ProcessEventAction action = 65;
+    message ProcessEventMessageJsonData {
+        reserved 1 to 63;
+        string oldjson = 64;
+        string newjson = 65;
+    }
+
+    ProcessEventMessageJsonData data = 66;
+}

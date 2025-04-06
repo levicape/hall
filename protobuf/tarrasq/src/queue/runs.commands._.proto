@@ -1,0 +1,21 @@
+ syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_queue;
+import "queue/runs.commands.fnCall.proto";
+
+enum TarrasqRunsCommandsMethods {
+  reserved 1 to 1139999;
+  __TARRASQ_RUNS__COMMANDS__METHOD_DEFAULT__ = 0; 
+  TarrasqRunsCommandsFnCallReceiverMethod = 1140000;
+}
+
+message TarrasqRunsCommandsReceiverMessage {
+  reserved 1 to 255;
+  reserved 268;
+  reserved "__TARRASQ_RUNS__COMMANDS__FNCALL";
+  string method = 256 [json_name = "method"];
+  oneof data {
+    TarrasqRunsCommandsFnCall fnCall = 257 [json_name = "data"];
+  }
+}

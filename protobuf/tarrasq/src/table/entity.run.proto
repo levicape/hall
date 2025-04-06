@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+package tq_table;
+
+enum TarrasqRunsTableRingSize {
+  reserved 4 to 99;
+  TarrasqRunsTableRingSize_IGNORE = 0;
+  TarrasqRunsTableRingSizePerimeter = 504;
+}
+
+enum TarrasqRunsTableEntityPrimaryKey {
+    reserved 4 to 99;
+    tarrasq_at_TENANTID_and_RUNID = 0;
+}
+enum TarrasqRunsTableEntitySortKey {
+  reserved 4 to 99;
+  _and_Run_x__sc_ = 0;
+}
