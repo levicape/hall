@@ -13,11 +13,11 @@ catalogs:
       specifier: 0.3.9-main.3
       version: 0.3.9-main.3
     '@levicape/spork':
-      specifier: 0.10.3-main.10
-      version: 0.10.3-main.10
+      specifier: 0.10.4-main.11
+      version: 0.10.4-main.11
     '@levicape/spork-atlas':
-      specifier: 0.10.3-main.10
-      version: 0.10.3-main.10
+      specifier: 0.10.4-main.11
+      version: 0.10.4-main.11
   dev:
     tsx:
       specifier: ^4.19.3
@@ -223,10 +223,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.10.3-main.10(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.10.3-main.10
+        version: 0.10.4-main.11
       effect:
         specifier: catalog:effect
         version: 3.14.5
@@ -278,10 +278,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.10.3-main.10(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.10.3-main.10
+        version: 0.10.4-main.11
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -362,6 +362,55 @@ importers:
         specifier: catalog:web-vite
         version: 6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1)
 
+  realms/entri/gate-io:
+    dependencies:
+      '@bufbuild/protobuf':
+        specifier: catalog:protobuf
+        version: 2.2.5
+      '@levicape/paloma':
+        specifier: 'catalog:'
+        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
+      '@levicape/spork':
+        specifier: 'catalog:'
+        version: 0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+      '@levicape/spork-atlas':
+        specifier: 'catalog:'
+        version: 0.10.4-main.11
+      effect:
+        specifier: catalog:effect
+        version: 3.14.5
+      hono:
+        specifier: catalog:hono
+        version: 4.7.5
+      http-status-codes:
+        specifier: catalog:http
+        version: 2.3.0
+      std-env:
+        specifier: catalog:runtime-env
+        version: 3.8.1
+      ts-proto:
+        specifier: catalog:protobuf
+        version: 2.7.0
+      ulidx:
+        specifier: catalog:id
+        version: 2.4.1
+      zod:
+        specifier: catalog:schema-zod
+        version: 3.24.2
+    devDependencies:
+      '@biomejs/biome':
+        specifier: catalog:lint
+        version: 1.9.4
+      '@types/node':
+        specifier: catalog:types
+        version: 22.14.0
+      publint:
+        specifier: catalog:package
+        version: 0.3.10
+      typescript:
+        specifier: catalog:dev
+        version: 5.8.2
+
   realms/entri/gate-ui:
     dependencies:
       '@base-ui-components/react':
@@ -370,18 +419,18 @@ importers:
       '@hono/node-server':
         specifier: catalog:hono
         version: 1.14.0(hono@4.7.5)
-      '@levicape/hall-entri-io':
+      '@levicape/hall-gate-io':
         specifier: 'workspace:'
-        version: link:../entri-io
+        version: link:../gate-io
       '@levicape/paloma':
         specifier: 'catalog:'
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.10.3-main.10(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.10.3-main.10
+        version: 0.10.4-main.11
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -1148,12 +1197,12 @@ packages:
     engines: {node: 22.13.0}
     hasBin: true
 
-  '@levicape/spork-atlas@0.10.3-main.10':
-    resolution: {integrity: sha512-paYTICEALaHZtEGM3rHnoHWiG86Gw8GSoc8G4PnzsNoFfcoycOVlwP3z7BjvDfeMr3yNBxBHdKdCqyvoVAkGNA==, tarball: https://npm.pkg.github.com/download/@levicape/spork-atlas/0.10.3-main.10/c5f2aa4421703f0cb4640327c9a1d9cf81b3171e}
+  '@levicape/spork-atlas@0.10.4-main.11':
+    resolution: {integrity: sha512-+OBlVEmRWy6Mj2QPLFzD5HIiVFEoQ9BHe+KiQbi39Xf8toMCNk5IsR+I9Un/pE/beT7QuKrV8lHuyyGBd/oRbA==, tarball: https://npm.pkg.github.com/download/@levicape/spork-atlas/0.10.4-main.11/20e07847cec63a45aa4781c969281c2fcfee0fbc}
     engines: {node: '22'}
 
-  '@levicape/spork@0.10.3-main.10':
-    resolution: {integrity: sha512-6M9YlwZ5RLgTM+zpfWDxIH7dgL5egDJ5ts3isXv46Qr+/kdAZxwJ+xw6iCQZn3XDp5sXX9tz2+1k7TP0QKdchA==, tarball: https://npm.pkg.github.com/download/@levicape/spork/0.10.3-main.10/ec837eeffe5705c0d49d801e3043177db0a89404}
+  '@levicape/spork@0.10.4-main.11':
+    resolution: {integrity: sha512-rZFhWcGOIVVELTrW1Q8/Tt06wdloz4giZqGoDnTjcw6M68meoOiuhWOxkIDu8NilW0klyN2AaEhI7+wvqc5D1w==, tarball: https://npm.pkg.github.com/download/@levicape/spork/0.10.4-main.11/1f3d1f0fabc6fecad3c765208c24b2658e6db3d3}
     engines: {node: 22.13.0}
     hasBin: true
 
@@ -5031,7 +5080,7 @@ snapshots:
       - tedious
       - utf-8-validate
 
-  '@levicape/spork-atlas@0.10.3-main.10':
+  '@levicape/spork-atlas@0.10.4-main.11':
     dependencies:
       destr: 2.0.5
       fs-extra: 11.3.0
@@ -5040,7 +5089,7 @@ snapshots:
       verror: 1.10.1
       zod: 3.24.2
 
-  '@levicape/spork@0.10.3-main.10(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)':
+  '@levicape/spork@0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)':
     dependencies:
       '@aws-lambda-powertools/logger': 2.17.0
       '@aws-sdk/client-dynamodb': 3.777.0

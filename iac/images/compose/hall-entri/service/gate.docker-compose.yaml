@@ -1,6 +1,35 @@
 
 services:
-  gate:
+  gate-http:
+    image: $APPLICATION_HALL_IMAGE
+    entrypoint: project
+    environment:      
+      NODE_OPTIONS: $NODE_OPTIONS
+      LOG_LEVEL: $LOG_LEVEL
+      STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+      PROJECT_PATH: ./realms/entri/gate-io
+      PROJECT_COMMAND: http:dev
+      PORT: $GATE_HTTP
+      ENTRI_DATABASE__NAME: "postgresql://entri_pgactive:5432"
+      ENTRI_DATABASE__HOST: "entri_pgactive"
+      ENTRI_DATABASE__PORT: "5432"
+      ENTRI_DATABASE__SCHEMA: "public"
+      ENTRI_DATABASE__DB_0: "compose"
+      ENTRI_DATABASE__DB_0__OWNER_USERNAME: "pg"
+      ENTRI_DATABASE__DB_0__OWNER_PASSWORD: "qwerasdf"
+    depends_on:
+      entri_pgactive:
+        condition: service_healthy
+    volumes: &workspace_volumes
+      - ../../../../..:/workspace
+    ports:
+      - $GATE_HTTP:$GATE_HTTP
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:$GATE_HTTP/.well-known/healthcheck"]
+      interval: 3s
+      timeout: 8s
+      retries: 5
+  gate-ui:
     image: $APPLICATION_HALL_IMAGE
     entrypoint: project
     environment: 
@@ -9,16 +38,16 @@ services:
       STRUCTURED_LOGGING: $STRUCTURED_LOGGING
       PROJECT_PATH: ./realms/entri/gate-ui
       PROJECT_COMMAND: serverwww:dev
-      PORT: $ENTRI_GATE
+      PORT: $GATE_UI
     volumes: &workspace_volumes
       - ../../../../..:/workspace
     ports:
-      - $ENTRI_GATE:$ENTRI_GATE
+      - $GATE_UI:$GATE_UI
     healthcheck:
-      test: ["CMD", "curl", "-s", "-f", "http://localhost:$ENTRI_GATE/"]
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:$GATE_UI/"]
       interval: 3s
       timeout: 8s
-      retries: 5
+      retries: 7
   # ui-canary:
   #   image: $ROOT_IMAGE
   #   entrypoint: project
@@ -28,8 +57,8 @@ services:
   #     STRUCTURED_LOGGING: $STRUCTURED_LOGGING
   #     PROJECT_PATH: ./realms/entri/entri-ui
   #     PROJECT_COMMAND: staticwww:canary
-  #     ENTRI_HTTP: $ENTRI_HTTP
-  #     ENTRI_UI: $ENTRI_UI
+  #     GATE_HTTP_HOST: $ENTRI_HTTP
+  #     GATE_UI_HOST: $ENTRI_UI
   #   volumes: *workspace_volumes
   #   depends_on:
   #     http:

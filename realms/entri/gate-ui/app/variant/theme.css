@@ -39,7 +39,7 @@
 		--color-pastpurp-950: #09152a;		
 	}
 }
-
+/* 
 
 @plugin "daisyui/theme" {
 	name: nevada_dark;
@@ -124,4 +124,4 @@
 	--noise: 3;
 }
 
-@custom-variant dark (&:where([data-theme=nevada_dark], [data-theme=nevada_dark] *));
+@custom-variant dark (&:where([data-theme=nevada_dark], [data-theme=nevada_dark] *)); */

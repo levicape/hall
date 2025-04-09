@@ -115,19 +115,24 @@ export const DEFAULT_TRAILING_PREFIXES = ["/~/", "/!/"];
 const windowFetch = fetch;
 export interface UseOidcClientProps {
 	/**
+	 * Conditionally enable fetching auth on mount
+	 */
+	active?: () => boolean;
+	/**
 	 * If a Request starts with any string in `trailingSlashFilter`,
 	 * the returned fetch client (`oidcFetch`) will attach a trailing slash
 	 * at the end of the pathname only if it is not already included in the URL
 	 */
 	trailingSlashFilter?: Array<string>;
 }
-export type UseOidcClientFetchUserStateProps = {
+
+export type UseOidcClientFetchUserState = (props?: {
 	/**
 	 *  Always fetch User state, regardless of if the user is already loaded.
 	 *  Do not use with useEffect, as it may performance implications
 	 */
 	refresh: boolean;
-};
+}) => void;
 
 export interface UseOidcClientState {
 	/**
@@ -150,16 +155,21 @@ export interface UseOidcClientState {
 	/**
 	 * Fetch the user state from the OIDC client
 	 */
-	fetchUserState: (props?: UseOidcClientFetchUserStateProps) => void;
+	fetchUserState: UseOidcClientFetchUserState;
 }
 
-const EMPTY: Record<string, unknown> = {};
+const DEFAULT: Record<string, unknown> = {
+	active: () => true,
+};
 
+let latch = true;
 export const useOidcClient = (props?: UseOidcClientProps) => {
-	const { trailingSlashFilter } = props ?? EMPTY;
+	const { trailingSlashFilter, active } = {
+		...DEFAULT,
+		...(props ?? {}),
+	};
 	const [oidc] = useAtom(OidcClientAtom);
 	const [user, setUser] = useAtom(OidcUserAtom);
-	const { enabled: discordEnabled } = EMPTY;
 
 	const oidcFetch = useMemo(() => {
 		const authenticatedFetch: OidcFetch = async (
@@ -207,7 +217,7 @@ export const useOidcClient = (props?: UseOidcClientProps) => {
 		(props) => {
 			const { refresh } = { refresh: false, ...(props ?? {}) };
 
-			if (!discordEnabled) {
+			if (active?.() ?? true) {
 				if (refresh || user === null || user === undefined) {
 					return (async () => {
 						const debugEnabled = window["--oidc-debug"];
@@ -251,7 +261,7 @@ export const useOidcClient = (props?: UseOidcClientProps) => {
 				return Promise.resolve(user);
 			}
 		},
-		[oidc, discordEnabled, user, setUser, ready, setReady],
+		[active, oidc, user, setUser, ready, setReady],
 	);
 	const userReady = useMemo(() => {
 		if (!ready) {
@@ -266,7 +276,10 @@ export const useOidcClient = (props?: UseOidcClientProps) => {
 	}, [user?.expired, user?.access_token, oidcFetch, ready]);
 
 	useEffect(() => {
-		fetchUserState({ refresh: false });
+		if (latch) {
+			fetchUserState({ refresh: false });
+			latch = false;
+		}
 	}, [fetchUserState]);
 
 	return useMemo(() => {

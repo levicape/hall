@@ -37,6 +37,9 @@ export default defineConfig(({ mode }) => {
 	}
 
 	return {
+		server: {
+			allowedHosts: true,
+		},
 		build: {
 			ssrManifest: true,
 			rollupOptions: {

@@ -1,5 +1,3 @@
-include:
-  - "./dmesh/postgres.docker-compose.yaml"
 services:
   http:
     image: $APPLICATION_HALL_IMAGE
@@ -11,8 +9,15 @@ services:
       PROJECT_PATH: ./realms/entri/entri-io
       PROJECT_COMMAND: http:dev
       PORT: $ENTRI_HTTP
+      ENTRI_DATABASE__NAME: "postgresql://entri_pgactive:5432"
+      ENTRI_DATABASE__HOST: "entri_pgactive"
+      ENTRI_DATABASE__PORT: "5432"
+      ENTRI_DATABASE__SCHEMA: "public"
+      ENTRI_DATABASE__DB_0: "compose"
+      ENTRI_DATABASE__DB_0__OWNER_USERNAME: "pg"
+      ENTRI_DATABASE__DB_0__OWNER_PASSWORD: "qwerasdf"
     depends_on:
-      pg:
+      entri_pgactive:
         condition: service_healthy
     volumes: &workspace_volumes
       - ../../../../..:/workspace
@@ -38,3 +43,26 @@ services:
   #   depends_on:
   #     http:
   #       condition: service_healthy
+  entri_pgactive:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: qwerasdf
+      POSTGRES_DB: compose
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "pg", "-d", "compose"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    ports:
+      - $ENTRI_POSTGRES:5432
+    volumes:
+      - entri_active:/var/lib/postgresql/data 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - $ENTRI_ADMINER:8080
+volumes:
+  entri_active:

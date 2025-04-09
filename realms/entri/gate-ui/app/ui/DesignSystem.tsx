@@ -105,7 +105,7 @@ export namespace DesignSystem {
 				className={clsx(
 					"w-20",
 					"h-20",
-					"loading-spinner",
+					"loading-bars",
 					"absolute",
 					"top-1/2",
 					"left-1/2",
@@ -116,7 +116,6 @@ export namespace DesignSystem {
 					"border-8",
 					"border-primary-500/30",
 					"rounded-full",
-					"animate-spin",
 					"duration-500",
 					"ease-in-out",
 					"delay-150",

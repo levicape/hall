@@ -1,4 +1,4 @@
-import { type CSSProperties, type FC, Fragment, useMemo } from "hono/jsx";
+import { type CSSProperties, useMemo } from "hono/jsx";
 
 export type LoginQueryParams = {
 	response_type?: string;
@@ -86,7 +86,7 @@ export function LoginQuery() {
 		<object
 			aria-hidden
 			style={style}
-			typeof={"AuthnSession"}
+			typeof={"LoginQuery"}
 			suppressHydrationWarning
 			{...dataAttributes}
 		/>

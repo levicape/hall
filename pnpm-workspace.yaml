@@ -7,8 +7,8 @@ packages:
   - 'realms/*/*'
 catalog:
   "@levicape/paloma": "0.3.9-main.3"
-  '@levicape/spork': 0.10.3-main.10
-  '@levicape/spork-atlas': 0.10.3-main.10
+  '@levicape/spork': 0.10.4-main.11
+  '@levicape/spork-atlas': 0.10.4-main.11
   "@levicape/fourtwo": "0.10.2-main.2"
   "@levicape/fourtwo-pulumi": "0.10.2-main.2"
   "@levicape/fourtwo-builders": "0.10.2-main.2"
