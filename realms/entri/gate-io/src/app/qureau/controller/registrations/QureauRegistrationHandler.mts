@@ -1,7 +1,7 @@
+import { HonoGuardAuthentication } from "@levicape/spork/router/hono/guard/security/HonoGuardAuthentication";
 import { StatusCodes } from "http-status-codes";
-import { QureauRegistrationRegisterCommandZod } from "../../../../_models/qureau/registration/QureauRegistrationRegisterCommandZod.js";
 import {
-	type RegistrationRegister,
+	RegistrationRegister,
 	RegistrationRegisterRequest,
 	type RegistrationRegisterResponse,
 } from "../../../../_protocols/qureau/tsnode/domain/registration/register/registration.register.js";
@@ -10,13 +10,12 @@ import {
 	QureauResponseVersionEnum,
 	QureauVersionEnum,
 } from "../../../../_protocols/qureau/tsnode/service/version.js";
-import {
-	type KSUIDGenerator,
-	ksuidGenerator,
-} from "../../repository/users/QureauUserRepository.Registration.mjs";
+import { Qureau, version } from "../../Qureau.mjs";
+import type { KSUIDGenerator } from "../../repository/users/QureauUserRepository.Registration.mjs";
 import { qureauRegistrationService } from "../../service/QureauRegistration.mjs";
 import { QQUsersError } from "../../service/QureauUser.mjs";
-import { qureauFormattedError } from "../QureauBadRequestExceptionHandler.mjs";
+import { qqZodError } from "../QureauBadRequestExceptionHandler.mjs";
+import { QureauRegistrationRegisterCommandZod } from "./QureauRegistrationCommand.mjs";
 
 const registrationRegisterInfers = (
 	headers: Record<string, string | undefined>,
@@ -31,108 +30,96 @@ const registrationRegisterInfers = (
 	};
 };
 
-const translated = async (_: string, strings: Record<string, string>) => {
-	return (key: string) => {
-		return strings[key] ?? key;
-	};
-};
+export const QureauRegistrationHandler = Qureau().createHandlers(
+	HonoGuardAuthentication(async ({ principal }) => {
+		return principal.$case !== "anonymous";
+	}),
+	async (c) => {
+		// TODO: Http/Observability/Headers proto
+		// const headerNonce = request.header("X-Nonce");
+		const { body, status, json } = c;
+		const { success, error, data } =
+			await QureauRegistrationRegisterCommandZod.safeParseAsync(body);
+		// const requestLoggingEnabled = isRequestLoggingEnabled();
+		// requestLoggingEnabled &&
+		// 	Logger.request({
+		// 		QureauRegistrationHandler: {
+		// 			request: {
+		// 				body: process.env.NODE_ENV === "production" ? data : body,
+		// 				headers,
+		// 				error: requestLoggingEnabled
+		// 					? JSON.stringify(error?.errors ?? {})
+		// 					: error?.errors,
+		// 			},
+		// 		},
+		// 	});
 
-const en = translated("en", {
-	QQ_BAD_REQUEST: "Invalid request body",
-	"QQ_MANUAL_AUTHENTICATION_TOKEN_REQUIRED:":
-		"Authentication token must be provided if generateAuthenticationToken is false",
-	"registration.register.request.user.username.format":
-		"Username must be alphanumeric",
-	"registration.register.request.user.password.uppercase_required":
-		"Password must contain an uppercase letter",
-	"registration.register.request.user.password.lowercase_required":
-		"Password must contain a lowercase letter",
-	"registration.register.request.user.password.number_required":
-		"Password must contain a number",
-	"registration.register.request.user.password.symbol_required":
-		"Password must contain a symbol",
-}).then((t) => (key: string) => t(key) ?? key);
+		if (error || data === undefined) {
+			return json(
+				QureauResponse.toJSON({
+					error: qqZodError(error),
+					version,
+				}) as QureauResponse,
+				StatusCodes.BAD_REQUEST,
+			);
+		}
 
-// export const QureauRegistrationHandler: Handler = async ({
-// 	body,
-// 	headers,
-// 	set,
-// }) => {
-// 	// TODO: Http/Observability/Headers proto
-// 	// const headerNonce = request.header("X-Nonce");
+		if (
+			data?.request.generateAuthenticationToken === false &&
+			true
+			// TODO: Uncomment this when the protocol is updated
+			// data?.request.registration.authenticationToken === undefined
+		) {
+			return json(
+				QureauResponse.toJSON({
+					error: {
+						code: "QQ_MANUAL_AUTHENTICATION_TOKEN_REQUIRED",
+						message:
+							"generateAuthenticationToken = false requires a valid authenticationToken",
+						cause: undefined,
+						validations: [],
+					},
+					version,
+				}) as QureauResponse,
+				StatusCodes.BAD_REQUEST,
+			);
+		}
+		// if (headerNonce !== body.ext.nonce) {
+		//   throw new QQUsersError(
+		//     StatusCodes.EXPECTATION_FAILED,
+		//     {
+		//       code: "QQ_BAD_REQUEST",
+		//       reason: "QQ_NONCE_MISMATCH",
+		//     },
+		//   );
+		// }
 
-// 	const { success, error, data } =
-// 		await QureauRegistrationRegisterCommandZod.safeParseAsync(body);
-// 	const requestLoggingEnabled = isRequestLoggingEnabled();
-// 	requestLoggingEnabled &&
-// 		Logger.request({
-// 			QureauRegistrationHandler: {
-// 				request: {
-// 					body: process.env.NODE_ENV === "production" ? data : body,
-// 					headers,
-// 					error: requestLoggingEnabled
-// 						? JSON.stringify(error?.errors ?? {})
-// 						: error?.errors,
-// 				},
-// 			},
-// 		});
+		const register: RegistrationRegisterResponse =
+			await qureauRegistrationService
+				.Register(
+					RegistrationRegister.fromPartial({
+						request: RegistrationRegisterRequest.fromJSON(data.request),
+						// inferred: registrationRegisterInfers(headers, ksuidGenerator),
+						ext: data.ext,
+					}),
+				)
+				.catch((error) => {
+					throw error;
+				});
 
-// 	if (error || data === undefined) {
-// 		throw qureauFormattedError(success, error, await en);
-// 	}
-
-// 	if (
-// 		data?.request.generateAuthenticationToken === false &&
-// 		true
-// 		// TODO: Uncomment this when the protocol is updated
-// 		// data?.request.registration.authenticationToken === undefined
-// 	) {
-// 		throw new QQUsersError(StatusCodes.BAD_REQUEST, {
-// 			code: (await en)("QQ_MANUAL_AUTHENTICATION_TOKEN_REQUIRED"),
-// 			reason: "QQ_MANUAL_AUTHENTICATION_TOKEN_REQUIRED",
-// 		});
-// 	}
-// 	// if (headerNonce !== body.ext.nonce) {
-// 	//   throw new QQUsersError(
-// 	//     StatusCodes.EXPECTATION_FAILED,
-// 	//     {
-// 	//       code: "QQ_BAD_REQUEST",
-// 	//       reason: "QQ_NONCE_MISMATCH",
-// 	//     },
-// 	//   );
-// 	// }
-
-// 	const register: RegistrationRegisterResponse = await qureauRegistrationService
-// 		.Register(
-// 			RegistrationRegister.fromPartial({
-// 				request: RegistrationRegisterRequest.fromJSON(data.request),
-// 				inferred: registrationRegisterInfers(headers, ksuidGenerator),
-// 				ext: data.ext,
-// 			}),
-// 		)
-// 		.catch((error) => {
-// 			throw error;
-// 		});
-
-// 	set.status = "Created";
-// 	return QureauResponse.toJSON({
-// 		response: {
-// 			$case: "data",
-// 			value: {
-// 				qureau: {
-// 					$case: "registration",
-// 					value: {
-// 						registration: {
-// 							$case: "register",
-// 							value: register,
-// 						},
-// 					},
-// 				},
-// 			},
-// 		},
-// 		version: {
-// 			response: QureauResponseVersionEnum.QUREAU_R_LATEST,
-// 			qureau: QureauVersionEnum.QUREAU_V_V1,
-// 		},
-// 	});
-// };
+		return json(
+			QureauResponse.toJSON({
+				data: {
+					registration: {
+						register,
+					},
+				},
+				version: {
+					response: QureauResponseVersionEnum.QUREAU_R_LATEST,
+					qureau: QureauVersionEnum.QUREAU_V_V1,
+				},
+			}) as QureauResponse,
+			StatusCodes.CREATED,
+		);
+	},
+);

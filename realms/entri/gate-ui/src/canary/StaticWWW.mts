@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import { HallGateTopology } from "@levicape/hall-gate-io/http/Atlas";
+import { Topology } from "@levicape/hall-gate-io/http/Atlas";
 import { Canary, PromiseActivity } from "@levicape/paloma";
 import { LoggingContext } from "@levicape/paloma/runtime/server/RuntimeContext";
 import { withStructuredLogging } from "@levicape/paloma/runtime/server/loglayer/LoggingContext";
@@ -24,7 +24,7 @@ const { trace } = await Effect.runPromise(
 );
 trace
 	?.withMetadata({
-		HallGateTopology,
+		Topology,
 	})
 	.info("Loaded service clients");
 
@@ -60,9 +60,9 @@ export const healthcheck = new Canary(
 		},
 		async ({ events }) => {
 			trace.warn("Hello world");
-			trace.metadataOnly([events, HallGateTopology["/"].url()]);
+			trace.metadataOnly([events, Topology["/"].url()]);
 			{
-				const response = await fetch(HallGateTopology["/"].url());
+				const response = await fetch(Topology["/"].url());
 				const json = await response.text();
 				trace.withMetadata({ json }).info("Fetched");
 				assert(response.ok, `Response not ok: ${response.status}`);

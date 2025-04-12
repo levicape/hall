@@ -1,5 +1,5 @@
-import { MagicLinkService } from "../../../magiclink/MagicLinkService.js";
-import { QureauMagicLinkTable } from "../../../magiclink/QureauMagicLinkTable.js";
+import { MagicLinkService } from "../../../magiclink/MagicLinkService.mjs";
+import { QureauMagicLinkTable } from "../../../magiclink/QureauMagicLinkTable.mjs";
 // import type { ElysiaHttpAuthenticatedHandler } from "src/app/ElysiaHttpAuthentication";
 // import { QureauRegistrationHandler } from "../registrations/QureauRegistrationHandler.js";
 

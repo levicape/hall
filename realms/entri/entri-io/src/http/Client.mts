@@ -1,7 +1,7 @@
 import { hc } from "hono/client";
-import type { NevadaHonoApp } from "./HonoApp.mjs";
+import type { HonoApp } from "./HonoApp.mjs";
 
-const $client$ = hc<NevadaHonoApp>("");
-export type NevadaHonoClient = typeof $client$;
-export const client = (...args: Parameters<typeof hc>): NevadaHonoClient =>
-	hc<NevadaHonoApp>(...args);
+const $client$ = hc<HonoApp>("");
+export type HonoClient = typeof $client$;
+export const client = (...args: Parameters<typeof hc>): HonoClient =>
+	hc<HonoApp>(...args);

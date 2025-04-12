@@ -13,11 +13,11 @@ catalogs:
       specifier: 0.3.9-main.3
       version: 0.3.9-main.3
     '@levicape/spork':
-      specifier: 0.10.4-main.11
-      version: 0.10.4-main.11
+      specifier: 0.11.0-main.12
+      version: 0.11.0-main.12
     '@levicape/spork-atlas':
-      specifier: 0.10.4-main.11
-      version: 0.10.4-main.11
+      specifier: 0.11.0-main.12
+      version: 0.11.0-main.12
   dev:
     tsx:
       specifier: ^4.19.3
@@ -38,8 +38,8 @@ catalogs:
       version: 1.10.1
   hono:
     '@hono/node-server':
-      specifier: ^1.14.0
-      version: 1.14.0
+      specifier: ^1.14.1
+      version: 1.14.1
     '@hono/vite-build':
       specifier: ^1.3.0
       version: 1.5.0
@@ -50,11 +50,11 @@ catalogs:
       specifier: ^0.1.1
       version: 0.1.2
     hono:
-      specifier: ^4.7.5
-      version: 4.7.5
+      specifier: ^4.7.6
+      version: 4.7.6
     honox:
-      specifier: ^0.1.38
-      version: 0.1.39
+      specifier: ^0.1.40
+      version: 0.1.40
   http:
     http-status-codes:
       specifier: ^2.3.0
@@ -109,8 +109,8 @@ catalogs:
       version: 3.8.1
   schema-zod:
     zod:
-      specifier: ^3.24.2
-      version: 3.24.2
+      specifier: next
+      version: 4.0.0-beta.20250410T041907
   state:
     jotai:
       specifier: ^2.12.2
@@ -122,6 +122,9 @@ catalogs:
     '@types/react':
       specifier: ^19.0.1
       version: 19.1.0
+    '@types/verror':
+      specifier: ^1.10.11
+      version: 1.10.11
   web-components:
     '@base-ui-components/react':
       specifier: 1.0.0-alpha.6
@@ -223,16 +226,16 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.11.0-main.12(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.10.4-main.11
+        version: 0.11.0-main.12
       effect:
         specifier: catalog:effect
         version: 3.14.5
       hono:
         specifier: catalog:hono
-        version: 4.7.5
+        version: 4.7.6
       http-status-codes:
         specifier: catalog:http
         version: 2.3.0
@@ -247,7 +250,7 @@ importers:
         version: 2.4.1
       zod:
         specifier: catalog:schema-zod
-        version: 3.24.2
+        version: 4.0.0-beta.20250410T041907
     devDependencies:
       '@biomejs/biome':
         specifier: catalog:lint
@@ -266,10 +269,10 @@ importers:
     dependencies:
       '@base-ui-components/react':
         specifier: catalog:web-components
-        version: 1.0.0-alpha.6(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))(@types/react@19.1.0)
+        version: 1.0.0-alpha.6(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))(@types/react@19.1.0)
       '@hono/node-server':
         specifier: catalog:hono
-        version: 1.14.0(hono@4.7.5)
+        version: 1.14.1(hono@4.7.6)
       '@levicape/hall-entri-io':
         specifier: 'workspace:'
         version: link:../entri-io
@@ -278,10 +281,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.11.0-main.12(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.10.4-main.11
+        version: 0.11.0-main.12
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -293,31 +296,31 @@ importers:
         version: 3.14.5
       hono:
         specifier: catalog:hono
-        version: 4.7.5
+        version: 4.7.6
       honox:
         specifier: catalog:hono
-        version: 0.1.39(hono@4.7.5)
+        version: 0.1.40(hono@4.7.6)
       intl-messageformat:
         specifier: catalog:web-i18n
         version: 10.7.16
       jotai:
         specifier: catalog:state
-        version: 2.12.2(@hono/react-compat@0.0.1(hono@4.7.5))(@types/react@19.1.0)
+        version: 2.12.2(@hono/react-compat@0.0.1(hono@4.7.6))(@types/react@19.1.0)
       oidc-client-ts:
         specifier: catalog:oidc-client
         version: 3.2.0
       react:
         specifier: npm:@hono/react-compat@^0.0.1
-        version: '@hono/react-compat@0.0.1(hono@4.7.5)'
+        version: '@hono/react-compat@0.0.1(hono@4.7.6)'
       react-dom:
         specifier: npm:@hono/react-compat@^0.0.1
-        version: '@hono/react-compat@0.0.1(hono@4.7.5)'
+        version: '@hono/react-compat@0.0.1(hono@4.7.6)'
       react-range:
         specifier: catalog:web-components
-        version: 1.10.0(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
+        version: 1.10.0(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
       react-router:
         specifier: catalog:web-react-router
-        version: 7.5.0(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
+        version: 7.5.0(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
       serialize-error:
         specifier: catalog:error
         version: 12.0.0
@@ -333,13 +336,13 @@ importers:
         version: 1.9.4
       '@hono/vite-build':
         specifier: catalog:hono
-        version: 1.5.0(hono@4.7.5)
+        version: 1.5.0(hono@4.7.6)
       '@hono/vite-dev-server':
         specifier: catalog:hono
-        version: 0.19.0(hono@4.7.5)
+        version: 0.19.0(hono@4.7.6)
       '@hono/vite-ssg':
         specifier: catalog:hono
-        version: 0.1.2(hono@4.7.5)
+        version: 0.1.2(hono@4.7.6)
       '@tailwindcss/vite':
         specifier: catalog:web-tailwind
         version: 4.1.3(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1))
@@ -372,16 +375,16 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.11.0-main.12(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.10.4-main.11
+        version: 0.11.0-main.12
       effect:
         specifier: catalog:effect
         version: 3.14.5
       hono:
         specifier: catalog:hono
-        version: 4.7.5
+        version: 4.7.6
       http-status-codes:
         specifier: catalog:http
         version: 2.3.0
@@ -394,9 +397,12 @@ importers:
       ulidx:
         specifier: catalog:id
         version: 2.4.1
+      verror:
+        specifier: catalog:error
+        version: 1.10.1
       zod:
         specifier: catalog:schema-zod
-        version: 3.24.2
+        version: 4.0.0-beta.20250410T041907
     devDependencies:
       '@biomejs/biome':
         specifier: catalog:lint
@@ -404,6 +410,9 @@ importers:
       '@types/node':
         specifier: catalog:types
         version: 22.14.0
+      '@types/verror':
+        specifier: catalog:types
+        version: 1.10.11
       publint:
         specifier: catalog:package
         version: 0.3.10
@@ -415,10 +424,10 @@ importers:
     dependencies:
       '@base-ui-components/react':
         specifier: catalog:web-components
-        version: 1.0.0-alpha.6(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))(@types/react@19.1.0)
+        version: 1.0.0-alpha.6(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))(@types/react@19.1.0)
       '@hono/node-server':
         specifier: catalog:hono
-        version: 1.14.0(hono@4.7.5)
+        version: 1.14.1(hono@4.7.6)
       '@levicape/hall-gate-io':
         specifier: 'workspace:'
         version: link:../gate-io
@@ -427,10 +436,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.11.0-main.12(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.10.4-main.11
+        version: 0.11.0-main.12
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -442,31 +451,31 @@ importers:
         version: 3.14.5
       hono:
         specifier: catalog:hono
-        version: 4.7.5
+        version: 4.7.6
       honox:
         specifier: catalog:hono
-        version: 0.1.39(hono@4.7.5)
+        version: 0.1.40(hono@4.7.6)
       intl-messageformat:
         specifier: catalog:web-i18n
         version: 10.7.16
       jotai:
         specifier: catalog:state
-        version: 2.12.2(@hono/react-compat@0.0.1(hono@4.7.5))(@types/react@19.1.0)
+        version: 2.12.2(@hono/react-compat@0.0.1(hono@4.7.6))(@types/react@19.1.0)
       oidc-client-ts:
         specifier: catalog:oidc-client
         version: 3.2.0
       react:
         specifier: npm:@hono/react-compat@^0.0.1
-        version: '@hono/react-compat@0.0.1(hono@4.7.5)'
+        version: '@hono/react-compat@0.0.1(hono@4.7.6)'
       react-dom:
         specifier: npm:@hono/react-compat@^0.0.1
-        version: '@hono/react-compat@0.0.1(hono@4.7.5)'
+        version: '@hono/react-compat@0.0.1(hono@4.7.6)'
       react-range:
         specifier: catalog:web-components
-        version: 1.10.0(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
+        version: 1.10.0(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
       react-router:
         specifier: catalog:web-react-router
-        version: 7.5.0(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
+        version: 7.5.0(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
       serialize-error:
         specifier: catalog:error
         version: 12.0.0
@@ -482,13 +491,13 @@ importers:
         version: 1.9.4
       '@hono/vite-build':
         specifier: catalog:hono
-        version: 1.5.0(hono@4.7.5)
+        version: 1.5.0(hono@4.7.6)
       '@hono/vite-dev-server':
         specifier: catalog:hono
-        version: 0.19.0(hono@4.7.5)
+        version: 0.19.0(hono@4.7.6)
       '@hono/vite-ssg':
         specifier: catalog:hono
-        version: 0.1.2(hono@4.7.5)
+        version: 0.1.2(hono@4.7.6)
       '@tailwindcss/vite':
         specifier: catalog:web-tailwind
         version: 4.1.3(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1))
@@ -1114,6 +1123,12 @@ packages:
     peerDependencies:
       hono: ^4
 
+  '@hono/node-server@1.14.1':
+    resolution: {integrity: sha512-vmbuM+HPinjWzPe7FFPWMMQMsbKE9gDPhaH0FFdqbGpkT5lp++tcWDTxwBl5EgS5y6JVgIaCdjeHRfQ4XRBRjQ==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: ^4
+
   '@hono/react-compat@0.0.1':
     resolution: {integrity: sha512-zNBjCKAPfZxqDPQu+ITKJa7zt5vLsgmaV8QgV/6gnFgjDFbGyIvcPA/2zCL0je8AKynK7M7dlsxpNcRcVXSc9w==}
     peerDependencies:
@@ -1197,12 +1212,12 @@ packages:
     engines: {node: 22.13.0}
     hasBin: true
 
-  '@levicape/spork-atlas@0.10.4-main.11':
-    resolution: {integrity: sha512-+OBlVEmRWy6Mj2QPLFzD5HIiVFEoQ9BHe+KiQbi39Xf8toMCNk5IsR+I9Un/pE/beT7QuKrV8lHuyyGBd/oRbA==, tarball: https://npm.pkg.github.com/download/@levicape/spork-atlas/0.10.4-main.11/20e07847cec63a45aa4781c969281c2fcfee0fbc}
+  '@levicape/spork-atlas@0.11.0-main.12':
+    resolution: {integrity: sha512-hRO8J7BBy1hHfDKbtCu7s/ScAE+YedBVjH2e5NMO1m7OEIhgQfCqpugm41GAtsMCce5C0LtKA1sQ/x8Sz2OctQ==, tarball: https://npm.pkg.github.com/download/@levicape/spork-atlas/0.11.0-main.12/71d6b197d102d408fc9bdf6cde6b7c13ae3e293b}
     engines: {node: '22'}
 
-  '@levicape/spork@0.10.4-main.11':
-    resolution: {integrity: sha512-rZFhWcGOIVVELTrW1Q8/Tt06wdloz4giZqGoDnTjcw6M68meoOiuhWOxkIDu8NilW0klyN2AaEhI7+wvqc5D1w==, tarball: https://npm.pkg.github.com/download/@levicape/spork/0.10.4-main.11/1f3d1f0fabc6fecad3c765208c24b2658e6db3d3}
+  '@levicape/spork@0.11.0-main.12':
+    resolution: {integrity: sha512-0A+MSsUCPH+3DE8DdZb/XNDjdTYJG/Tb4IFpVyRJX5F+bi7iRdrrRQ3mNbkg1xlGUxR1clJquwSbMvnWU+tERQ==, tarball: https://npm.pkg.github.com/download/@levicape/spork/0.11.0-main.12/2ae7103ec9879f44ec61214ac09028642440e30b}
     engines: {node: 22.13.0}
     hasBin: true
 
@@ -1345,8 +1360,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@opentelemetry/semantic-conventions@1.28.0':
-    resolution: {integrity: sha512-lp4qAiMTD4sNWW4DbKLBkfiMZ4jbAboJIGOQr5DvciMRI494OapieI9qiODpOt0XBr1LjIDy1xAGAnVs5supTA==}
+  '@opentelemetry/semantic-conventions@1.31.0':
+    resolution: {integrity: sha512-cYJeP+6qN0UnBv1r09hXl0YorB8kXHv61BC0NUlBA8vxrylZ4/C8lnva3gd1E8n33DNYSaiGW+DuGoSt0QQ7Dw==}
     engines: {node: '>=14'}
 
   '@parcel/watcher-android-arm64@2.5.0':
@@ -1935,6 +1950,9 @@ packages:
   '@types/uuid@9.0.8':
     resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
 
+  '@types/verror@1.10.11':
+    resolution: {integrity: sha512-RlDm9K7+o5stv0Co8i8ZRGxDbrTxhJtgjqjFyVh/tXQyl/rYtTKlnTvZ88oSTeYREWurwx20Js4kTuKCsFkUtg==}
+
   '@typescript-eslint/types@7.18.0':
     resolution: {integrity: sha512-iZqi+Ds1y4EDYUtlOOC+aUmxnE9xS/yCigkjA7XpTKV6nCBd3Hp/PRGGmdwnfkV2ThMyYldP1wRpm/id99spTQ==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -1991,6 +2009,9 @@ packages:
   '@zkochan/js-yaml@0.0.7':
     resolution: {integrity: sha512-nrUSn7hzt7J6JWgWGz78ZYI8wj+gdIJdk0Ynjpp8l+trkn58Uqsf6RYrYkEK+3X18EX+TNdtJI0WxAtc+L84SQ==}
     hasBin: true
+
+  '@zod/core@0.2.0':
+    resolution: {integrity: sha512-0L7DpbqWt+W2IRbWBdWBkgxdacbco4sPdAzYA3AIc3jeFG9Css8jAcYGRjfVUiv+7CZGdLVnn747fcbcdIxpnw==}
 
   ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
@@ -2273,6 +2294,15 @@ packages:
 
   debug@4.3.7:
     resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  debug@4.4.0:
+    resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -2675,12 +2705,12 @@ packages:
     peerDependencies:
       hono: ^4.1.1
 
-  hono@4.7.5:
-    resolution: {integrity: sha512-fDOK5W2C1vZACsgLONigdZTRZxuBqFtcKh7bUQ5cVSbwI2RWjloJDcgFOVzbQrlI6pCmhlTsVYZ7zpLj4m4qMQ==}
+  hono@4.7.6:
+    resolution: {integrity: sha512-564rVzELU+9BRqqx5k8sT2NFwGD3I3Vifdb6P7CmM6FiarOSY+fDC+6B+k9wcCb86ReoayteZP2ki0cRLN1jbw==}
     engines: {node: '>=16.9.0'}
 
-  honox@0.1.39:
-    resolution: {integrity: sha512-yWj9LouMMevnpHJB/+XItZHeSbCVKKK+lifIp6FAi4pIKSZo/lUfkpeAGcezEp9C7SM5F0KvL5z7l9lW/4nCaw==}
+  honox@0.1.40:
+    resolution: {integrity: sha512-yXxx/jHcPPJMxw5VzyaSRgl9Dxlw4sIyzbqb5vcQG8ijpvttxoHT51zombgsIID/oOa2UEHaHOfu8HI+Tgjvww==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: '>=4.*'
@@ -4053,6 +4083,9 @@ packages:
   zod@3.24.2:
     resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
 
+  zod@4.0.0-beta.20250410T041907:
+    resolution: {integrity: sha512-08UlLohDxklYh52NmT/j1R2BoppnHvXZJC2DHSogtTwHQM2VOunOxLkqCdGZ8DTk5dhT4Kyvc3RtvXKoRYWQIQ==}
+
 snapshots:
 
   '@aws-crypto/sha256-browser@5.2.0':
@@ -4597,7 +4630,7 @@ snapshots:
       '@babel/parser': 7.27.0
       '@babel/template': 7.25.9
       '@babel/types': 7.27.0
-      debug: 4.3.7
+      debug: 4.4.0
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -4630,16 +4663,16 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@base-ui-components/react@1.0.0-alpha.6(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))(@types/react@19.1.0)':
+  '@base-ui-components/react@1.0.0-alpha.6(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))(@types/react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.27.0
-      '@floating-ui/react': 0.27.6(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@floating-ui/react': 0.27.6(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
       '@floating-ui/utils': 0.2.9
-      '@react-aria/overlays': 3.26.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-aria/overlays': 3.26.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
       prop-types: 15.8.1
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      use-sync-external-store: 1.5.0(@hono/react-compat@0.0.1(hono@4.7.5))
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      use-sync-external-store: 1.5.0(@hono/react-compat@0.0.1(hono@4.7.6))
     optionalDependencies:
       '@types/react': 19.1.0
 
@@ -4781,7 +4814,7 @@ snapshots:
     dependencies:
       '@effect/experimental': 0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1)
       '@effect/platform': 0.80.5(effect@3.14.5)
-      '@opentelemetry/semantic-conventions': 1.28.0
+      '@opentelemetry/semantic-conventions': 1.31.0
       effect: 3.14.5
       uuid: 11.1.0
 
@@ -4882,18 +4915,18 @@ snapshots:
       '@floating-ui/core': 1.6.9
       '@floating-ui/utils': 0.2.9
 
-  '@floating-ui/react-dom@2.1.2(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@floating-ui/react-dom@2.1.2(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
       '@floating-ui/dom': 1.6.13
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@floating-ui/react@0.27.6(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@floating-ui/react@0.27.6(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@floating-ui/react-dom': 2.1.2(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@floating-ui/react-dom': 2.1.2(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
       '@floating-ui/utils': 0.2.9
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.9': {}
@@ -4924,31 +4957,35 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@hono/node-server@1.14.0(hono@4.7.5)':
+  '@hono/node-server@1.14.0(hono@4.7.6)':
     dependencies:
-      hono: 4.7.5
+      hono: 4.7.6
 
-  '@hono/react-compat@0.0.1(hono@4.7.5)':
+  '@hono/node-server@1.14.1(hono@4.7.6)':
     dependencies:
-      hono: 4.7.5
+      hono: 4.7.6
 
-  '@hono/vite-build@1.5.0(hono@4.7.5)':
+  '@hono/react-compat@0.0.1(hono@4.7.6)':
     dependencies:
-      hono: 4.7.5
+      hono: 4.7.6
 
-  '@hono/vite-dev-server@0.19.0(hono@4.7.5)':
+  '@hono/vite-build@1.5.0(hono@4.7.6)':
     dependencies:
-      '@hono/node-server': 1.14.0(hono@4.7.5)
-      hono: 4.7.5
+      hono: 4.7.6
+
+  '@hono/vite-dev-server@0.19.0(hono@4.7.6)':
+    dependencies:
+      '@hono/node-server': 1.14.1(hono@4.7.6)
+      hono: 4.7.6
       minimatch: 9.0.5
 
-  '@hono/vite-ssg@0.1.2(hono@4.7.5)':
+  '@hono/vite-ssg@0.1.2(hono@4.7.6)':
     dependencies:
-      hono: 4.7.5
+      hono: 4.7.6
 
-  '@hono/zod-validator@0.4.3(hono@4.7.5)(zod@3.24.2)':
+  '@hono/zod-validator@0.4.3(hono@4.7.6)(zod@3.24.2)':
     dependencies:
-      hono: 4.7.5
+      hono: 4.7.6
       zod: 3.24.2
 
   '@internationalized/date@3.7.0':
@@ -5080,7 +5117,7 @@ snapshots:
       - tedious
       - utf-8-validate
 
-  '@levicape/spork-atlas@0.10.4-main.11':
+  '@levicape/spork-atlas@0.11.0-main.12':
     dependencies:
       destr: 2.0.5
       fs-extra: 11.3.0
@@ -5089,7 +5126,7 @@ snapshots:
       verror: 1.10.1
       zod: 3.24.2
 
-  '@levicape/spork@0.10.4-main.11(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)':
+  '@levicape/spork@0.11.0-main.12(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)':
     dependencies:
       '@aws-lambda-powertools/logger': 2.17.0
       '@aws-sdk/client-dynamodb': 3.777.0
@@ -5100,8 +5137,8 @@ snapshots:
       '@bufbuild/protobuf': 2.2.5
       '@effect/platform': 0.80.5(effect@3.14.5)
       '@effect/platform-node': 0.76.9(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5)
-      '@hono/node-server': 1.14.0(hono@4.7.5)
-      '@hono/zod-validator': 0.4.3(hono@4.7.5)(zod@3.24.2)
+      '@hono/node-server': 1.14.0(hono@4.7.6)
+      '@hono/zod-validator': 0.4.3(hono@4.7.6)(zod@3.24.2)
       '@loglayer/transport-aws-lambda-powertools': 3.0.4(@aws-lambda-powertools/logger@2.17.0)
       '@loglayer/transport-consola': 2.0.4(consola@3.4.2)
       '@loglayer/transport-pino': 2.1.1(pino@9.6.0)
@@ -5109,8 +5146,8 @@ snapshots:
       chokidar: 4.0.3
       consola: 3.4.2
       effect: 3.14.5
-      hono: 4.7.5
-      hono-rate-limiter: 0.4.2(hono@4.7.5)
+      hono: 4.7.6
+      hono-rate-limiter: 0.4.2(hono@4.7.6)
       jose: 6.0.10
       loglayer: 6.3.3
       pino: 9.6.0
@@ -5247,7 +5284,7 @@ snapshots:
   '@nx/nx-win32-x64-msvc@20.7.1':
     optional: true
 
-  '@opentelemetry/semantic-conventions@1.28.0': {}
+  '@opentelemetry/semantic-conventions@1.31.0': {}
 
   '@parcel/watcher-android-arm64@2.5.0':
     optional: true
@@ -5311,109 +5348,109 @@ snapshots:
 
   '@publint/pack@0.1.2': {}
 
-  '@react-aria/focus@3.20.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-aria/focus@3.20.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@react-aria/interactions': 3.24.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-aria/interactions': 3.24.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))
       '@swc/helpers': 0.5.15
       clsx: 2.1.1
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-aria/i18n@3.12.7(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-aria/i18n@3.12.7(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
       '@internationalized/date': 3.7.0
       '@internationalized/message': 3.1.6
       '@internationalized/number': 3.6.0
       '@internationalized/string': 3.2.5
-      '@react-aria/ssr': 3.9.7(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-aria/ssr': 3.9.7(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))
       '@swc/helpers': 0.5.15
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-aria/interactions@3.24.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-aria/interactions@3.24.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@react-aria/ssr': 3.9.7(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-aria/ssr': 3.9.7(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
       '@react-stately/flags': 3.1.0
-      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))
       '@swc/helpers': 0.5.15
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-aria/overlays@3.26.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-aria/overlays@3.26.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@react-aria/focus': 3.20.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/i18n': 3.12.7(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/interactions': 3.24.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/ssr': 3.9.7(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/visually-hidden': 3.8.21(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-stately/overlays': 3.6.14(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-types/button': 3.11.0(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-types/overlays': 3.8.13(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-aria/focus': 3.20.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/i18n': 3.12.7(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/interactions': 3.24.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/ssr': 3.9.7(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/visually-hidden': 3.8.21(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-stately/overlays': 3.6.14(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-types/button': 3.11.0(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-types/overlays': 3.8.13(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))
       '@swc/helpers': 0.5.15
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-aria/ssr@3.9.7(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-aria/ssr@3.9.7(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
       '@swc/helpers': 0.5.15
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-aria/utils@3.28.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-aria/utils@3.28.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@react-aria/ssr': 3.9.7(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-aria/ssr': 3.9.7(@hono/react-compat@0.0.1(hono@4.7.6))
       '@react-stately/flags': 3.1.0
-      '@react-stately/utils': 3.10.5(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-stately/utils': 3.10.5(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))
       '@swc/helpers': 0.5.15
       clsx: 2.1.1
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-aria/visually-hidden@3.8.21(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-aria/visually-hidden@3.8.21(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@react-aria/interactions': 3.24.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-aria/interactions': 3.24.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-aria/utils': 3.28.1(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))
       '@swc/helpers': 0.5.15
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
   '@react-stately/flags@3.1.0':
     dependencies:
       '@swc/helpers': 0.5.15
 
-  '@react-stately/overlays@3.6.14(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-stately/overlays@3.6.14(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@react-stately/utils': 3.10.5(@hono/react-compat@0.0.1(hono@4.7.5))
-      '@react-types/overlays': 3.8.13(@hono/react-compat@0.0.1(hono@4.7.5))
+      '@react-stately/utils': 3.10.5(@hono/react-compat@0.0.1(hono@4.7.6))
+      '@react-types/overlays': 3.8.13(@hono/react-compat@0.0.1(hono@4.7.6))
       '@swc/helpers': 0.5.15
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-stately/utils@3.10.5(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-stately/utils@3.10.5(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
       '@swc/helpers': 0.5.15
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-types/button@3.11.0(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-types/button@3.11.0(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-types/overlays@3.8.13(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-types/overlays@3.8.13(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      '@react-types/shared': 3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  '@react-types/shared@3.28.0(@hono/react-compat@0.0.1(hono@4.7.5))':
+  '@react-types/shared@3.28.0(@hono/react-compat@0.0.1(hono@4.7.6))':
     dependencies:
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
   '@rollup/rollup-android-arm-eabi@4.39.0':
     optional: true
@@ -5897,6 +5934,8 @@ snapshots:
 
   '@types/uuid@9.0.8': {}
 
+  '@types/verror@1.10.11': {}
+
   '@typescript-eslint/types@7.18.0': {}
 
   '@typescript-eslint/types@8.29.0': {}
@@ -5905,7 +5944,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/visitor-keys': 7.18.0
-      debug: 4.3.7
+      debug: 4.4.0
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -5920,7 +5959,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.29.0
       '@typescript-eslint/visitor-keys': 8.29.0
-      debug: 4.3.7
+      debug: 4.4.0
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -5982,6 +6021,8 @@ snapshots:
   '@zkochan/js-yaml@0.0.7':
     dependencies:
       argparse: 2.0.1
+
+  '@zod/core@0.2.0': {}
 
   ansi-colors@4.1.3: {}
 
@@ -6204,6 +6245,10 @@ snapshots:
       ms: 2.1.2
 
   debug@4.3.7:
+    dependencies:
+      ms: 2.1.3
+
+  debug@4.4.0:
     dependencies:
       ms: 2.1.3
 
@@ -6630,20 +6675,20 @@ snapshots:
     dependencies:
       parse-passwd: 1.0.0
 
-  hono-rate-limiter@0.4.2(hono@4.7.5):
+  hono-rate-limiter@0.4.2(hono@4.7.6):
     dependencies:
-      hono: 4.7.5
+      hono: 4.7.6
 
-  hono@4.7.5: {}
+  hono@4.7.6: {}
 
-  honox@0.1.39(hono@4.7.5):
+  honox@0.1.40(hono@4.7.6):
     dependencies:
       '@babel/generator': 7.25.6
       '@babel/parser': 7.25.6
       '@babel/traverse': 7.25.6
       '@babel/types': 7.25.6
-      '@hono/vite-dev-server': 0.19.0(hono@4.7.5)
-      hono: 4.7.5
+      '@hono/vite-dev-server': 0.19.0(hono@4.7.6)
+      hono: 4.7.6
       jsonc-parser: 3.3.1
       precinct: 12.1.2
     optionalDependencies:
@@ -6694,7 +6739,7 @@ snapshots:
     dependencies:
       '@ioredis/commands': 1.2.0
       cluster-key-slot: 1.1.2
-      debug: 4.3.7
+      debug: 4.4.0
       denque: 2.1.0
       lodash.defaults: 4.2.0
       lodash.isarguments: 3.1.0
@@ -6762,10 +6807,10 @@ snapshots:
 
   jose@6.0.10: {}
 
-  jotai@2.12.2(@hono/react-compat@0.0.1(hono@4.7.5))(@types/react@19.1.0):
+  jotai@2.12.2(@hono/react-compat@0.0.1(hono@4.7.6))(@types/react@19.1.0):
     optionalDependencies:
       '@types/react': 19.1.0
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
   joycon@3.1.1: {}
 
@@ -7420,20 +7465,20 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-range@1.10.0(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5)):
+  react-range@1.10.0(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6)):
     dependencies:
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
-  react-router@7.5.0(@hono/react-compat@0.0.1(hono@4.7.5))(@hono/react-compat@0.0.1(hono@4.7.5)):
+  react-router@7.5.0(@hono/react-compat@0.0.1(hono@4.7.6))(@hono/react-compat@0.0.1(hono@4.7.6)):
     dependencies:
       '@types/cookie': 0.6.0
       cookie: 1.0.2
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
       set-cookie-parser: 2.7.1
       turbo-stream: 2.4.0
     optionalDependencies:
-      react-dom: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react-dom: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
   read-yaml-file@2.1.0:
     dependencies:
@@ -7817,9 +7862,9 @@ snapshots:
       db0: 0.3.1(better-sqlite3@11.9.1)
       ioredis: 5.4.1
 
-  use-sync-external-store@1.5.0(@hono/react-compat@0.0.1(hono@4.7.5)):
+  use-sync-external-store@1.5.0(@hono/react-compat@0.0.1(hono@4.7.6)):
     dependencies:
-      react: '@hono/react-compat@0.0.1(hono@4.7.5)'
+      react: '@hono/react-compat@0.0.1(hono@4.7.6)'
 
   util-deprecate@1.0.2: {}
 
@@ -7901,3 +7946,7 @@ snapshots:
       yargs-parser: 21.1.1
 
   zod@3.24.2: {}
+
+  zod@4.0.0-beta.20250410T041907:
+    dependencies:
+      '@zod/core': 0.2.0

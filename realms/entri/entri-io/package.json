@@ -43,7 +43,8 @@
     "node": "22"
   },
   "exports": {
-    "./*": "./module/*.mjs"
+    "./*": "./module/*.mjs",
+    "./module/_protocols/*": "./module/_protocols/*"
   },
   "files": [
     "module",

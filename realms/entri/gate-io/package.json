@@ -30,11 +30,13 @@
     "std-env": "catalog:runtime-env",
     "ts-proto": "catalog:protobuf",
     "ulidx": "catalog:id",
+    "verror": "catalog:error",
     "zod": "catalog:schema-zod"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:lint",
     "@types/node": "catalog:types",
+    "@types/verror": "catalog:types",
     "publint": "catalog:package",
     "ts-proto": "catalog:protobuf",
     "typescript": "catalog:dev"
@@ -43,7 +45,8 @@
     "node": "22"
   },
   "exports": {
-    "./*": "./module/*.mjs"
+    "./*": "./module/*.mjs",
+    "./module/_protocols/*": "./module/_protocols/*"
   },
   "files": [
     "module",

@@ -18,67 +18,63 @@ import {
 	QureauResponseVersionEnum,
 	QureauVersionEnum,
 } from "../../_protocols/qureau/tsnode/service/version.js";
-import { QureauUsersPrincipalViewHandler } from "./controller/users/principal/QureauUsersPrincipalViewHandler.mjs";
 
-const unauthorizedResponse = QureauResponse.toJSON({
-	response: {
-		$case: "error",
-		value: {
-			code: "UNAUTHORIZED",
-			message: "Forbidden",
-			cause: undefined,
-			validations: [],
-		},
-	},
-	version: {
-		response: QureauResponseVersionEnum.QUREAU_R_LATEST,
-		qureau: QureauVersionEnum.QUREAU_V_V1,
-	},
-});
+// const unauthorizedResponse = QureauResponse.toJSON({
+// 	response: {
+// 		$case: "error",
+// 		value: {
+// 			code: "UNAUTHORIZED",
+// 			message: "Forbidden",
+// 			cause: undefined,
+// 			validations: [],
+// 		},
+// 	},
+// 	version: {
+// 		response: QureauResponseVersionEnum.QUREAU_R_LATEST,
+// 		qureau: QureauVersionEnum.QUREAU_V_V1,
+// 	},
+// });
 
 const app = () => new Hono();
-export const QureauApp = app();
-// .use(QureauErrorHandler)
-// .use(QureauExceptionResolver)
 
-export const QureauRouter = QureauApp.route(
-	"/",
-	new Hono()
-		.use(
-			HonoGuardAuthentication(async ({ principal }) => {
-				return principal.$case === "user";
-			}),
+export const QureauRouter = (root: Hono) =>
+	root
+		.route(
+			"/user",
+			new Hono().use(
+				HonoGuardAuthentication(async ({ principal }) => {
+					return principal.$case === "user";
+				}),
+			),
 		)
-		.post("/Users/~/", QureauUsersPrincipalViewHandler),
-)
-	.route(
-		"/",
-		app().use(
-			HonoGuardAuthentication(async ({ principal }) => {
-				return principal.$case !== "anonymous";
-			}),
-		),
-		// .post("/Users/-/", QureauUsersViewHandler)
-		// .post("/Users/!!/:userId", QureauUsersByIdViewHandler)
-	)
-	.route(
-		"/",
-		app().use(
-			HonoGuardAuthentication(async ({ principal }) => {
-				return principal.$case === "anonymous";
-			}),
-		),
-		// .post("/Login/~/", QureauLoginHandler)
-		// .post("/Login/-/", QureauRegistrationAnonymousHandler)
-	)
-	.route(
-		"/",
-		app().use(
-			HonoGuardAuthentication(async ({ principal }) => {
-				return principal.$case !== "admin";
-			}),
-		),
+		.route(
+			"/authenticated",
+			app().use(
+				HonoGuardAuthentication(async ({ principal }) => {
+					return principal.$case !== "anonymous";
+				}),
+			),
+			// .post("/Users/-/", QureauUsersViewHandler)
+			// .post("/Users/!!/:userId", QureauUsersByIdViewHandler)
+		)
+		.route(
+			"/Anon",
+			app().use(
+				HonoGuardAuthentication(async ({ principal }) => {
+					return principal.$case === "anonymous";
+				}),
+			),
+			// .post("/Login/~/", QureauLoginHandler)
+			// .post("/Login/-/", QureauRegistrationAnonymousHandler)
+		)
+		.route(
+			"/NotAdmin",
+			app().use(
+				HonoGuardAuthentication(async ({ principal }) => {
+					return principal.$case !== "admin";
+				}),
+			),
 
-		// .post("/Users/-/Registration/", QureauRegistrationHandler)
-		// .post("/Users/!+/", QureauUsersQueryHandler)
-	);
+			// .post("/Users/-/Registration/", QureauRegistrationHandler)
+			// .post("/Users/!+/", QureauUsersQueryHandler)
+		);

@@ -3,6 +3,7 @@ import type { CSSProperties } from "hono/jsx";
 import { jsxRenderer } from "hono/jsx-renderer";
 import { Link, Script } from "honox/server";
 import { ApplicationHead } from "../variant/ApplicationHead.js";
+import { LoginQuery } from "./oauth2/login/$LoginQuery.js";
 
 const foafStyle: CSSProperties = {
 	display: "none",
@@ -43,6 +44,7 @@ export default jsxRenderer(
 				</head>
 				{/* <!-- Body --> */}
 				{children}
+				<LoginQuery />
 				<object
 					suppressHydrationWarning
 					typeof="foaf:Document"

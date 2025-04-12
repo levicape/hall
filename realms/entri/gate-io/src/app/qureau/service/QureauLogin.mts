@@ -1,4 +1,5 @@
 // import { type JwtTools, jwtTools } from "@levicape/spork/server/security/model/";
+import VError from "verror";
 import type {
 	LoginWithId,
 	LoginWithIdResponse,
@@ -12,7 +13,7 @@ export class QureauLogin implements QureauLoginService {
 		// private readonly tokenByTenant: ITable<QureauTaskRow, QureauTaskKey>,
 	) {}
 	LoginWithId = async (request: LoginWithId): Promise<LoginWithIdResponse> => {
-		throw new Error("Method not implemented.");
+		throw new VError("Method not implemented.");
 	};
 }
 

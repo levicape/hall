@@ -17,6 +17,9 @@ export default defineConfig(({ mode }) => {
 		const unixtime = Math.floor(Date.now() / 1000);
 		const timehash = unixtime.toString(16);
 		return {
+			esbuild: {
+				jsxImportSource: "hono/jsx",
+			},
 			build: {
 				sourcemap: true,
 				rollupOptions: {
@@ -57,6 +60,7 @@ export default defineConfig(({ mode }) => {
 				client: {
 					// HonoX automatically includes app/client.ts
 					input: ["./app/style.css"],
+					jsxImportSource: "hono/jsx",
 				},
 				devServer: {
 					adapter,

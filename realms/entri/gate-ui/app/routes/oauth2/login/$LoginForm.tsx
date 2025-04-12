@@ -17,20 +17,25 @@ import { Loading } from "../../../ui/daisy/feedback/Loading";
 const { Fallback } = DesignSystem;
 
 const get = SuspendPromise(async () => {
-	console.log("starting");
 	await new Promise((resolve) => {
 		setTimeout(() => {
 			console.log("done");
 			resolve(true);
-		}, 2000);
+		}, 1000);
 	});
 
-	return client(location.origin)
-		["~"].Hall.Gate.ls.$get()
-		.then((response) => {
-			console.log("response", response);
-			return response.text();
-		});
+	return (
+		client(location.origin)
+			[".well-known"]["openid-configuration"].$get()
+			// return fetch("https://example.com")
+			.then((response) => {
+				console.log("response", response);
+				if (!response.ok) {
+					throw response;
+				}
+				return response.json();
+			})
+	);
 });
 
 const LoginForm: FC = () => {
@@ -39,7 +44,7 @@ const LoginForm: FC = () => {
 	const passwordId = useId();
 
 	return (
-		<form>
+		<form action={response.authorization_endpoint} method="post">
 			<fieldset className="fieldset">
 				<label className="input" for={usernameId}>
 					<span className="label">Username</span>
