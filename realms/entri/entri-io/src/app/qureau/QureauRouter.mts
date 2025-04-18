@@ -43,7 +43,7 @@ export const QureauRouter = (root: Hono) =>
 			"/user",
 			new Hono().use(
 				HonoGuardAuthentication(async ({ principal }) => {
-					return principal.$case === "user";
+					return principal.$case === "authenticated";
 				}),
 			),
 		)
@@ -66,15 +66,15 @@ export const QureauRouter = (root: Hono) =>
 			),
 			// .post("/Login/~/", QureauLoginHandler)
 			// .post("/Login/-/", QureauRegistrationAnonymousHandler)
-		)
-		.route(
-			"/NotAdmin",
-			app().use(
-				HonoGuardAuthentication(async ({ principal }) => {
-					return principal.$case !== "admin";
-				}),
-			),
-
-			// .post("/Users/-/Registration/", QureauRegistrationHandler)
-			// .post("/Users/!+/", QureauUsersQueryHandler)
 		);
+// .route(
+// 	"/NotAdmin",
+// 	app().use(
+// 		HonoGuardAuthentication(async ({ principal }) => {
+// 			return principal.$case !== "admin";
+// 		}),
+// 	),
+
+// .post("/Users/-/Registration/", QureauRegistrationHandler)
+// .post("/Users/!+/", QureauUsersQueryHandler)
+// );

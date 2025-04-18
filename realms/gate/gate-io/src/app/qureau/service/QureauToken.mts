@@ -1,4 +1,5 @@
 import type { BaseError, ServiceError } from "@levicape/spork/server/Error";
+import { LoginToken } from "@levicape/spork/server/security/model/LoginToken";
 import { ulid } from "ulidx";
 import {
 	type TokenCreate,
@@ -14,6 +15,7 @@ import type {
 	TokenRefreshRetrieveByIdWithIdResponse,
 } from "../../../_protocols/qureau/tsnode/domain/token/refresh/retrieveByIdWithId/token.refresh.retrieveByIdWithId.js";
 import type { QureauTokenService } from "../../../_protocols/qureau/tsnode/service/token/qureau.token.js";
+import type { QureauJwts } from "../QureauJwt.mjs";
 
 export class QureauTokenError extends Error implements ServiceError {
 	error: { rootCauses?: BaseError[] } & BaseError;
@@ -35,7 +37,7 @@ export class QureauTokenError extends Error implements ServiceError {
 export class QureauTokens implements QureauTokenService {
 	static executorId: string = ulid();
 	constructor(
-		// private readonly jwtTools: JwtTools,
+		private readonly jwtTools: QureauJwts,
 		// private readonly token: ITable<QureauTaskRow, QureauTaskKey>,
 		// private readonly tokenByTenant: ITable<QureauTaskRow, QureauTaskKey>,
 	) {}
@@ -44,24 +46,6 @@ export class QureauTokens implements QureauTokenService {
 		request: TokenIssueJwtWithId,
 	): Promise<TokenIssueJwtWithIdResponse> {
 		throw new Error("Method not implemented.");
-	}
-
-	private async storeRefreshTokenInDB(
-		refreshTokenId: string,
-		refreshToken: string,
-	): Promise<void> {
-		// Logger.log(
-		// 	`Storing refresh token with ID ${refreshTokenId} in the database.`,
-		// );
-		// Example: await this.token.put({ refreshTokenId, refreshToken });
-	}
-
-	private async retrieveRefreshTokenFromDB(
-		refreshTokenId: string,
-	): Promise<string> {
-		// Placeholder for actual database retrieval logic
-		// This should be replaced with actual implementation
-		return "mocked-refresh-token";
 	}
 
 	async CreateToken(request: TokenCreate): Promise<TokenCreateResponse> {
@@ -88,7 +72,16 @@ export class QureauTokens implements QureauTokenService {
 			const refreshTokenId = ulid();
 
 			// TODO: Store refresh token in database
-			await this.storeRefreshTokenInDB(refreshTokenId, refreshToken);
+			async function storeRefreshTokenInDB(
+				refreshTokenId: string,
+				refreshToken: string,
+			): Promise<void> {
+				// Logger.log(
+				// 	`Storing refresh token with ID ${refreshTokenId} in the database.`,
+				// );
+				// Example: await this.token.put({ refreshTokenId, refreshToken });
+			}
+			await storeRefreshTokenInDB(refreshTokenId, refreshToken);
 
 			return TokenCreateResponse.fromJSON({
 				access: {
@@ -147,7 +140,17 @@ export class QureauTokens implements QureauTokenService {
 			const newRefreshToken = ""; //await this.jwtTools.generateRefresh(principalId!);
 
 			// Store the new refresh token
-			await this.storeRefreshTokenInDB(refreshTokenId, newRefreshToken);
+
+			async function storeRefreshTokenInDB(
+				refreshTokenId: string,
+				refreshToken: string,
+			): Promise<void> {
+				// Logger.log(
+				// 	`Storing refresh token with ID ${refreshTokenId} in the database.`,
+				// );
+				// Example: await this.token.put({ refreshTokenId, refreshToken });
+			}
+			await storeRefreshTokenInDB(refreshTokenId, newRefreshToken);
 
 			return {
 				issued: {
@@ -178,8 +181,13 @@ export class QureauTokens implements QureauTokenService {
 					reason: "Token ID is undefined",
 				});
 			}
-			// Retrieve the refresh token from the database
-			const refreshToken = await this.retrieveRefreshTokenFromDB(tokenId);
+			async function retrieveRefreshTokenFromDB(
+				refreshTokenId: string,
+			): Promise<string> {
+				return "mocked-refresh-token";
+			}
+
+			const refreshToken = await retrieveRefreshTokenFromDB(tokenId);
 
 			// Mocked response, replace with actual data retrieval logic
 			return {
@@ -210,9 +218,3 @@ export class QureauTokens implements QureauTokenService {
 		}
 	}
 }
-
-export const qureauTokenService = new QureauTokens(
-	// jwtTools,
-	// qureauTokenTable,
-	// qureauTokenByTenant,
-);

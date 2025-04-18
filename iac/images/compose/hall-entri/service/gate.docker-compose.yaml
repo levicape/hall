@@ -7,7 +7,7 @@ services:
       NODE_OPTIONS: $NODE_OPTIONS
       LOG_LEVEL: $LOG_LEVEL
       STRUCTURED_LOGGING: $STRUCTURED_LOGGING
-      PROJECT_PATH: ./realms/entri/gate-io
+      PROJECT_PATH: ./realms/gate/gate-io
       PROJECT_COMMAND: http:dev
       PORT: $GATE_HTTP
       ENTRI_DATABASE__NAME: "postgresql://entri_pgactive:5432"
@@ -36,7 +36,7 @@ services:
       NODE_OPTIONS: $NODE_OPTIONS
       LOG_LEVEL: $LOG_LEVEL
       STRUCTURED_LOGGING: $STRUCTURED_LOGGING
-      PROJECT_PATH: ./realms/entri/gate-ui
+      PROJECT_PATH: ./realms/gate/gate-ui
       PROJECT_COMMAND: serverwww:dev
       PORT: $GATE_UI
     volumes: &workspace_volumes
