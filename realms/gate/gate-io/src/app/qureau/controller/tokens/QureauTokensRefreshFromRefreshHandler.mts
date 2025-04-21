@@ -1,33 +1,33 @@
+import { HonoGuardAuthentication } from "@levicape/spork/router/hono/guard/security/HonoGuardAuthentication";
+import { cuidKeygen } from "@levicape/spork/server/security/IdKeygen";
+import type { Context } from "hono";
 import { validator } from "hono/validator";
 import type { JWTVerifyResult } from "jose";
 import { serializeError } from "serialize-error";
 import { withQuery } from "ufo";
 import { prettifyError } from "zod";
-import {
-	LoginWithIdRequest,
-	type LoginWithIdResponse,
-} from "../../../../_protocols/qureau/tsnode/domain/login/withId/login.withId.js";
-import { TokenCreateExt } from "../../../../_protocols/qureau/tsnode/domain/token/create/token.create.js";
-import { Qureau } from "../../Qureau.mjs";
-import { qureauLoginService } from "../../service/QureauLogin.mjs";
-import { LoginQueryParamsZod } from "../login/LoginQueryParams.mjs";
+import { TokenRefreshRetrieveByIdWithId } from "../../../../_protocols/qureau/tsnode/domain/token/refresh/retrieveByIdWithId/token.refresh.retrieveByIdWithId.js";
+import { Qureau, type QureauVariables } from "../../Qureau.mjs";
 
 export const QureauTokensRefreshFromRefreshHandler = Qureau().createHandlers(
-	validator("query", async (s, c) => {
-		const query = await LoginQueryParamsZod.safeParseAsync(s);
-		if (!query.success) {
+	validator("form", async (s, c: Context<{ Variables: QureauVariables }>) => {
+		const { entrypoint, errorUri } = c.var.Qureau;
+		const form = c.var.QureauQuery.token(s);
+		if (!form.success) {
 			return c.redirect(
-				withQuery("/oauth2/login", {
+				withQuery(errorUri, {
+					...s,
+					entrypoint,
 					error: "invalid_request",
-					error_description: prettifyError(query.error),
+					error_description: prettifyError(form.error),
 				}),
 			);
 		}
 
-		return query.data;
+		return form.data;
 	}),
 	async (c) => {
-		const query = c.req.valid("query");
+		const query = c.req.valid("form");
 		let verified: JWTVerifyResult | undefined;
 		let error: unknown | undefined = undefined;
 
@@ -73,21 +73,32 @@ export const QureauTokensRefreshFromRefreshHandler = Qureau().createHandlers(
 			}).info("ATOKO refresh_token");
 		}
 
-		const data: LoginWithIdResponse = await qureauLoginService.LoginWithId({
-			request: LoginWithIdRequest.create({}),
-			inferred: undefined, // TODOExtractInferred(headers, "1"),
-			ext: TokenCreateExt.fromJSON({
-				nonce: "",
-				// (request.headers["x-nonce"] as string) ?? KSUID.randomSync().string,
+		const data = await c.var.QureauTokens.RetrieveTokenByIdWithId(
+			TokenRefreshRetrieveByIdWithId.create({
+				request: {
+					tokenId: verified?.payload?.jti,
+				},
 			}),
-		});
-
-		if (!data.authenticated) {
-			return c.redirect("/oauth2/login?error=access_denied");
-		}
-		// TODO: redirect_uri
-		return c.redirect(
-			`/?code=${data.authenticated.token}&state=${data.authenticated.state}`,
 		);
+
+		if (!data.jwt) {
+			return c.json(
+				withQuery(c.var.Qureau.errorUri, {
+					error: "invalid_request",
+				}),
+				400,
+			);
+		}
+
+		return c.json({
+			access_token: c.var.QureauJwt.access((token) =>
+				token.setJti(cuidKeygen.srand()).setSubject(data.jwt?.userId ?? ""),
+			),
+			token_type: "Bearer",
+			expires_in: c.var.QureauJwt.accessSeconds,
+			refresh_token: c.var.QureauJwt.refresh((token) =>
+				token.setJti(data.jwt?.id ?? "").setSubject(data.jwt?.userId ?? ""),
+			),
+		});
 	},
 );

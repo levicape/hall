@@ -12,7 +12,7 @@ import {
 } from "../../../../../_protocols/qureau/tsnode/service/version.js";
 import { ksuidGenerator } from "../../../repository/users/QureauUserRepository.Registration.mjs";
 import { qureauUserService } from "../../../service/QureauUser.mjs";
-import { qureauFormattedError } from "../../QureauBadRequestExceptionHandler.mjs";
+// import { qureauFormattedError } from "../../QureauBadRequestExceptionHandler.mjs";
 import { QureauUsersByIdViewHandlerInfers } from "./QureauUsersByIdViewHandler.infers.mjs";
 
 export const UsersByIdCommandZod = z.object({

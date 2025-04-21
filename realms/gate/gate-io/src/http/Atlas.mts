@@ -22,8 +22,6 @@ export const Topology = Atlas.routes({
 		hostname: `${GATE_HTTP_HOST}`,
 		protocol: "http",
 	},
-	// TODO: Material Atlas, sign/verify key[]
-	// TODO: Credential Atlas, issuer hostname, redirect uris (signed by issuer)
 	["/~/Frontend/Hostname"]: {
 		$kind: "StaticRouteResource",
 		hostname: `${GATE_HTTP_HOST}`,

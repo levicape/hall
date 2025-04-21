@@ -32,7 +32,7 @@ export type CreateUserAndRegisterProps = {
 	applicationId: string;
 	user: User & { id: string };
 	genAuthenticationToken: () => Promise<
-		RefreshToken & { userId: string; id: string }
+		(RefreshToken & { userId: string; id: string }) | undefined
 	>;
 	genRefreshToken: () => Promise<RefreshToken & { userId: string; id: string }>;
 };
@@ -98,6 +98,7 @@ export class QureauUserRegistrationRepository {
 		const userrow = QureauTableUsersEntity.toJSON(
 			await this.userRepository.userRowForUser(user, props),
 		) as QureauUserRow;
+
 		const tokens = {
 			authenticationToken: await generateAuthenticationToken(),
 			refreshToken: await generateRefreshToken(),
@@ -168,7 +169,10 @@ export class QureauUserRegistrationRepository {
 			data: {
 				user,
 				registration,
-				tokens: [tokens.authenticationToken, tokens.refreshToken],
+				tokens: [
+					...([tokens.authenticationToken] as RefreshToken[]),
+					tokens.refreshToken,
+				],
 			},
 		};
 	};

@@ -1,4 +1,4 @@
-import type { LoginQueryParams } from "@levicape/hall-gate-io/app/qureau/controller/login/LoginQueryParams";
+import type { AuthorizeQueryParams } from "@levicape/hall-gate-io/app/qureau/controller/login/AuthorizeQueryParams";
 import { client } from "@levicape/hall-gate-io/http/Client";
 import {
 	ErrorBoundary,
@@ -20,7 +20,7 @@ const [$rpc, reset] = SuspendPromise(async () => {
 	return client(location.origin);
 });
 
-const LoginForm: FC<{ query: LoginQueryParams }> = ({ query }) => {
+const LoginForm: FC<{ query: AuthorizeQueryParams }> = ({ query }) => {
 	if (query.error) {
 		const url = new URL(window.location.href);
 		url.searchParams.delete("error");
@@ -111,7 +111,7 @@ export function LoginPage() {
 	const [query] = useMemo(() => {
 		const { search } = location ?? {};
 		const query = parseQuery(search ?? "") ?? {};
-		return [query as LoginQueryParams] as const;
+		return [query as AuthorizeQueryParams] as const;
 	}, [location?.search]);
 
 	const [_valid, setValid] = useState(Date.now());

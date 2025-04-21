@@ -109,7 +109,9 @@ export interface OpenIdConfiguration {
 	 *
 	 * @see https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
 	 */
-	subject_types_supported: Array<"pairwise" | "public">;
+	subject_types_supported:
+		| Array<"pairwise" | "public">
+		| ReadonlyArray<"pairwise" | "public">;
 
 	/**
 	 * REQUIRED. JSON array containing a list of the OAuth 2.0 `response_type` values that this OP supports. Dynamic OpenID
@@ -117,7 +119,7 @@ export interface OpenIdConfiguration {
 	 *
 	 * @see https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
 	 */
-	response_types_supported: string[];
+	response_types_supported: string[] | ReadonlyArray<string>;
 
 	/**
 	 * OPTIONAL. JSON array containing a list of the OAuth 2.0 Grant Type values that this OP supports. Dynamic OpenID Providers
@@ -126,7 +128,7 @@ export interface OpenIdConfiguration {
 	 *
 	 * @see https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
 	 */
-	grant_types_supported?: string[];
+	grant_types_supported?: string[] | ReadonlyArray<string>;
 
 	/**
 	 * OPTIONAL. JSON array containing a list of the OAuth 2.0 response_mode values that this OP supports, as specified in
@@ -135,7 +137,7 @@ export interface OpenIdConfiguration {
 	 *
 	 * @see https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
 	 */
-	response_modes_supported?: string[];
+	response_modes_supported?: string[] | ReadonlyArray<string>;
 
 	/**
 	 * RECOMMENDED. JSON array containing a list of the
@@ -147,7 +149,7 @@ export interface OpenIdConfiguration {
 	 *
 	 * @see https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
 	 */
-	scopes_supported?: string[];
+	scopes_supported?: string[] | ReadonlyArray<string>;
 
 	/**
 	 * RECOMMENDED. JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply
@@ -155,7 +157,7 @@ export interface OpenIdConfiguration {
 	 *
 	 * @see https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
 	 */
-	claims_supported?: string[];
+	claims_supported?: string[] | ReadonlyArray<string>;
 
 	/**
 	 * OPTIONAL. JSON array containing a list of the Claim Types that the OpenID Provider supports. These Claim Types are described
@@ -166,7 +168,7 @@ export interface OpenIdConfiguration {
 	 *
 	 * @see https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
 	 */
-	claim_types_supported?: string[];
+	claim_types_supported?: string[] | ReadonlyArray<string>;
 
 	/**
 	 * OPTIONAL. Boolean value specifying whether the OP supports use of the `claims` parameter, with `true` indicating support. If

@@ -7,8 +7,8 @@ packages:
   - 'realms/*/*'
 catalog:
   "@levicape/paloma": "0.3.9-main.3"
-  '@levicape/spork': 0.13.8-main.23
-  '@levicape/spork-atlas': 0.13.8-main.23
+  '@levicape/spork': 0.13.11-main.26
+  '@levicape/spork-atlas': 0.13.11-main.26
   "@levicape/fourtwo": "0.10.2-main.2"
   "@levicape/fourtwo-pulumi": "0.10.2-main.2"
   "@levicape/fourtwo-builders": "0.10.2-main.2" 
@@ -162,6 +162,7 @@ catalogs:
     '@pulumi/synced-folder': ^0.11.1
     '@pulumiverse/time': ^0.1.0
   runtime-env:
+    "@tuplo/envsubst": "^1.15.2" # Not compatible with ESM
     dotenv: ^16.4.7
     std-env: ^3.8.1
   schema-zod:

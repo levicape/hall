@@ -10,7 +10,6 @@ import {
 	QureauUserinfoEndpoint,
 	version,
 } from "./Qureau.mjs";
-import { zLoginQueryParams } from "./controller/login/LoginQueryParams.mjs";
 import { QureauLoginHandler } from "./controller/login/QureauLoginHandler.mjs";
 import { QureauRegistrationAnonymousHandler } from "./controller/registrations/QureauRegistrationAnonymousHandler.mjs";
 import { QureauRegistrationHandler } from "./controller/registrations/QureauRegistrationHandler.mjs";
@@ -20,23 +19,24 @@ import { QureauUsersPrincipalViewHandler } from "./controller/users/principal/Qu
 export const QureauRouter = Qureau()
 	.createApp()
 	.get(QureauAuthorizationEndpoint, async (c) => {
-		const { data, error } = zLoginQueryParams(c.req.query());
+		const { entrypoint, errorUri } = c.get("Qureau");
+		const { data, error } = c.var.QureauQuery.authorize(c.req.query());
 		if (error) {
 			return c.redirect(
-				withQuery("/oauth2/login", {
+				withQuery(errorUri, {
 					error: "invalid_request",
 					error_description: prettifyError(error),
 				}),
 			);
 		}
-
-		return c.redirect(withQuery("/oauth2/login", data));
+		return c.redirect(withQuery(entrypoint, data));
 	})
 	.get(QureauEndSessionEndpoint, async (c) => {
-		const { error } = zLoginQueryParams(c.req.query());
+		const { errorUri } = c.get("Qureau");
+		const { error } = c.var.QureauQuery.authorize(c.req.query());
 		if (error) {
 			return c.redirect(
-				withQuery("/oauth2/logout", {
+				withQuery(errorUri, {
 					error: "invalid_request",
 					error_description: prettifyError(error),
 				}),

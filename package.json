@@ -43,6 +43,7 @@
           "@levicape/hall-entri-ui:dx:precommit",
           "@levicape/hall-gate-io:dx:precommit",
           "@levicape/hall-gate-ui:dx:precommit",
+          "@levicape/hall-gate-client-ui:dx:precommit",
           "@levicape/hall-iac-stacks:dx:precommit"
         ]
       },
@@ -69,7 +70,8 @@
           "@levicape/hall-entri-io:nx:compile",
           "@levicape/hall-entri-ui:nx:compile",
           "@levicape/hall-gate-io:nx:compile",
-          "@levicape/hall-gate-ui:nx:compile"
+          "@levicape/hall-gate-ui:nx:compile",
+          "@levicape/hall-gate-client-ui:nx:compile"
         ]
       },
       "nx:sync": {
@@ -82,7 +84,8 @@
           "@levicape/hall-entri-io:nx:test",
           "@levicape/hall-entri-ui:nx:test",
           "@levicape/hall-gate-io:nx:test",
-          "@levicape/hall-gate-ui:nx:test"
+          "@levicape/hall-gate-ui:nx:test",
+          "@levicape/hall-gate-client-ui:nx:test"
         ]
       }
     }

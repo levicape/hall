@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import { jsxRenderer } from "hono/jsx-renderer";
+import { AuthnSession } from "../../atoms/authentication/behavior/$AuthnSession.js";
 import { AppBody } from "../../ui/AppBody.js";
 import { Oauth2Query } from "./$Oauth2Query.js";
 
@@ -49,6 +50,7 @@ export default jsxRenderer(
 						</div>
 					</main>
 				</AppBody>
+				<AuthnSession />
 				<Oauth2Query />
 			</Layout>
 		);

@@ -13,6 +13,7 @@ services:
     cap_add:
       - NET_ADMIN
     ports:
+      - 443:443
       - ${ROOT_NS}0000:443
       - ${ROOT_NS}2000:80
       - ${ROOT_NS}3000:443

@@ -1,4 +1,4 @@
-import type { LoginQueryParams } from "@levicape/hall-gate-io/app/qureau/controller/login/LoginQueryParams";
+import type { AuthorizeQueryParams } from "@levicape/hall-gate-io/app/qureau/controller/login/AuthorizeQueryParams";
 import { client } from "@levicape/hall-gate-io/http/Client";
 import { RegistrationRegisterCommand } from "@levicape/hall-gate-io/module/_protocols/qureau/ts/domain/registration/register/registration.register.js";
 import {
@@ -22,7 +22,7 @@ const [$rpc, reset] = SuspendPromise(async () => {
 	return client(location.origin);
 });
 
-const AnonymousLogin: FC<{ query: LoginQueryParams }> = ({ query }) => {
+const AnonymousLogin: FC<{ query: AuthorizeQueryParams }> = ({ query }) => {
 	if (query.error) {
 		const url = new URL(window.location.href);
 		url.searchParams.delete("error");
@@ -94,7 +94,7 @@ export function AnonymousLoginPage() {
 	const [query] = useMemo(() => {
 		const { search } = location ?? {};
 		const query = parseQuery(search ?? "") ?? {};
-		return [query as LoginQueryParams] as const;
+		return [query as AuthorizeQueryParams] as const;
 	}, [location?.search]);
 
 	const [_valid, setValid] = useState(Date.now());

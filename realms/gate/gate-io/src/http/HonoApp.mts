@@ -9,27 +9,86 @@ import {
 	type HonoJwtIssuer,
 } from "@levicape/spork/router/hono/middleware/security/HonoJwtIssuer";
 import { JwtClaimsCognitoTokenUse } from "@levicape/spork/server/security/claims/JwtClaimsCognito";
+import type { Context } from "hono";
+import { cors } from "hono/cors";
 import { createFactory } from "hono/factory";
+import { env, isDevelopment } from "std-env";
+import { parseURL } from "ufo";
 import { WellknownRouter } from "../app/gate/WellknownRouter.mjs";
 import type { QureauBaseClaims } from "../app/qureau/QureauJwt.mjs";
 import { QureauNotFound, QureauRouter } from "../app/qureau/QureauRouter.mjs";
-import { HTTP_BASE_PATH, Topology } from "./Atlas.mjs";
+import type {
+	AuthorizeQueryParamResponseType,
+	AuthorizeQueryParamScope,
+	AuthorizeQueryParamSubjectType,
+} from "../app/qureau/controller/login/AuthorizeQueryParams.mjs";
+import { HTTP_BASE_PATH } from "./Atlas.mjs";
 
 export type HttpMiddleware = HonoHttp &
 	HonoHttpAuthentication &
 	HonoJwtIssuer<QureauBaseClaims> & {
 		Variables: {
-			Topology: typeof Topology;
+			OauthConfiguration: {
+				issuer: string;
+				responseTypes: ReadonlyArray<AuthorizeQueryParamResponseType>;
+				scopes: ReadonlyArray<AuthorizeQueryParamScope>;
+				subjectTypes: ReadonlyArray<AuthorizeQueryParamSubjectType>;
+			};
+			OauthClients: ReadonlyArray<{
+				clientId: string;
+				redirectUrls: ReadonlyArray<string>;
+			}>;
+			OauthClientsById: Record<string, { redirectUrls: ReadonlyArray<string> }>;
 		};
 	};
+
+const {
+	OAUTH_PUBLIC_OIDC_AUTHORITY,
+	OAUTH_PUBLIC_OIDC_RESPONSE_TYPE,
+	OAUTH_PUBLIC_OIDC_SCOPE,
+	OAUTH_PUBLIC_OIDC_CLIENT_ID,
+	OAUTH_PUBLIC_OIDC_REDIRECT_URI,
+	OAUTH_PUBLIC_OIDC_POST_LOGOUT_REDIRECT_URI,
+	OAUTH_PUBLIC_OIDC_SILENT_REDIRECT_URI,
+} = env;
 
 export const { server, handler, stream } = await HonoHttpServer(
 	createFactory<HttpMiddleware>({
 		initApp(app) {
-			const issuer = Topology["/~/Frontend/Hostname"].url();
-			const clientId = "ok";
+			const OauthConfiguration = {
+				issuer: OAUTH_PUBLIC_OIDC_AUTHORITY ?? "localhost",
+				responseTypes: (OAUTH_PUBLIC_OIDC_RESPONSE_TYPE ?? "").split(
+					",",
+				) as AuthorizeQueryParamResponseType[],
+				scopes: (OAUTH_PUBLIC_OIDC_SCOPE ?? "").split(
+					",",
+				) as AuthorizeQueryParamScope[],
+				subjectTypes: ["public"] as AuthorizeQueryParamSubjectType[],
+			} as const;
+
+			const OauthClients = [
+				{
+					clientId: OAUTH_PUBLIC_OIDC_CLIENT_ID ?? "default",
+					redirectUrls: [
+						OAUTH_PUBLIC_OIDC_REDIRECT_URI,
+						OAUTH_PUBLIC_OIDC_POST_LOGOUT_REDIRECT_URI,
+						OAUTH_PUBLIC_OIDC_SILENT_REDIRECT_URI,
+					].filter((url) => !!url) as string[],
+				},
+			] as const;
+
 			app.use(async (c, next) => {
-				c.set("Topology", Topology);
+				c.set("OauthConfiguration", OauthConfiguration);
+				c.set("OauthClients", OauthClients);
+				c.set(
+					"OauthClientsById",
+					Object.fromEntries(
+						OauthClients.map((client) => [
+							client.clientId,
+							{ redirectUrls: client.redirectUrls },
+						]),
+					),
+				);
 				await next();
 			});
 			app.use(
@@ -43,11 +102,34 @@ export const { server, handler, stream } = await HonoHttpServer(
 							.setProtectedHeader({
 								alg: "ES256",
 							})
-							.setIssuer(issuer)
-							.setAudience(clientId)
 							.setIssuedAt(now)
 							.setNotBefore(now);
 					},
+				}),
+			);
+
+			app.use(
+				cors({
+					origin: (origin) => {
+						const hasValidOrigin = OauthClients.find((client) => {
+							const redirectUrls = client.redirectUrls;
+							return redirectUrls.find((url) => {
+								const parsedUrl = parseURL(url);
+								if (!parsedUrl) return false;
+
+								const { host, protocol } = parsedUrl;
+								return origin === `${protocol}//${host}`;
+							});
+						});
+
+						if (hasValidOrigin) {
+							return origin;
+						}
+
+						return isDevelopment ? "*" : null;
+					},
+					allowHeaders: ["*"],
+					allowMethods: ["GET", "POST", "OPTIONS"],
 				}),
 			);
 		},

@@ -4,6 +4,7 @@ import type { JWTPayload } from "jose";
 export type QureauTokenType = "access" | "refresh" | "id" | "code";
 
 export interface QureauJwtProps {
+	issuer?: string;
 	jwtSigner: JwtSignFnJose<QureauBaseClaims>;
 }
 
@@ -33,7 +34,11 @@ export function QureauJwt(props: QureauJwtProps) {
 		configure: QureauConfigureFn,
 	) {
 		return props.jwtSigner({ token_use }, (token) => {
-			return configure(token);
+			const current = configure(token);
+			if (props.issuer) {
+				current.setIssuer(props.issuer);
+			}
+			return current;
 		});
 	}
 
@@ -43,6 +48,7 @@ export function QureauJwt(props: QureauJwtProps) {
 				return configure?.(token.setExpirationTime("2m")) ?? token;
 			});
 		},
+		accessSeconds: 60 * 60 * 3,
 		access(configure?: QureauConfigureFn) {
 			return withDefaults("access", (token) => {
 				return configure?.(token.setExpirationTime("3h")) ?? token;

@@ -1,4 +1,4 @@
-import type { LoginQueryParams } from "@levicape/hall-gate-io/app/qureau/controller/login/LoginQueryParams";
+import type { AuthorizeQueryParams } from "@levicape/hall-gate-io/app/qureau/controller/login/AuthorizeQueryParams";
 import { useMemo } from "hono/jsx";
 
 const validParams = [
@@ -20,7 +20,7 @@ const validParams = [
 	"error",
 	"error_description",
 ];
-const isValidParam = (key: string): key is keyof LoginQueryParams => {
+const isValidParam = (key: string): key is keyof AuthorizeQueryParams => {
 	return validParams.includes(key);
 };
 

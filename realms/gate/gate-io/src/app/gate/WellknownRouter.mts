@@ -1,4 +1,6 @@
-import { HTTP_BASE_PATH, Topology } from "../../http/Atlas.mjs";
+import { envsubst } from "@levicape/spork/server/EnvSubst";
+import { StatusCodes } from "http-status-codes";
+import { HTTP_BASE_PATH } from "../../http/Atlas.mjs";
 import {
 	QureauAuthorizationEndpoint,
 	QureauEndSessionEndpoint,
@@ -6,27 +8,31 @@ import {
 	QureauTokenEndpoint,
 	QureauUserinfoEndpoint,
 } from "../qureau/Qureau.mjs";
-import {
-	Gate,
-	GateSubjectTypesSupported,
-	GateSupportedResponseTypes,
-	GateSupportedScopes,
-} from "./Gate.mjs";
-import type { JSONWebKeySet } from "./controller/jwks/JsonWebKey.mjs";
+import { Gate } from "./Gate.mjs";
 import type { OpenIdConfiguration } from "./controller/openid-configuration/OpenIdConfiguration.mjs";
 
 export const WellknownRouter = Gate()
 	.createApp()
 	.get("jwks.json", async (c) => {
-		return c.json({} as unknown as JSONWebKeySet);
+		const keys = c.var.JwtVerification?.pubkeys();
+		if (!keys) {
+			return c.json(
+				{
+					error: {
+						code: "JWKS_ERROR",
+						message: "Could not retrieve keys",
+					},
+				},
+				StatusCodes.GONE,
+			);
+		}
+		return c.json(keys);
 	})
 	.get("openid-configuration", async (c) => {
-		const host = c.get("Topology")["/~/Frontend/Hostname"].url();
-		const response_types_supported = await GateSupportedResponseTypes();
-		const scopes_supported = await GateSupportedScopes();
-		const subject_types_supported = (await GateSubjectTypesSupported()) as [
-			"public",
-		];
+		const host = c.var.OauthConfiguration.issuer ?? "localhost";
+		const response_types_supported = c.var.OauthConfiguration.responseTypes;
+		const scopes_supported = c.var.OauthConfiguration.scopes;
+		const subject_types_supported = c.var.OauthConfiguration.subjectTypes;
 
 		return c.json({
 			issuer: host,
@@ -38,11 +44,21 @@ export const WellknownRouter = Gate()
 				"client_secret_basic",
 				"client_secret_post",
 			],
-			jwks_uri: `${host}/.well-known/jwks.json`,
-			authorization_endpoint: `${host}/${HTTP_BASE_PATH}/${QureauAuthorizationEndpoint}`,
-			end_session_endpoint: `${host}/${HTTP_BASE_PATH}/${QureauEndSessionEndpoint}`,
-			revocation_endpoint: `${host}/${HTTP_BASE_PATH}/${QureauRevokeEndpoint}`,
-			token_endpoint: `${host}/${HTTP_BASE_PATH}/${QureauTokenEndpoint}`,
-			userinfo_endpoint: `${host}/${HTTP_BASE_PATH}/${QureauUserinfoEndpoint}`,
+			jwks_uri: envsubst(`${host}/.well-known/jwks.json`),
+			authorization_endpoint: envsubst(
+				`${host}/${HTTP_BASE_PATH}/${QureauAuthorizationEndpoint}`,
+			),
+			end_session_endpoint: envsubst(
+				`${host}/${HTTP_BASE_PATH}/${QureauEndSessionEndpoint}`,
+			),
+			revocation_endpoint: envsubst(
+				`${host}/${HTTP_BASE_PATH}/${QureauRevokeEndpoint}`,
+			),
+			token_endpoint: envsubst(
+				`${host}/${HTTP_BASE_PATH}/${QureauTokenEndpoint}`,
+			),
+			userinfo_endpoint: envsubst(
+				`${host}/${HTTP_BASE_PATH}/${QureauUserinfoEndpoint}`,
+			),
 		} satisfies OpenIdConfiguration);
 	});

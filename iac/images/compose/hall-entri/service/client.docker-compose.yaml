@@ -1,0 +1,45 @@
+
+services:
+  client-ui:
+    image: $APPLICATION_HALL_IMAGE
+    entrypoint: project
+    environment: 
+      NODE_OPTIONS: $NODE_OPTIONS
+      LOG_LEVEL: $LOG_LEVEL
+      STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+      PROJECT_PATH: ./realms/gate/client-ui
+      PROJECT_COMMAND: serverwww:dev
+      PORT: $CLIENT_UI
+      OAUTH_PUBLIC_OIDC_AUTHORITY: "https://gate.${ROOT_DOMAIN}"
+      OAUTH_PUBLIC_OIDC_RESPONSE_TYPE: "code"
+      OAUTH_PUBLIC_OIDC_SCOPE: "openid"
+      OAUTH_PUBLIC_OIDC_CLIENT_ID: $COMPOSE_PROJECT_NAME
+      OAUTH_PUBLIC_OIDC_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/callback"
+      OAUTH_PUBLIC_OIDC_POST_LOGOUT_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/logout"
+      OAUTH_PUBLIC_OIDC_SILENT_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/renew"
+    volumes: &workspace_volumes
+      - ../../../../..:/workspace
+    ports:
+      - $CLIENT_UI:$CLIENT_UI
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:$CLIENT_UI/"]
+      interval: 3s
+      timeout: 8s
+      retries: 7
+  # ui-canary:
+  #   image: $ROOT_IMAGE
+  #   entrypoint: project
+  #   environment:
+  #     NODE_OPTIONS: $NODE_OPTIONS
+  #     LOG_LEVEL: $LOG_LEVEL
+  #     STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+  #     PROJECT_PATH: ./realms/entri/entri-ui
+  #     PROJECT_COMMAND: staticwww:canary
+  #     GATE_HTTP_HOST: $ENTRI_HTTP
+  #     GATE_UI_HOST: $ENTRI_UI
+  #   volumes: *workspace_volumes
+  #   depends_on:
+  #     http:
+  #       condition: service_healthy
+  #     ui:
+  #       condition: service_healthy

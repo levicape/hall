@@ -4,7 +4,7 @@ import {
 	cuidKeygen,
 	ulidKeygen,
 } from "@levicape/spork/server/security/IdKeygen";
-import { createMiddleware } from "hono/factory";
+import type { Context } from "hono";
 import { validator } from "hono/validator";
 import {
 	filterQuery,
@@ -15,8 +15,7 @@ import {
 } from "ufo";
 import { prettifyError } from "zod";
 import type { RegistrationRegister } from "../../../../_protocols/qureau/tsnode/domain/registration/register/registration.register.js";
-import { Qureau } from "../../Qureau.mjs";
-import { LoginQueryParamsZod } from "../login/LoginQueryParams.mjs";
+import { Qureau, type QureauVariables } from "../../Qureau.mjs";
 import { QureauRegistrationRegisterCommandZod } from "./QureauRegistrationCommand.mjs";
 
 const registrationRegisterInfers = (
@@ -32,33 +31,18 @@ const registrationRegisterInfers = (
 	};
 };
 
-export type QureauLoginQueryParams = {
-	errorUri: string;
-};
-export const QureauErrorRedirectMiddleware = (props: QureauLoginQueryParams) =>
-	createMiddleware<{
-		Variables: {
-			ErrorRedirect: string;
-		};
-	}>(async (c, next) => {
-		c.set("ErrorRedirect", props.errorUri);
-		await next();
-	});
-
-export const ERROR_REDIRECT_URI = async () => "/oauth2/anonymous";
 export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 	HonoGuardAuthentication(async ({ principal }) => {
 		return principal.$case === "anonymous";
 	}),
-	QureauErrorRedirectMiddleware({
-		errorUri: await ERROR_REDIRECT_URI(),
-	}),
-	validator("query", async (s, c) => {
-		const query = await LoginQueryParamsZod.safeParseAsync(s);
+	validator("query", async (s, c: Context<{ Variables: QureauVariables }>) => {
+		const { errorUri, entrypoint } = c.var.Qureau;
+		const query = c.var.QureauQuery.authorize(s);
 		if (!query.success) {
 			return c.redirect(
-				withQuery(c.var.ErrorRedirect, {
+				withQuery(errorUri, {
 					...s,
+					entrypoint,
 					error: "invalid_request",
 					error_description: prettifyError(query.error),
 				}),
@@ -68,13 +52,16 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 		return query.data;
 	}),
 	async (c) => {
+		const { errorUri, entrypoint } = c.var.Qureau;
+
+		const query = c.req.valid("query");
 		const body = structuredClone(await c.req.parseBody({ dot: true })) ?? {};
 		const form =
 			await QureauRegistrationRegisterCommandZod.safeParseAsync(body);
 		if (!form.success) {
 			return c.redirect(
-				withQuery(c.var.ErrorRedirect, {
-					...c.req.valid("query"),
+				withQuery(c.var.Qureau.errorUri, {
+					...query,
 					error: "invalid_request",
 					error_description: prettifyError(form.error),
 				}),
@@ -116,6 +103,7 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 			inferred: registrationRegisterInfers(c.req.header(), ulidKeygen),
 			ext,
 		});
+
 		if (!registerResponse.registered) {
 			c.var.Logging.withMetadata({
 				QureauRegistrationAnonymousHandler: {
@@ -124,9 +112,10 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 			}).warn("Registration failed");
 
 			return c.redirect(
-				withQuery(c.var.ErrorRedirect, {
-					...c.req.valid("query"),
-					error: "access_denied",
+				withQuery(errorUri, {
+					...query,
+					entrypoint,
+					error: "internal_error",
 					error_description: "Registration failed",
 				}),
 			);
@@ -136,15 +125,15 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 			jwt.setSubject(registerResponse.registered?.refreshTokenId ?? "<RT>"),
 		);
 
-		const { state, redirect_uri } = c.req.valid("query");
+		const { redirect_uri } = query;
 		const url = withQuery(
 			withoutTrailingSlash(
 				normalizeURL(filterQuery(withoutFragment(redirect_uri), () => false)),
 				true,
 			),
 			{
+				...query,
 				code,
-				state,
 			},
 		);
 		return c.redirect(url);

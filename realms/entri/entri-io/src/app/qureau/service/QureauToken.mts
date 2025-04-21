@@ -32,7 +32,9 @@ export class QureauTokenError extends Error implements ServiceError {
 	}
 }
 
-export class QureauTokens implements QureauTokenService {
+export class QureauTokens
+	implements Exclude<QureauTokenService, "RetrieveRefreshTokenByIdWithId">
+{
 	static executorId: string = ulid();
 	constructor(
 		// private readonly jwtTools: JwtTools,

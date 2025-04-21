@@ -34,7 +34,9 @@ export class QureauTokenError extends Error implements ServiceError {
 	}
 }
 
-export class QureauTokens implements QureauTokenService {
+export class QureauTokens
+	implements Omit<QureauTokenService, "RetrieveRefreshTokenByIdWithId">
+{
 	static executorId: string = ulid();
 	constructor(
 		private readonly jwtTools: QureauJwts,
@@ -163,7 +165,7 @@ export class QureauTokens implements QureauTokenService {
 		}
 	}
 
-	async RetrieveRefreshTokenByIdWithId(
+	async RetrieveTokenByIdWithId(
 		request: TokenRefreshRetrieveByIdWithId,
 	): Promise<TokenRefreshRetrieveByIdWithIdResponse> {
 		try {

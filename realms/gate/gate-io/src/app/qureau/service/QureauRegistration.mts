@@ -67,7 +67,9 @@ export class QureauRegistration implements QureauRegistrationService {
 		}) as RefreshToken & { id: string; userId: string };
 
 		const aid = this.keygen.srand();
-		let authentication: RefreshToken & { id: string; userId: string };
+		let authentication:
+			| (RefreshToken & { id: string; userId: string })
+			| undefined;
 		let asJwt: ReturnType<typeof UnsecuredJWT.decode> | undefined;
 		try {
 			asJwt = UnsecuredJWT.decode(authenticationToken ?? "");
@@ -91,15 +93,15 @@ export class QureauRegistration implements QureauRegistrationService {
 				startInstant: nowunix,
 			}) as RefreshToken & { id: string; userId: string };
 		} else {
-			authentication = RefreshToken.fromPartial({
-				id: aid,
-				userId,
-				applicationId,
-				token: await this.jwt.access((jwt) =>
-					jwt.setSubject(userId).setJti(aid),
-				),
-				startInstant: nowunix,
-			}) as RefreshToken & { id: string; userId: string };
+			// authentication = RefreshToken.fromPartial({
+			// 	id: aid,
+			// 	userId,
+			// 	applicationId,
+			// 	token: await this.jwt.access((jwt) =>
+			// 		jwt.setSubject(userId).setJti(aid),
+			// 	),
+			// 	startInstant: nowunix,
+			// }) as RefreshToken & { id: string; userId: string };
 		}
 
 		const {
@@ -151,7 +153,7 @@ export class QureauRegistration implements QureauRegistrationService {
 				registrationVerificationId: "TODO: ",
 				registrationVerificationOneTimeCode:
 					"The(registrationVerificationOneTimeCode)",
-				token: authentication.token,
+				token: authentication?.token,
 				tokenExpirationInstant: 0,
 				user: {
 					...userProto,
