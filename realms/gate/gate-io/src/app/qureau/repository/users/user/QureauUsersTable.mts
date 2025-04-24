@@ -1,7 +1,9 @@
+import { inspect } from "node:util";
 import type { ITable } from "@levicape/spork/server/client/table/ITable";
 import { MemoryTable } from "@levicape/spork/server/client/table/MemoryTable";
 import { DynamoTable } from "@levicape/spork/server/client/table/aws/DynamoTable";
 import { PostgresTable } from "@levicape/spork/server/client/table/postgres/PostgresTable";
+import { env } from "std-env";
 import { QureauDatabaseUsersTable } from "../../../../../_protocols/qureau/tsjson/table/user/table.user._.js";
 import {
 	QureauDatabaseTable,
@@ -9,16 +11,42 @@ import {
 } from "../../../../../_protocols/qureau/tsnode/table/table._._.js";
 import { QureauContext } from "../../../QureauContext.mjs";
 import type { QureauUserApplicationRow } from "./QureauUserRow.Application.mjs";
+import {
+	type QureauUserTokenKey,
+	QureauUserTokenRow,
+} from "./QureauUserRow.Token.mjs";
 import { type QureauUserKey, QureauUserRow } from "./QureauUserRow.mjs";
 
 const { users } = QureauContext.fromEnvironmentVariables();
-let table: ITable<QureauUserRow, QureauUserKey> | undefined;
+let usersTable: ITable<QureauUserRow, QureauUserKey> | undefined;
+let userTokensTable: ITable<QureauUserTokenRow, QureauUserTokenKey> | undefined;
+env.AWS_REGION ||
+	console.warn(
+		inspect(
+			{
+				qureauUsersTable: {
+					[QureauContext.QUREAU_DATABASE__NAME]: {
+						users: {
+							...users,
+							writer: undefined,
+							reader: undefined,
+						},
+						usersTable,
+					},
+				},
+				now: Date.now(),
+			},
+			{ depth: null, colors: true, compact: false },
+		),
+	);
+
 if (users !== undefined) {
 	const { service, namespace } = users;
 
 	if (service.startsWith("postgresql://")) {
 		const { postgres } = users;
-		table = new PostgresTable(
+		PostgresTable.SSL_MODE = "";
+		usersTable = (await PostgresTable.for(
 			{
 				master: postgres?.master ?? "",
 				replica: postgres?.replica ?? postgres?.master ?? "",
@@ -35,33 +63,49 @@ if (users !== undefined) {
 				},
 			},
 			QureauUserRow.getKey,
-		) as unknown as ITable<QureauUserRow<`qureau@${string}`>, QureauUserKey>;
+		)) as unknown as ITable<QureauUserRow<`qureau@${string}`>, QureauUserKey>;
+
+		userTokensTable = (await PostgresTable.for(
+			{
+				master: postgres?.master ?? "",
+				replica: postgres?.replica ?? postgres?.master ?? "",
+				databaseName: postgres?.database ?? "qureau",
+				schemaName: postgres?.schema ?? "public",
+				tableName: qureauDatabaseTableToJSON(QureauDatabaseTable.qureau_users),
+				writer: {
+					username: postgres?.writer.username ?? "postgres",
+					password: postgres?.writer.password ?? "",
+				},
+				reader: {
+					username: postgres?.reader.username ?? "postgres",
+					password: postgres?.reader.password ?? "",
+				},
+			},
+			QureauUserTokenRow.getKey,
+		)) as unknown as ITable<QureauUserTokenRow, QureauUserTokenKey>;
 	}
 
 	if (service.startsWith("dynamodb://")) {
 		const [, tableName] = service.split("://");
-		table = new DynamoTable(tableName ?? "", namespace, QureauUserRow.getKey);
+		usersTable = new DynamoTable(
+			tableName ?? "",
+			namespace,
+			QureauUserRow.getKey,
+		);
 	}
 }
 
-if (table === undefined) {
-	// Logger.warn({
-	// 	qureauUsersTable: {
-	// 		[QureauContext.QUREAU_DATABASE__NAME]: {
-	// 			service: "mock",
-	// 			namespace: "mock",
-	// 		},
-	// 	},
-	// 	now: Date.now(),
-	// });
-}
-
 export const qureauUsersTable =
-	table ??
+	usersTable ??
 	new MemoryTable(QureauUserRow.getKey, ({ pk, sk }) => ({
 		pk,
 		sk,
 	}));
+
+export const qureauUserTokensTable = qureauUsersTable as ITable<
+	QureauUserTokenRow,
+	QureauUserTokenKey
+>;
 
 export const qureauUsersApplicationsTable = qureauUsersTable as ITable<
 	QureauUserApplicationRow,

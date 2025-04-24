@@ -21,6 +21,7 @@ ignores:
 - "verror"
 # ui
 - "@base-ui-components/react"
+- "@types/dom-navigation"
 - "@hono/node-server"
 - "daisyui"
 - "effect"

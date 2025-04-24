@@ -7,16 +7,13 @@ services:
   caddy:
     image: "caddy:2.9"
     depends_on:
-      atlas:
+      atlas-client:
         condition: service_completed_successfully
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
     ports:
       - 443:443
-      - ${ROOT_NS}0000:443
-      - ${ROOT_NS}2000:80
-      - ${ROOT_NS}3000:443
     volumes:
       - ${HOME}/.cache/levicape/${COMPOSE_PROJECT_NAME}/atlas/caddy:/etc/caddy
       - caddy_data:/data

@@ -1,4 +1,5 @@
 import { clsx } from "clsx";
+import { useEffect } from "hono/jsx";
 import { Button } from "../../../ui/daisy/action/Button.js";
 import { Users_Icon } from "../../../ui/display/icons/Users.js";
 import { useFormatMessage } from "../../localization/I18nAtom.js";
@@ -8,6 +9,7 @@ export const OidcUserLoginCard = () => {
 	const { user } = useOidcClient();
 	const formatMessage = useFormatMessage();
 	const username = user?.profile["cognito:username"] ?? user?.profile.sub;
+
 	return (
 		<div
 			className={clsx(
@@ -94,9 +96,10 @@ export const OidcUserLoginCard = () => {
 				>
 					<Button
 						color={"primary"}
-						href={"/;oidc/authorize"}
+						href={"/;oidc/authorize/"}
 						renderAs={"a"}
 						block
+						onTr
 					>
 						{formatMessage({
 							id: "authentication.user._none.login.button",

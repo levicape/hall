@@ -94,7 +94,7 @@ export const QureauRegistrationHandler = Qureau().createHandlers(
 		// }
 
 		const register: RegistrationRegisterResponse =
-			await c.var.QureauRegistrationService.Register(
+			await c.var.Registration.Register(
 				RegistrationRegister.fromPartial({
 					request: RegistrationRegisterRequest.fromJSON(data.request),
 					// inferred: registrationRegisterInfers(headers, ksuidGenerator),

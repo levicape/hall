@@ -9,7 +9,7 @@ import {
 	type HonoJwtIssuer,
 } from "@levicape/spork/router/hono/middleware/security/HonoJwtIssuer";
 import { JwtClaimsCognitoTokenUse } from "@levicape/spork/server/security/claims/JwtClaimsCognito";
-import type { Context } from "hono";
+import { streamHandle } from "hono/aws-lambda";
 import { cors } from "hono/cors";
 import { createFactory } from "hono/factory";
 import { env, isDevelopment } from "std-env";
@@ -28,6 +28,16 @@ export type HttpMiddleware = HonoHttp &
 	HonoHttpAuthentication &
 	HonoJwtIssuer<QureauBaseClaims> & {
 		Variables: {
+			JwkConfiguration: {
+				token: {
+					alg: string;
+					typ: string;
+				};
+				material: {
+					alg: string;
+					enc: string;
+				};
+			};
 			OauthConfiguration: {
 				issuer: string;
 				responseTypes: ReadonlyArray<AuthorizeQueryParamResponseType>;
@@ -52,7 +62,7 @@ const {
 	OAUTH_PUBLIC_OIDC_SILENT_REDIRECT_URI,
 } = env;
 
-export const { server, handler, stream } = await HonoHttpServer(
+export const { server } = await HonoHttpServer(
 	createFactory<HttpMiddleware>({
 		initApp(app) {
 			const OauthConfiguration = {
@@ -66,6 +76,16 @@ export const { server, handler, stream } = await HonoHttpServer(
 				subjectTypes: ["public"] as AuthorizeQueryParamSubjectType[],
 			} as const;
 
+			const JwkConfiguration = {
+				token: {
+					alg: "ES256",
+					typ: "JWT",
+				},
+				material: {
+					alg: "A256GCMKW",
+					enc: "A256GCM",
+				},
+			} as const;
 			const OauthClients = [
 				{
 					clientId: OAUTH_PUBLIC_OIDC_CLIENT_ID ?? "default",
@@ -78,6 +98,7 @@ export const { server, handler, stream } = await HonoHttpServer(
 			] as const;
 
 			app.use(async (c, next) => {
+				c.set("JwkConfiguration", JwkConfiguration);
 				c.set("OauthConfiguration", OauthConfiguration);
 				c.set("OauthClients", OauthClients);
 				c.set(
@@ -100,10 +121,20 @@ export const { server, handler, stream } = await HonoHttpServer(
 						const now = Math.floor(Date.now() / 1000);
 						return token
 							.setProtectedHeader({
-								alg: "ES256",
+								alg: JwkConfiguration.token.alg,
+								typ: JwkConfiguration.token.typ,
 							})
+							.setIssuer(OauthConfiguration.issuer)
 							.setIssuedAt(now)
 							.setNotBefore(now);
+					},
+					initializeMaterial: (materials) => {
+						return materials
+							.setIssuer(OauthConfiguration.issuer)
+							.setProtectedHeader({
+								alg: JwkConfiguration.material.alg,
+								enc: JwkConfiguration.material.enc,
+							});
 					},
 				}),
 			);
@@ -141,4 +172,5 @@ export const { server, handler, stream } = await HonoHttpServer(
 			.all("*", ...QureauNotFound),
 );
 
+export const stream = env.AWS_REGION && (streamHandle(server.app) as unknown);
 export type HonoApp = typeof server.app;

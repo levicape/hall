@@ -46,7 +46,7 @@ export class QureauRegistration implements QureauRegistrationService {
 			nonce: ulid(),
 		};
 
-		const userId = this.keygen.srand();
+		const userId = request.request?.user?.id ?? this.keygen.srand();
 		// TODO: RegistrationRegisterUserRequest -> User mapping
 		// Make sure enums are the same
 		const userProto = User.fromPartial({
@@ -64,6 +64,9 @@ export class QureauRegistration implements QureauRegistrationService {
 				jwt.setSubject(userId).setJti(rid),
 			),
 			startInstant: nowunix,
+			data: {
+				...(request.request?.user?.data ?? {}),
+			},
 		}) as RefreshToken & { id: string; userId: string };
 
 		const aid = this.keygen.srand();
@@ -91,6 +94,9 @@ export class QureauRegistration implements QureauRegistrationService {
 				applicationId,
 				token: authenticationToken,
 				startInstant: nowunix,
+				data: {
+					...(request.request?.user?.data ?? {}),
+				},
 			}) as RefreshToken & { id: string; userId: string };
 		} else {
 			// authentication = RefreshToken.fromPartial({
@@ -108,7 +114,7 @@ export class QureauRegistration implements QureauRegistrationService {
 			data: { registration: registrationData },
 		} = await this.userApplicationRegistrations.createUserAndRegister(
 			{
-				applicationId: applicationId ?? "uwuqq1",
+				applicationId: applicationId ?? "uwu",
 				user: userProto,
 				genAuthenticationToken: async () => {
 					return authentication;

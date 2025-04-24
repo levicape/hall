@@ -10,13 +10,37 @@ import { generateCspPlugin } from "vite-plugin-node-csp";
 const entry = "/app/server.ts";
 const { PORT } = env;
 
+const EPOCH = 1745470700000;
+const safemap = [
+	["a", "g"],
+	["b", "h"],
+	["c", "j"],
+	["d", "l"],
+	["e", "m"],
+	["f", "q"],
+	["g", "s"],
+	["h", "t"],
+	["i", "w"],
+	["j", "y"],
+	["k", "z"],
+];
+const languageLength = Object.keys(safemap).length + 10;
+const safehex = (str: string) => {
+	return safemap.reduce((acc, [a, b]) => {
+		return acc.replace(new RegExp(a, "g"), b);
+	}, str);
+};
+const safetime = () => {
+	const unixtime = Math.floor((Date.now() - EPOCH) / 100);
+	const timehash = unixtime.toString(languageLength).padStart(9, "0");
+	return safehex(timehash);
+};
 /**
  * @see https://vite.dev/config/
  */
 export default defineConfig(({ mode }) => {
 	if (mode === "client") {
-		const unixtime = Math.floor(Date.now() / 1000);
-		const timehash = unixtime.toString(16);
+		const timehash = safetime();
 		return {
 			esbuild: {
 				jsxImportSource: "hono/jsx",
@@ -75,6 +99,7 @@ export default defineConfig(({ mode }) => {
 					"cookie",
 					"set-cookie-parser",
 					"oidc-client-ts",
+					"hono/css",
 				],
 				port: PORT ? Number(PORT) : undefined,
 			}),

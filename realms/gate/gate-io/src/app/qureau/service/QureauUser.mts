@@ -14,10 +14,7 @@ import {
 } from "../../../_protocols/qureau/tsnode/domain/user/searchByQuery/user.searchByQuery.js";
 import type { User } from "../../../_protocols/qureau/tsnode/domain/user/user._._.js";
 import type { QureauUserService } from "../../../_protocols/qureau/tsnode/service/user/qureau.user.js";
-import {
-	type QureauUserRepository,
-	qureauUserRepository,
-} from "../repository/users/QureauUserRepository.mjs";
+import type { QureauUserRepository } from "../repository/users/QureauUserRepository.mjs";
 import { QureauUserRow } from "../repository/users/user/QureauUserRow.mjs";
 
 export class QQUserNotFoundError implements BaseError {
@@ -199,5 +196,3 @@ export class QureauUser implements QureauUserService {
 		};
 	};
 }
-
-export const qureauUserService = new QureauUser(qureauUserRepository);

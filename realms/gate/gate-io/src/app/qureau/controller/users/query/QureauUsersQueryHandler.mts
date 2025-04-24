@@ -6,7 +6,6 @@ import {
 	QureauResponseVersionEnum,
 	QureauVersionEnum,
 } from "../../../../../_protocols/qureau/tsnode/service/version.js";
-import { qureauUserService } from "../../../service/QureauUser.mjs";
 import { QureauUsersQueryHandlerInfers } from "./QureauUsersQueryHandler.infers.mjs";
 
 const UsersQuerySchema = z.object({

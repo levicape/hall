@@ -5,7 +5,6 @@ import type { QureauDomainableRequestBlob } from "../../../../_protocols/qureau/
 import type { QureauDomainableScryptBlob } from "../../../../_protocols/qureau/tsnode/entity/entity._.scrypt.blob.js";
 import { QureauTableUsersEntity } from "../../../../_protocols/qureau/tsnode/table/user/table.user._.js";
 import {
-	QQUserNameExistsError,
 	QQUserNotFoundError,
 	QQUsersError,
 } from "../../service/QureauUser.mjs";
@@ -14,16 +13,6 @@ import {
 	type QureauUserKey,
 	QureauUserRow,
 } from "./user/QureauUserRow.mjs";
-import {
-	qureauUsersByApplicationIdUsername,
-	qureauUsersByEmail,
-	qureauUsersByProviderResolvedId,
-	qureauUsersByTokenId,
-	qureauUsersByUserRegistrationId,
-	qureauUsersByUsername,
-	qureauUsersSearchIndex,
-	qureauUsersTable,
-} from "./user/QureauUsersTable.mjs";
 
 type QureauDomainable = {
 	request: QureauDomainableRequestBlob;
@@ -77,7 +66,10 @@ export class QureauUserRepository {
 	}
 
 	async readById(userId: string, props?: QureauRepositoryProps): Promise<User> {
-		const userrow = await this.users.getById(userId, "&User!;");
+		const userrow = await this.users.getById(
+			userId,
+			"&User!;" as QureauUserEntity,
+		);
 		if (!userrow) {
 			throw new QQUsersError(
 				410,
@@ -93,7 +85,10 @@ export class QureauUserRepository {
 		props?: QureauRepositoryProps,
 	): Promise<QureauUserRow> {
 		// TODO: Fix this
-		const raw = await this.usersByUsernames.getById(username, "&User!;");
+		const raw = await this.usersByUsernames.getById(
+			username,
+			"&User!;" as QureauUserEntity,
+		);
 		return raw;
 	}
 
@@ -174,28 +169,3 @@ const bigintToNumber = (row: any) => {
 		}
 	});
 };
-
-const wrapAndThrow = (error: unknown) => {
-	const dbError = error as { table?: string; constraint?: string };
-	if (dbError.table !== undefined && dbError.constraint !== undefined) {
-		if (dbError.constraint.includes("pk_unique_key")) {
-			throw new QQUsersError(
-				400,
-				new QQUserNameExistsError("User must have a unique username"),
-			);
-		}
-	}
-
-	throw error;
-};
-
-export const qureauUserRepository = new QureauUserRepository(
-	qureauUsersTable,
-	qureauUsersByApplicationIdUsername,
-	qureauUsersByUsername,
-	qureauUsersByEmail,
-	qureauUsersByProviderResolvedId,
-	qureauUsersByTokenId,
-	qureauUsersByUserRegistrationId,
-	qureauUsersSearchIndex,
-);

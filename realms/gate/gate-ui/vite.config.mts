@@ -8,14 +8,15 @@ import { defineConfig } from "vite";
 import { generateCspPlugin } from "vite-plugin-node-csp";
 
 const entry = "/app/server.ts";
-const { PORT } = env;
+const { FRONTEND_HOSTS, PORT } = env;
+const EPOCH = 1745470700000;
 
 /**
  * @see https://vite.dev/config/
  */
 export default defineConfig(({ mode }) => {
 	if (mode === "client") {
-		const unixtime = Math.floor(Date.now() / 1000);
+		const unixtime = Math.floor((Date.now() - EPOCH) / 100);
 		const timehash = unixtime.toString(16);
 		return {
 			esbuild: {
@@ -75,13 +76,22 @@ export default defineConfig(({ mode }) => {
 					"cookie",
 					"set-cookie-parser",
 					"oidc-client-ts",
+					"hono/css",
 				],
 				port: PORT ? Number(PORT) : undefined,
 			}),
 			ssg({
 				entry,
 			}),
-			generateCspPlugin(),
+			generateCspPlugin({
+				policy: {
+					...(FRONTEND_HOSTS
+						? {
+								"frame-ancestors": FRONTEND_HOSTS.split(","),
+							}
+						: {}),
+				},
+			}),
 		],
 	};
 });

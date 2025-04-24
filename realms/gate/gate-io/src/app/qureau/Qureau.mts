@@ -1,34 +1,48 @@
-import { cuidKeygen } from "@levicape/spork/server/security/IdKeygen";
-import type { JwtSignFnJose } from "@levicape/spork/server/security/JwtSignature";
+import {
+	cuidKeygen,
+	ulidKeygen,
+} from "@levicape/spork/server/security/IdKeygen";
 import { createFactory } from "hono/factory";
 import type { ParsedFormValue } from "hono/types";
+import { env } from "std-env";
 import type { QureauResponse } from "../../_protocols/qureau/tsnode/service/qureau._.js";
 import {
 	QureauResponseVersionEnum,
 	QureauVersionEnum,
 } from "../../_protocols/qureau/tsnode/service/version.js";
 import type { HttpMiddleware } from "../../http/HonoApp.mjs";
-import {
-	type QureauBaseClaims,
-	QureauJwt,
-	type QureauJwts,
-} from "./QureauJwt.mjs";
+import { QureauJwt, type QureauJwts } from "./QureauJwt.mjs";
 import {
 	type AuthorizeQueryConfiguration,
 	AuthorizeQueryParamsZod,
 } from "./controller/login/AuthorizeQueryParams.mjs";
 import { TokenQueryParamsZod } from "./controller/tokens/TokenQueryParams.mjs";
-import { qureauUserRegistrationRepository } from "./repository/users/QureauUserRepository.Registration.mjs";
+import { QureauUserRegistrationRepository } from "./repository/users/QureauUserRepository.Registration.mjs";
+import { QureauUserTokenRepository } from "./repository/users/QureauUserRepository.Token.mjs";
+import { QureauUserRepository } from "./repository/users/QureauUserRepository.mjs";
+import {
+	qureauUserTokensTable,
+	qureauUsersApplicationsTable,
+	qureauUsersByApplicationIdUsername,
+	qureauUsersByEmail,
+	qureauUsersByProviderResolvedId,
+	qureauUsersByTokenId,
+	qureauUsersByUserRegistrationId,
+	qureauUsersByUsername,
+	qureauUsersSearchIndex,
+	qureauUsersTable,
+} from "./repository/users/user/QureauUsersTable.mjs";
 import { QureauRegistration } from "./service/QureauRegistration.mjs";
 import { QureauTokens } from "./service/QureauToken.mjs";
+import { QureauUser } from "./service/QureauUser.mjs";
 
 // https://gate.platform:10000/oauth2/anonymous?response_type=code&client_id=test&redirect_uri=/oauth2/redirect&scope=openid
 export type QureauVariables = {
 	Qureau: {
-		entrypoint: `/oauth2/${"login" | "anonymous"}`;
-		errorUri: `/oauth2/${"warn" | "logout"}`;
+		login: string;
+		errorUri: string;
 	};
-	QureauQuery: {
+	Query: {
 		authorize: (
 			query: Record<
 				string,
@@ -42,10 +56,29 @@ export type QureauVariables = {
 			>,
 		) => ReturnType<ReturnType<typeof TokenQueryParamsZod>["safeParse"]>;
 	};
-	QureauJwt: ReturnType<typeof QureauJwt>;
-	QureauRegistrationService: QureauRegistration;
-	QureauTokens: QureauTokens;
+	Jwt: ReturnType<typeof QureauJwt>;
+	User: QureauUser;
+	Registration: QureauRegistration;
+	Tokens: QureauTokens;
 };
+
+export type OauthEnvironment = {
+	/**
+	 * Initial redirect path from /oauth2/authorize. Required to be relative
+	 * @default `/oauth2/anonymous/`
+	 */
+	OAUTH_IDP_LOGIN_PATH?: string;
+	/**
+	 * Error redirect path from oauth2 endpoints. Required to be relative
+	 * @default `/oauth2/error/`
+	 */
+	OAUTH_IDP_ERROR_PATH?: string;
+};
+
+const {
+	OAUTH_IDP_LOGIN_PATH = "/oauth2/anonymous/",
+	OAUTH_IDP_ERROR_PATH = "/oauth2/error/",
+}: OauthEnvironment = env;
 
 const factory = createFactory<
 	HttpMiddleware & {
@@ -53,15 +86,40 @@ const factory = createFactory<
 	}
 >({
 	initApp(app) {
-		let authorize: QureauVariables["QureauQuery"]["authorize"] | undefined;
-		let token: QureauVariables["QureauQuery"]["token"] | undefined;
+		let authorize: QureauVariables["Query"]["authorize"] | undefined;
+		let token: QureauVariables["Query"]["token"] | undefined;
 		let qureauJwt: QureauJwts | undefined;
+
+		const QureauUsersTable = qureauUsersTable;
+		const QureauUserTokensTable = qureauUserTokensTable;
+
+		const qureauUserRepository: QureauUserRepository = new QureauUserRepository(
+			QureauUsersTable,
+			qureauUsersByApplicationIdUsername,
+			qureauUsersByUsername,
+			qureauUsersByEmail,
+			qureauUsersByProviderResolvedId,
+			qureauUsersByTokenId,
+			qureauUsersByUserRegistrationId,
+			qureauUsersSearchIndex,
+		);
+		const qureauUserTokenRepository: QureauUserTokenRepository =
+			new QureauUserTokenRepository(QureauUserTokensTable);
+		const qureauUserRegistrationRepository: QureauUserRegistrationRepository =
+			new QureauUserRegistrationRepository(
+				ulidKeygen,
+				qureauUsersApplicationsTable,
+				qureauUserRepository,
+				qureauUserTokenRepository,
+			);
+
+		const qureauUserService: QureauUser = new QureauUser(qureauUserRepository);
 		let qureauRegistrationService: QureauRegistration | undefined;
 		let qureauTokenService: QureauTokens | undefined;
 
 		const qureau = {
-			entrypoint: "/oauth2/anonymous",
-			errorUri: "/oauth2/warn",
+			login: OAUTH_IDP_LOGIN_PATH,
+			errorUri: OAUTH_IDP_ERROR_PATH,
 		} as const;
 
 		app.use(async function QureauService(c, next) {
@@ -87,20 +145,20 @@ const factory = createFactory<
 					return tokenQuery.safeParse(query);
 				};
 			}
-			c.set("QureauQuery", {
+			c.set("Query", {
 				authorize,
 				token,
 			});
 
-			const jwtSigner = c.var.JwtSignature as JwtSignFnJose<QureauBaseClaims>;
 			if (!qureauJwt) {
 				qureauJwt = QureauJwt({
 					issuer: c.var.OauthConfiguration.issuer,
-					jwtSigner,
+					jwtSignature: c.var.JwtSignature,
 				});
 			}
-			c.set("QureauJwt", qureauJwt);
 
+			c.set("Jwt", qureauJwt);
+			c.set("User", qureauUserService);
 			if (!qureauRegistrationService) {
 				qureauRegistrationService = new QureauRegistration(
 					qureauJwt,
@@ -108,16 +166,16 @@ const factory = createFactory<
 					qureauUserRegistrationRepository,
 				);
 			}
-			c.set("QureauRegistrationService", qureauRegistrationService);
+			c.set("Registration", qureauRegistrationService);
 
 			if (!qureauTokenService) {
 				qureauTokenService = new QureauTokens(
 					qureauJwt,
-					// qureauTokenTable,
+					qureauUserTokenRepository,
 					// qureauTokenByTenant,
 				);
 			}
-			c.set("QureauTokens", qureauTokenService);
+			c.set("Tokens", qureauTokenService);
 
 			await next();
 		});

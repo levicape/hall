@@ -10,7 +10,6 @@ import {
 	QureauResponseVersionEnum,
 	QureauVersionEnum,
 } from "../../../../../_protocols/qureau/tsnode/service/version.js";
-import { qureauUserService } from "../../../service/QureauUser.mjs";
 import { qqZodError } from "../../QureauBadRequestExceptionHandler.mjs";
 import { QureauUsersByIdViewHandlerInfers } from "./QureauUsersByIdViewHandler.infers.mjs";
 

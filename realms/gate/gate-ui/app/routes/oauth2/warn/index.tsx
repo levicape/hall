@@ -1,11 +1,11 @@
 import type { Context } from "hono";
 import { Fragment } from "hono/jsx/jsx-runtime";
-import { AnonymousLoginPage } from "./$Warn.js";
+import { OAuth2Warning } from "./$Warn.js";
 
-export default function OidcAnonymous(_c: Context) {
+export default function OidcWarnPage(_c: Context) {
 	return (
 		<Fragment>
-			<AnonymousLoginPage />
+			<OAuth2Warning />
 		</Fragment>
 	);
 }

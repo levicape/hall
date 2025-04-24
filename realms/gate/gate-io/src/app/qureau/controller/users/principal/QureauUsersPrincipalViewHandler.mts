@@ -1,7 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { HonoGuardAuthentication } from "@levicape/spork/router/hono/guard/security/HonoGuardAuthentication";
 import { cuidKeygen } from "@levicape/spork/server/security/IdKeygen";
-import type { Context } from "hono";
 import { StatusCodes } from "http-status-codes";
 import VError from "verror";
 import z from "zod";
@@ -16,7 +15,6 @@ import {
 	QureauVersionEnum,
 } from "../../../../../_protocols/qureau/tsnode/service/version.js";
 import { Qureau } from "../../../Qureau.mjs";
-import { qureauUserService } from "../../../service/QureauUser.mjs";
 import { qqZodError } from "../../QureauBadRequestExceptionHandler.mjs";
 import { QureauUsersPrincipalViewHandlerInfers } from "./QureauUsersPrincipalViewHandler.infers.mjs";
 
@@ -35,12 +33,11 @@ export const QureauUsersPrincipalViewHandler = Qureau().createHandlers(
 	HonoGuardAuthentication(async ({ principal }) => {
 		return principal.$case !== "anonymous";
 	}),
-	async (c: Context) => {
+	async (c) => {
 		const { req } = c;
 		const body = await req.json();
 		const headers = req.header();
-		// const principal = c.get(HonoHttpAuthenticationBearerKey) as HonoHttpAuthenticationBearerContext;
-		const principal = c.get("principal") as {
+		const principal = c.get("HonoHttpAuthenticationBearerPrincipal") as {
 			$case: string;
 			value: {
 				id: string;
@@ -52,7 +49,7 @@ export const QureauUsersPrincipalViewHandler = Qureau().createHandlers(
 		}
 
 		const { success, error, data } = UsersPrincipalCommandZod.safeParse(body);
-		if (error || data === undefined) {
+		if (!success) {
 			return c.json(
 				QureauResponse.toJSON({
 					error: qqZodError(error),
@@ -62,7 +59,7 @@ export const QureauUsersPrincipalViewHandler = Qureau().createHandlers(
 			);
 		}
 		const retrieveWithId: UserRetrieveWithIdResponse =
-			await qureauUserService.RetrieveUserWithId(
+			await c.var.User.RetrieveUserWithId(
 				UserRetrieveWithId.fromPartial({
 					request: UserRetrieveWithIdRequest.fromJSON({
 						userId: principal.value.id,

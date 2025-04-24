@@ -14,6 +14,7 @@ const app = createApp({
 			}),
 		);
 	},
+	trailingSlash: true,
 });
 
 showRoutes(app, {

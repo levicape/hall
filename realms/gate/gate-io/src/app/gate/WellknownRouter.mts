@@ -1,5 +1,8 @@
 import { envsubst } from "@levicape/spork/server/EnvSubst";
+import { createMiddleware } from "hono/factory";
+import { HTTPException } from "hono/http-exception";
 import { StatusCodes } from "http-status-codes";
+import { type JWK, exportJWK } from "jose";
 import { HTTP_BASE_PATH } from "../../http/Atlas.mjs";
 import {
 	QureauAuthorizationEndpoint,
@@ -13,21 +16,50 @@ import type { OpenIdConfiguration } from "./controller/openid-configuration/Open
 
 export const WellknownRouter = Gate()
 	.createApp()
-	.get("jwks.json", async (c) => {
-		const keys = c.var.JwtVerification?.pubkeys();
-		if (!keys) {
-			return c.json(
-				{
-					error: {
-						code: "JWKS_ERROR",
-						message: "Could not retrieve keys",
-					},
+	.get(
+		"jwks.json",
+		(() => {
+			let jwk: JWK | undefined;
+			return createMiddleware<Gate & { Variables: { Jwk: JWK } }>(
+				async function jwkCache(c, next) {
+					const keyset = c.var.JwtVerification.jwks;
+					if (!keyset) {
+						throw new HTTPException(StatusCodes.LOCKED, {
+							res: new Response(
+								JSON.stringify({
+									error: {
+										code: "JWKS_ERROR",
+										message: "Could not retrieve keys",
+									},
+								}),
+							),
+						});
+					}
+
+					if (jwk === undefined) {
+						const keys = await keyset({
+							alg: c.var.JwkConfiguration.token.alg,
+						});
+						c.var.Logging.withMetadata({
+							keys: {
+								algorithm: keys.algorithm,
+								extractable: keys.extractable,
+							},
+						}).debug("Exporting JWK");
+						jwk = await exportJWK(keys);
+					}
+					c.set("Jwk", jwk);
+					await next();
 				},
-				StatusCodes.GONE,
 			);
-		}
-		return c.json(keys);
-	})
+		})(),
+		async (c) => {
+			const keys = c.var.Jwk;
+			return c.json({
+				keys: [keys],
+			});
+		},
+	)
 	.get("openid-configuration", async (c) => {
 		const host = c.var.OauthConfiguration.issuer ?? "localhost";
 		const response_types_supported = c.var.OauthConfiguration.responseTypes;

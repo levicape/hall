@@ -94,7 +94,7 @@ export const OidcUserLoginCard = () => {
 				>
 					<Button
 						color={"primary"}
-						href={"/;oidc/authorize"}
+						href={"/;oidc/authorize/"}
 						renderAs={"a"}
 						block
 					>

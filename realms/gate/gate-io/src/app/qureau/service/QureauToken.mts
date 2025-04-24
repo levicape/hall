@@ -1,5 +1,7 @@
 import type { BaseError, ServiceError } from "@levicape/spork/server/Error";
+import type { ITable } from "@levicape/spork/server/client/table/ITable";
 import { LoginToken } from "@levicape/spork/server/security/model/LoginToken";
+import { HTTPException } from "hono/http-exception";
 import { ulid } from "ulidx";
 import {
 	type TokenCreate,
@@ -16,6 +18,11 @@ import type {
 } from "../../../_protocols/qureau/tsnode/domain/token/refresh/retrieveByIdWithId/token.refresh.retrieveByIdWithId.js";
 import type { QureauTokenService } from "../../../_protocols/qureau/tsnode/service/token/qureau.token.js";
 import type { QureauJwts } from "../QureauJwt.mjs";
+import type { QureauUserTokenRepository } from "../repository/users/QureauUserRepository.Token.mjs";
+import {
+	type QureauUserTokenKey,
+	QureauUserTokenRow,
+} from "../repository/users/user/QureauUserRow.Token.mjs";
 
 export class QureauTokenError extends Error implements ServiceError {
 	error: { rootCauses?: BaseError[] } & BaseError;
@@ -40,7 +47,7 @@ export class QureauTokens
 	static executorId: string = ulid();
 	constructor(
 		private readonly jwtTools: QureauJwts,
-		// private readonly token: ITable<QureauTaskRow, QureauTaskKey>,
+		private readonly tokenRepository: QureauUserTokenRepository,
 		// private readonly tokenByTenant: ITable<QureauTaskRow, QureauTaskKey>,
 	) {}
 
@@ -168,55 +175,83 @@ export class QureauTokens
 	async RetrieveTokenByIdWithId(
 		request: TokenRefreshRetrieveByIdWithId,
 	): Promise<TokenRefreshRetrieveByIdWithIdResponse> {
-		try {
-			if (!request.request) {
-				throw new QureauTokenError(400, {
-					code: "INVALID_REQUEST",
-					reason: "Request is undefined",
-				});
-			}
-
-			const { tokenId } = request.request;
-			if (!tokenId) {
-				throw new QureauTokenError(400, {
-					code: "INVALID_REQUEST",
-					reason: "Token ID is undefined",
-				});
-			}
-			async function retrieveRefreshTokenFromDB(
-				refreshTokenId: string,
-			): Promise<string> {
-				return "mocked-refresh-token";
-			}
-
-			const refreshToken = await retrieveRefreshTokenFromDB(tokenId);
-
-			// Mocked response, replace with actual data retrieval logic
-			return {
-				jwt: {
-					id: tokenId,
-					userId: "mocked-user-id",
-					tenantId: "mocked-tenant-id",
-					token: refreshToken,
-					applicationId: "mocked-application-id",
-					data: {},
-					insertInstant: Date.now(),
-					metaData: {
-						data: {},
-						device: {
-							description: "mocked-device",
-							lastAccessedAddress: "mocked-address",
-							lastAccessedInstant: Date.now(),
-							name: "mocked-device-name",
-							type: "mocked-device-type",
+		if (!request.request) {
+			throw new HTTPException(400, {
+				res: new Response(
+					JSON.stringify({
+						error: {
+							code: "INVALID_REQUEST",
+							reason: "Request is undefined",
 						},
-						scopes: [{ scope: "mocked-scope" }],
+					}),
+					{
+						headers: {
+							"Content-Type": "application/json",
+						},
 					},
-					startInstant: Date.now(),
-				},
-			};
-		} catch (error) {
-			throw new QureauTokenError(500, error as BaseError);
+				),
+			});
 		}
+
+		const { tokenId } = request.request;
+		if (!tokenId) {
+			throw new HTTPException(400, {
+				res: new Response(
+					JSON.stringify({
+						error: {
+							code: "INVALID_REQUEST",
+							reason: "Token ID is undefined",
+						},
+					}),
+					{
+						headers: {
+							"Content-Type": "application/json",
+						},
+					},
+				),
+			});
+		}
+
+		const row = await this.tokenRepository.getByUserIdApplicationIdTokenId(
+			request.inferred?.principalId ?? "",
+			"uwu",
+			tokenId,
+		);
+		if (!row) {
+			throw new HTTPException(404, {
+				res: new Response(
+					JSON.stringify({
+						error: {
+							code: "NOT_FOUND",
+							reason: "Token not found",
+						},
+					}),
+					{
+						headers: {
+							"Content-Type": "application/json",
+						},
+					},
+				),
+			});
+		}
+
+		const refreshToken = QureauUserTokenRow.toData(row);
+		return {
+			jwt: {
+				id: tokenId,
+				userId: refreshToken.userId,
+				tenantId: refreshToken.tenantId,
+				token: refreshToken.token,
+				applicationId: refreshToken.applicationId,
+				data: refreshToken.data,
+				insertInstant: refreshToken.startInstant,
+				startInstant: Date.now(),
+				metaData: {
+					data: {},
+					device: {},
+					scopes: [],
+				},
+			},
+		};
 	}
 }

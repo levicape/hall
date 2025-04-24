@@ -1,8 +1,15 @@
+import type { ITable } from "@levicape/spork/server/client/table/ITable";
 import type { RefreshToken } from "../../../../_protocols/qureau/tsnode/domain/token/token._._.js";
 import type { QureauRepositoryProps } from "./QureauUserRepository.mjs";
-import { QureauUserTokenRow } from "./user/QureauUserRow.Token.mjs";
+import {
+	type QureauUserTokenKey,
+	QureauUserTokenRow,
+} from "./user/QureauUserRow.Token.mjs";
 
 export class QureauUserTokenRepository {
+	constructor(
+		private readonly tokens: ITable<QureauUserTokenRow, QureauUserTokenKey>,
+	) {}
 	tokenRowForRefreshToken = async (
 		refreshToken: RefreshToken & { userId: string; id: string },
 		props: QureauRepositoryProps,
@@ -11,7 +18,7 @@ export class QureauUserTokenRepository {
 		const nowiso = new Date(nowunix).toISOString();
 
 		const row = new QureauUserTokenRow(
-			refreshToken.applicationId as "uwu",
+			(refreshToken.applicationId as "uwu") ?? "uwu",
 			refreshToken.userId,
 			refreshToken.id,
 			refreshToken,
@@ -26,6 +33,20 @@ export class QureauUserTokenRepository {
 
 		return row;
 	};
-}
 
-export const qureauUserTokenRepository = new QureauUserTokenRepository();
+	getByUserIdApplicationIdTokenId = async (
+		userId: string,
+		applicationId: Parameters<typeof QureauUserTokenRow.sk>[0],
+		tokenId: Parameters<typeof QureauUserTokenRow.sk>[1],
+	): Promise<QureauUserTokenRow | undefined> => {
+		const pk = userId;
+		const sk = QureauUserTokenRow.sk(applicationId, tokenId);
+		console.log({
+			QureauUserTokenRepository: {
+				pk,
+				sk,
+			},
+		});
+		return await this.tokens.getById(pk, sk);
+	};
+}

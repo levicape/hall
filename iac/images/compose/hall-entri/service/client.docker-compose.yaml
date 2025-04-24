@@ -14,9 +14,9 @@ services:
       OAUTH_PUBLIC_OIDC_RESPONSE_TYPE: "code"
       OAUTH_PUBLIC_OIDC_SCOPE: "openid"
       OAUTH_PUBLIC_OIDC_CLIENT_ID: $COMPOSE_PROJECT_NAME
-      OAUTH_PUBLIC_OIDC_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/callback"
-      OAUTH_PUBLIC_OIDC_POST_LOGOUT_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/logout"
-      OAUTH_PUBLIC_OIDC_SILENT_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/renew"
+      OAUTH_PUBLIC_OIDC_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/callback/"
+      OAUTH_PUBLIC_OIDC_POST_LOGOUT_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/logout/"
+      OAUTH_PUBLIC_OIDC_SILENT_REDIRECT_URI: "https://client.${ROOT_DOMAIN}/;oidc/renew/"
     volumes: &workspace_volumes
       - ../../../../..:/workspace
     ports:

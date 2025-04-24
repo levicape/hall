@@ -91,7 +91,7 @@ export const OidcUserLoginCard = () => {
 						"min-w-32",
 					)}
 				>
-					<a color={"primary"} href={"/;oidc/authorize"} renderAs={"a"} block>
+					<a color={"primary"} href={"/;oidc/authorize/"} renderAs={"a"} block>
 						{formatMessage({
 							id: "authentication.user._none.login.button",
 							description: "User island greetings",

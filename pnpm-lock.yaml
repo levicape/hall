@@ -9,6 +9,14 @@ catalogs:
     jose:
       specifier: ^6.0.10
       version: 6.0.10
+  database-postgres:
+    pg:
+      specifier: ^8.13.1
+      version: 8.14.1
+  database-sql:
+    knex:
+      specifier: ^3.1.0
+      version: 3.1.0
   default:
     '@levicape/fourtwo':
       specifier: 0.10.2-main.2
@@ -17,11 +25,11 @@ catalogs:
       specifier: 0.3.9-main.3
       version: 0.3.9-main.3
     '@levicape/spork':
-      specifier: 0.13.11-main.26
-      version: 0.13.11-main.26
+      specifier: 0.15.0-main.37
+      version: 0.15.0-main.37
     '@levicape/spork-atlas':
-      specifier: 0.13.11-main.26
-      version: 0.13.11-main.26
+      specifier: 0.15.0-main.37
+      version: 0.15.0-main.37
   dev:
     tsx:
       specifier: ^4.19.3
@@ -117,7 +125,7 @@ catalogs:
   schema-zod:
     zod:
       specifier: next
-      version: 4.0.0-beta.20250417T043022
+      version: 4.0.0-beta.20250424T163858
   state:
     jotai:
       specifier: ^2.12.2
@@ -233,13 +241,13 @@ importers:
         version: 2.2.5
       '@levicape/paloma':
         specifier: 'catalog:'
-        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
+        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.13.11-main.26(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.13.11-main.26
+        version: 0.15.0-main.37
       effect:
         specifier: catalog:effect
         version: 3.14.5
@@ -260,7 +268,7 @@ importers:
         version: 2.4.1
       zod:
         specifier: catalog:schema-zod
-        version: 4.0.0-beta.20250412T085909
+        version: 4.0.0-beta.20250424T163858
     devDependencies:
       '@biomejs/biome':
         specifier: catalog:lint
@@ -288,13 +296,13 @@ importers:
         version: link:../entri-io
       '@levicape/paloma':
         specifier: 'catalog:'
-        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
+        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.13.11-main.26(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.13.11-main.26
+        version: 0.15.0-main.37
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -385,13 +393,13 @@ importers:
         version: 1.14.1(hono@4.7.6)
       '@levicape/paloma':
         specifier: 'catalog:'
-        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
+        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.13.11-main.26(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.13.11-main.26
+        version: 0.15.0-main.37
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -453,6 +461,9 @@ importers:
       '@tailwindcss/vite':
         specifier: catalog:web-tailwind
         version: 4.1.3(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1))
+      '@types/dom-navigation':
+        specifier: ^1.0.5
+        version: 1.0.5
       '@types/node':
         specifier: catalog:types
         version: 22.14.0
@@ -479,13 +490,13 @@ importers:
         version: 2.2.5
       '@levicape/paloma':
         specifier: 'catalog:'
-        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
+        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.13.11-main.26(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.13.11-main.26
+        version: 0.15.0-main.37
       effect:
         specifier: catalog:effect
         version: 3.14.5
@@ -518,7 +529,7 @@ importers:
         version: 1.10.1
       zod:
         specifier: catalog:schema-zod
-        version: 4.0.0-beta.20250417T043022
+        version: 4.0.0-beta.20250424T163858
     devDependencies:
       '@biomejs/biome':
         specifier: catalog:lint
@@ -549,13 +560,13 @@ importers:
         version: link:../gate-io
       '@levicape/paloma':
         specifier: 'catalog:'
-        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)
+        version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.13.11-main.26(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
       '@levicape/spork-atlas':
         specifier: 'catalog:'
-        version: 0.13.11-main.26
+        version: 0.15.0-main.37
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -638,6 +649,34 @@ importers:
       vite:
         specifier: catalog:web-vite
         version: 6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1)
+
+  schema/qureau:
+    dependencies:
+      '@levicape/hall-gate-io':
+        specifier: 'workspace:'
+        version: link:../../realms/gate/gate-io
+      knex:
+        specifier: catalog:database-sql
+        version: 3.1.0(better-sqlite3@11.9.1)(pg@8.14.1)(sqlite3@5.1.7)
+      pg:
+        specifier: catalog:database-postgres
+        version: 8.14.1
+      sqlite3:
+        specifier: ^5.1.7
+        version: 5.1.7
+    devDependencies:
+      '@biomejs/biome':
+        specifier: catalog:lint
+        version: 1.9.4
+      publint:
+        specifier: catalog:package
+        version: 0.3.10
+      syncpack:
+        specifier: catalog:package
+        version: 13.0.3(typescript@5.8.2)
+      typescript:
+        specifier: catalog:dev
+        version: 5.8.2
 
 packages:
 
@@ -1240,6 +1279,9 @@ packages:
   '@formatjs/intl-localematcher@0.6.1':
     resolution: {integrity: sha512-ePEgLgVCqi2BBFnTMWPfIghu6FkbZnnBVhO2sSxvLfrdFw7wCHAHiDoM2h4NRgjbaY7+B7HgOLZGkK187pZTZg==}
 
+  '@gar/promisify@1.1.3':
+    resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
+
   '@hono/node-server@1.14.1':
     resolution: {integrity: sha512-vmbuM+HPinjWzPe7FFPWMMQMsbKE9gDPhaH0FFdqbGpkT5lp++tcWDTxwBl5EgS5y6JVgIaCdjeHRfQ4XRBRjQ==}
     engines: {node: '>=18.14.1'}
@@ -1326,12 +1368,12 @@ packages:
     engines: {node: 22.13.0}
     hasBin: true
 
-  '@levicape/spork-atlas@0.13.11-main.26':
-    resolution: {integrity: sha512-qNjf27/kS7Xw849ErPDUUZhaL8vOYUVRYiVAEo1XkYDtAsPQ671BCsLnYZvxyC60i8eujIofeAuqeA7rMS3Gwg==, tarball: https://npm.pkg.github.com/download/@levicape/spork-atlas/0.13.11-main.26/dc2965977ff8dd912c8fc679051a75cb33025ec2}
+  '@levicape/spork-atlas@0.15.0-main.37':
+    resolution: {integrity: sha512-kqb1GwhXsjmJRiWAear9tq+n58K4V/WPJEojBJLifEXWn8r6nPqcKBraRo8Qjj7D6jRh1/14k5rOAmhJWO55VA==, tarball: https://npm.pkg.github.com/download/@levicape/spork-atlas/0.15.0-main.37/c4866f0de5e4fcd273eb7bbad841fa9270bba1b2}
     engines: {node: '22'}
 
-  '@levicape/spork@0.13.11-main.26':
-    resolution: {integrity: sha512-h0DRE8Gu7MFQB0BatlT+c5owN2fNkG1+3x1eQ8sdKYMmmdDC6sO0h8Kf6ofk1I1crqV+u9dFcoDDH9rsmXrDsw==, tarball: https://npm.pkg.github.com/download/@levicape/spork/0.13.11-main.26/d4de0b935ed40f034560aaf1e7f22fabac3abbd0}
+  '@levicape/spork@0.15.0-main.37':
+    resolution: {integrity: sha512-Yd3XWv5PbNyRIIt8fbDCt9jRHxpMX0TzUOlZNsMC5kmwmwAP1Iums0hX6ivDsZqhwX7fgka5WYGqLQqbMrt49A==, tarball: https://npm.pkg.github.com/download/@levicape/spork/0.15.0-main.37/1af503fae357a4adabe728a6e13513c55eba4b31}
     engines: {node: 22.13.0}
     hasBin: true
 
@@ -1442,6 +1484,14 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@npmcli/fs@1.1.1':
+    resolution: {integrity: sha512-8KG5RD0GVP4ydEzRn/I4BNDuxDtqVbOdm8675T49OIG/NGhaK0pjPX7ZcDlvKYbA+ulvVK3ztfcF4uBdOxuJbQ==}
+
+  '@npmcli/move-file@1.1.2':
+    resolution: {integrity: sha512-1SUf/Cg2GzGDyaf15aR9St9TWlb+XvbZXWpDx8YKs7MLzMH/BCeopv+y9vzrzgkfykCGuWOlSu3mZhj2+FQcrg==}
+    engines: {node: '>=10'}
+    deprecated: This functionality has been moved to @npmcli/fs
 
   '@nx/nx-darwin-arm64@20.8.0-rc.0':
     resolution: {integrity: sha512-P91WmkO6MGSJQeHmAWCCpgAiw2kGQ2FDMVRpJlPXVantm9GKaFHO+0p7NbSmPyWO/P0UQ91Z0dmX0YkkzxbZ4w==}
@@ -2072,6 +2122,10 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6
 
+  '@tootallnate/once@1.1.2':
+    resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
+    engines: {node: '>= 6'}
+
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
 
@@ -2080,6 +2134,9 @@ packages:
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
+
+  '@types/dom-navigation@1.0.5':
+    resolution: {integrity: sha512-aM1Mr488jX62+6b9zdEtPHFnI7ILgvbII4BaBJMaqhhbDBupJJJ8+nXFVyQT1ptujOUAg6Sojkjk3j6rU73Bwg==}
 
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
@@ -2159,14 +2216,23 @@ packages:
     resolution: {integrity: sha512-nrUSn7hzt7J6JWgWGz78ZYI8wj+gdIJdk0Ynjpp8l+trkn58Uqsf6RYrYkEK+3X18EX+TNdtJI0WxAtc+L84SQ==}
     hasBin: true
 
-  '@zod/core@0.4.6':
-    resolution: {integrity: sha512-0IeEldTobOdkoJPyINVQgOHlgCWbpozSsDjdcd2+VcxKvf8T+SYLDVk7NKt0XJx3C0ImNXAXh3V3yIw46NJyQA==}
+  '@zod/core@0.9.0':
+    resolution: {integrity: sha512-bVfPiV2kDUkAJ4ArvV4MHcPZA8y3xOX6/SjzSy2kX2ACopbaaAP4wk6hd/byRmfi9MLNai+4SFJMmcATdOyclg==}
 
-  '@zod/core@0.6.2':
-    resolution: {integrity: sha512-KdH7bT0BRG1CvJ1LWH8oyNnkvLpjVZ5qVGpRu7Vq8WsFTKRDWfdr3rFfBYh8atZJSWDgD0ibhOyff1AyRvG1DA==}
+  abbrev@1.1.1:
+    resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
 
-  '@zod/core@0.8.1':
-    resolution: {integrity: sha512-djj8hPhxIHcG8ptxITaw/Bout5HJZ9NyRbKr95Eilqwt9R0kvITwUQGDU+n+MVdsBIka5KwztmZSLti22F+P0A==}
+  agent-base@6.0.2:
+    resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
+    engines: {node: '>= 6.0.0'}
+
+  agentkeepalive@4.6.0:
+    resolution: {integrity: sha512-kja8j7PjmncONqaTsB8fQ+wE2mSU2DJ9D4XKoJ5PFWIdRMa6SLSN1ff4mOr4jCbfRSsxR4keIiySJU0N9T5hIQ==}
+    engines: {node: '>= 8.0.0'}
+
+  aggregate-error@3.1.0:
+    resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
+    engines: {node: '>=8'}
 
   ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
@@ -2191,6 +2257,14 @@ packages:
   anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
+
+  aproba@2.0.0:
+    resolution: {integrity: sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ==}
+
+  are-we-there-yet@3.0.1:
+    resolution: {integrity: sha512-QZW4EDmGwlYur0Yyf/b2uGucHQMa8aFUP7eu9ddR73vvhFyt4V0Vl3QHPcTNJ8l6qYOBdxgXdnBXQrHilfRQBg==}
+    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    deprecated: This package is no longer supported.
 
   argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
@@ -2272,6 +2346,10 @@ packages:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
     engines: {node: '>=10.16.0'}
 
+  cacache@15.3.0:
+    resolution: {integrity: sha512-VVdYzXEn+cnbXpFgWs5hTT7OScegHVmLhJIR8Ufqk3iFD6A6j5iSX1KuBTfNEv4tdJWE2PzA6IVFtcLC7fN9wQ==}
+    engines: {node: '>= 10'}
+
   callsite@1.0.0:
     resolution: {integrity: sha512-0vdNRFXn5q+dtOqjfFtmtlI9N2eVZ7LMyEV2iKC5mEEFvSg/69Ml6b/WU2qF8W1nLRa0wiSrDT3Y5jOHZCwKPQ==}
 
@@ -2305,6 +2383,14 @@ packages:
 
   chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
+
+  chownr@2.0.0:
+    resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
+    engines: {node: '>=10'}
+
+  clean-stack@2.2.0:
+    resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
+    engines: {node: '>=6'}
 
   cli-cursor@3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==}
@@ -2348,6 +2434,10 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
+  color-support@1.1.3:
+    resolution: {integrity: sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==}
+    hasBin: true
+
   colorette@2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
 
@@ -2373,6 +2463,9 @@ packages:
   consola@3.4.2:
     resolution: {integrity: sha512-5IKcdX0nnYavi6G7TtOhwkYzyjfJlatbjMjuLSfE2kYT5pMDOilZ4OvMhi637CcDICTmz3wARPoyhqyX1Y+XvA==}
     engines: {node: ^14.18.0 || >=16.10.0}
+
+  console-control-strings@1.1.0:
+    resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
 
   cookie-es@1.2.2:
     resolution: {integrity: sha512-+W7VmiVINB+ywl1HGXJXmrqkOhpKrIiVZV6tQuV54ZyQC7MMuBt81Vc336GMLoHBq5hV/F9eXgt5Mnx0Rha5Fg==}
@@ -2501,6 +2594,9 @@ packages:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
 
+  delegates@1.0.0:
+    resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
+
   denque@2.1.0:
     resolution: {integrity: sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==}
     engines: {node: '>=0.10'}
@@ -2610,6 +2706,9 @@ packages:
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
+  encoding@0.1.13:
+    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
+
   end-of-stream@1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
 
@@ -2632,6 +2731,9 @@ packages:
   env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
+
+  err-code@2.0.3:
+    resolution: {integrity: sha512-2bmlRpNKBxT/CRmPOlyISQpNj+qSeYvcym/uT0Jx2bMOlKLtSy1ZmLuVxSEKKyor/N5yhvp/ZiG1oE3DEYMSFA==}
 
   error-ex@1.3.2:
     resolution: {integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==}
@@ -2776,6 +2878,10 @@ packages:
     resolution: {integrity: sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew==}
     engines: {node: '>=14.14'}
 
+  fs-minipass@2.1.0:
+    resolution: {integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==}
+    engines: {node: '>= 8'}
+
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
@@ -2786,6 +2892,11 @@ packages:
 
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
+
+  gauge@4.0.4:
+    resolution: {integrity: sha512-f9m+BEN5jkg6a0fZjleidjN51VE1X+mPFQ2DJ0uv1V39oCLCbsGe6yjbBnp7eK7z/+GAon99a3nHuqbuuthyPg==}
+    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    deprecated: This package is no longer supported.
 
   get-amd-module-type@6.0.1:
     resolution: {integrity: sha512-MtjsmYiCXcYDDrGqtNbeIYdAl85n+5mSv2r3FbzER/YV3ZILw4HNNIw34HuV5pyl0jzs6GFYU1VHVEefhgcNHQ==}
@@ -2867,6 +2978,9 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
+  has-unicode@2.0.1:
+    resolution: {integrity: sha512-8Rf9Y83NBReMnx0gFzA8JImQACstCYWUplepDa9xprwwtmgEZUF0h/i5xSA625zB/I37EtrswSST6OXxwaaIJQ==}
+
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
@@ -2900,12 +3014,30 @@ packages:
   html-rewriter-wasm@0.4.1:
     resolution: {integrity: sha512-lNovG8CMCCmcVB1Q7xggMSf7tqPCijZXaH4gL6iE8BFghdQCbaY5Met9i1x2Ex8m/cZHDUtXK9H6/znKamRP8Q==}
 
+  http-cache-semantics@4.1.1:
+    resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==}
+
+  http-proxy-agent@4.0.1:
+    resolution: {integrity: sha512-k0zdNgqWTGA6aeIRVpvfVob4fL52dTfaehylg0Y4UvSySvOq/Y+BOyPrgpUrA7HylqvU8vIZGsRuXmspskV0Tg==}
+    engines: {node: '>= 6'}
+
   http-status-codes@2.3.0:
     resolution: {integrity: sha512-RJ8XvFvpPM/Dmc5SV+dC4y5PCeOhT3x1Hq0NU3rjGeg5a/CqlhZ7uudknPwZFz4aeAXDcbAyaeP7GAo9lvngtA==}
+
+  https-proxy-agent@5.0.1:
+    resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
+    engines: {node: '>= 6'}
 
   human-signals@3.0.1:
     resolution: {integrity: sha512-rQLskxnM/5OCldHo+wNXbpVgDn5A17CUoKX+7Sokwaknlq7CdSnphy0W39GU8dw59XiCXmFXDg4fRuckQRKewQ==}
     engines: {node: '>=12.20.0'}
+
+  humanize-ms@1.2.1:
+    resolution: {integrity: sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==}
+
+  iconv-lite@0.6.3:
+    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
+    engines: {node: '>=0.10.0'}
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -2921,6 +3053,17 @@ packages:
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
+
+  imurmurhash@0.1.4:
+    resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
+    engines: {node: '>=0.8.19'}
+
+  indent-string@4.0.0:
+    resolution: {integrity: sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==}
+    engines: {node: '>=8'}
+
+  infer-owner@1.0.4:
+    resolution: {integrity: sha512-IClj+Xz94+d7irH5qRyfJonOdfTzuDaifE6ZPWfx0N0+/ATZCbuTPq2prFl526urkQd90WyUKIh1DfBQ2hMz9A==}
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
@@ -2946,6 +3089,10 @@ packages:
   ioredis@5.4.1:
     resolution: {integrity: sha512-2YZsvl7jopIa1gaePkeMtd9rAcSjOOjPtpcLlOeusyO+XH2SK5ZcT+UCrElPP+WVIInh2TzeI4XW9ENaSLVVHA==}
     engines: {node: '>=12.22.0'}
+
+  ip-address@9.0.5:
+    resolution: {integrity: sha512-zHtQzGojZXTwZTHQqra+ETKd4Sn3vgi7uBmlPoXVWZqYvuKmtI0l/VZTjqGmJY9x88GGOaZ9+G9ES8hC4T4X8g==}
+    engines: {node: '>= 12'}
 
   iron-webcrypto@1.2.1:
     resolution: {integrity: sha512-feOM6FaSr6rEABp/eDfVseKyTMDt+KGpeB35SkVn9Tyn0CqvVsY3EwI0v5i8nMHyJnzCIQf7nsy3p41TPkJZhg==}
@@ -2981,6 +3128,9 @@ packages:
   is-interactive@2.0.0:
     resolution: {integrity: sha512-qP1vozQRI+BMOPcjFzrjXuQvdak2pHNUMZoeG2eRbiSqyvbEf/wQtEOTOX1guk6E3t36RkaqiSt8A/6YElNxLQ==}
     engines: {node: '>=12'}
+
+  is-lambda@1.0.1:
+    resolution: {integrity: sha512-z7CMFGNrENq5iFB9Bqo64Xk6Y9sg+epq1myIcdHaGnbMTYOxvzsEtdYqQUylB7LxfkvgrrjP32T6Ywciio9UIQ==}
 
   is-number@7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
@@ -3064,6 +3214,9 @@ packages:
   js-yaml@4.1.0:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
+
+  jsbn@1.1.0:
+    resolution: {integrity: sha512-4bYVV3aAMtDTTu4+xsDYa6sy9GyJ69/amsu9sYF2zqjiEoZA5xJi3BrfX3uY+/IekIu7MwdObdbDWpoZdBv3/A==}
 
   jsesc@2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
@@ -3243,8 +3396,16 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
+  lru-cache@6.0.0:
+    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
+    engines: {node: '>=10'}
+
   magic-string@0.30.14:
     resolution: {integrity: sha512-5c99P1WKTed11ZC0HMJOj6CDIue6F8ySu+bJL+85q1zBEIY8IklrJ1eiKC2NDRh3Ct3FcvmJPyQHb9erXMTJNw==}
+
+  make-fetch-happen@9.1.0:
+    resolution: {integrity: sha512-+zopwDy7DNknmwPQplem5lAZX/eCOzSvSNNcSKm5eVwTkOBzoktEfXsa9L23J/GIRhxRsaxzkPEhrJEpE2F4Gg==}
+    engines: {node: '>= 10'}
 
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
@@ -3307,8 +3468,45 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
+  minipass-collect@1.0.2:
+    resolution: {integrity: sha512-6T6lH0H8OG9kITm/Jm6tdooIbogG9e0tLgpY6mphXSm/A9u8Nq1ryBG+Qspiub9LjWlBPsPS3tWQ/Botq4FdxA==}
+    engines: {node: '>= 8'}
+
+  minipass-fetch@1.4.1:
+    resolution: {integrity: sha512-CGH1eblLq26Y15+Azk7ey4xh0J/XfJfrCox5LDJiKqI2Q2iwOLOKrlmIaODiSQS8d18jalF6y2K2ePUm0CmShw==}
+    engines: {node: '>=8'}
+
+  minipass-flush@1.0.5:
+    resolution: {integrity: sha512-JmQSYYpPUqX5Jyn1mXaRwOda1uQ8HP5KAT/oDSLCzt1BYRhQU0/hDtsB1ufZfEEzMZ9aAVmsBw8+FWsIXlClWw==}
+    engines: {node: '>= 8'}
+
+  minipass-pipeline@1.2.4:
+    resolution: {integrity: sha512-xuIq7cIOt09RPRJ19gdi4b+RiNvDFYe5JH+ggNvBqGqpQXcru3PcRmOZuHBKWK1Txf9+cQ+HMVN4d6z46LZP7A==}
+    engines: {node: '>=8'}
+
+  minipass-sized@1.0.3:
+    resolution: {integrity: sha512-MbkQQ2CTiBMlA2Dm/5cY+9SWFEN8pzzOXi6rlM5Xxq0Yqbda5ZQy9sU75a673FE9ZK0Zsbr6Y5iP6u9nktfg2g==}
+    engines: {node: '>=8'}
+
+  minipass@3.3.6:
+    resolution: {integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw==}
+    engines: {node: '>=8'}
+
+  minipass@5.0.0:
+    resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
+    engines: {node: '>=8'}
+
+  minizlib@2.1.2:
+    resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
+    engines: {node: '>= 8'}
+
   mkdirp-classic@0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
+
+  mkdirp@1.0.4:
+    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
+    engines: {node: '>=10'}
+    hasBin: true
 
   mnemonist@0.38.3:
     resolution: {integrity: sha512-2K9QYubXx/NAjv4VLq1d1Ly8pWNC5L3BrixtdkyTegXWJIqY+zLNDhhX/A+ZwWt70tB1S8H4BE8FLYEFyNoOBw==}
@@ -3350,6 +3548,10 @@ packages:
   napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
 
+  negotiator@0.6.4:
+    resolution: {integrity: sha512-myRT3DiWPHqho5PrJaIRyaMv2kgYf0mUVgBNOYMuCH5Ki1yEiQaf/ZJuQ62nvpc44wL5WDbTX7yGJi1Neevw8w==}
+    engines: {node: '>= 0.6'}
+
   node-abi@3.71.0:
     resolution: {integrity: sha512-SZ40vRiy/+wRTf21hxkkEjPJZpARzUMVcJoQse2EF8qkUWbbO2z7vd5oA/H6bVH6SZQ5STGcu0KRDS7biNRfxw==}
     engines: {node: '>=10'}
@@ -3364,6 +3566,11 @@ packages:
     resolution: {integrity: sha512-s+w+rBWnpTMwSFbaE0UXsRlg7hU4FjekKU4eyAih5T8nJuNZT1nNsskXpxmeqSK9UzkBl6UgRlnKc8hz8IEqOw==}
     hasBin: true
 
+  node-gyp@8.4.1:
+    resolution: {integrity: sha512-olTJRgUtAb/hOXG0E93wZDs5YiJlgbXxTwQAFHyNlRsXQnYzUaF2aGgujZbw+hR8aF4ZG/rST57bWMWD16jr9w==}
+    engines: {node: '>= 10.12.0'}
+    hasBin: true
+
   node-machine-id@1.1.12:
     resolution: {integrity: sha512-QNABxbrPa3qEIfrE6GOJ7BYIuignnJw7iQ2YPbc3Nla1HzRJjXzZOiikfF8m7eAMfichLt3M4VgLOetqgDmgGQ==}
 
@@ -3373,6 +3580,11 @@ packages:
   node-source-walk@7.0.1:
     resolution: {integrity: sha512-3VW/8JpPqPvnJvseXowjZcirPisssnBuDikk6JIZ8jQzF7KJQX52iPFX4RYYxLycYH7IbMRSPUOga/esVjy5Yg==}
     engines: {node: '>=18'}
+
+  nopt@5.0.0:
+    resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}
+    engines: {node: '>=6'}
+    hasBin: true
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -3389,6 +3601,11 @@ packages:
   npm-run-path@5.3.0:
     resolution: {integrity: sha512-ppwTtiJZq0O/ai0z7yfudtBpWIoxM8yE6nHi1X47eFR2EWORqfbu6CnPlNsjeN683eT0qG6H/Pyf9fCcvjnnnQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  npmlog@6.0.2:
+    resolution: {integrity: sha512-/vBvz5Jfr9dT/aFWd0FIRf+T/Q2WBsLENygUaFUqstqsycmZAP/t5BvFJTK0viFmSUxiUKTUplWy5vt+rvKIxg==}
+    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    deprecated: This package is no longer supported.
 
   npx-import@1.1.4:
     resolution: {integrity: sha512-3ShymTWOgqGyNlh5lMJAejLuIv3W1K3fbI5Ewc6YErZU3Sp0PqsNs8UIU1O8z5+KVl/Du5ag56Gza9vdorGEoA==}
@@ -3452,6 +3669,10 @@ packages:
   ora@8.2.0:
     resolution: {integrity: sha512-weP+BZ8MVNnlCm8c0Qdc1WSWq4Qn7I+9CJGm7Qali6g44e/PUzbjNqJX5NJ9ljlNMosfJvg1fKEGILklK9cwnw==}
     engines: {node: '>=18'}
+
+  p-map@4.0.0:
+    resolution: {integrity: sha512-/bjOqmgETBYB5BoEeGVea8dmvHb2m9GLy1E9W43yeyfP6QQCZGFNa+XRceJEuDB6zqr+gKpIAmlLebMpykw/MQ==}
+    engines: {node: '>=10'}
 
   package-manager-detector@1.1.0:
     resolution: {integrity: sha512-Y8f9qUlBzW8qauJjd/eu6jlpJZsuPJm2ZAV0cDVd420o4EdpH5RPdoCv+60/TdJflGatr4sDfpAL6ArWZbM5tA==}
@@ -3674,6 +3895,18 @@ packages:
       - yaml
       - yargs
 
+  promise-inflight@1.0.1:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+
+  promise-retry@2.0.1:
+    resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
+    engines: {node: '>=10'}
+
   prompts@2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
     engines: {node: '>= 6'}
@@ -3806,9 +4039,18 @@ packages:
     resolution: {integrity: sha512-oMA2dcrw6u0YfxJQXm342bFKX/E4sG9rbTzO9ptUcR/e8A33cHuvStiYOwH7fszkZlZ1z/ta9AAoPk2F4qIOHA==}
     engines: {node: '>=18'}
 
+  retry@0.12.0:
+    resolution: {integrity: sha512-9LkiTwjUh6rT555DtE9rTX+BKByPfrMzEAtnlEtdEwr3Nkffwiihqe2bWADg+OQRjt9gl6ICdmB/ZFDCGAtSow==}
+    engines: {node: '>= 4'}
+
   reusify@1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+
+  rimraf@3.0.2:
+    resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
+    hasBin: true
 
   roarr@7.21.1:
     resolution: {integrity: sha512-3niqt5bXFY1InKU8HKWqqYTYjtrBaxBMnXELXCXUYgtNYGUtZM5rB46HIC430AyacL95iEniGf7RgqsesykLmQ==}
@@ -3833,6 +4075,9 @@ packages:
     resolution: {integrity: sha512-b3rppTKm9T+PsVCBEOUR46GWI7fdOs00VKZ1+9c1EWDaDMvjQc6tUwuFyIprgGgTcWoVHSKrU8H31ZHA2e0RHA==}
     engines: {node: '>=10'}
 
+  safer-buffer@2.1.2:
+    resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+
   secure-json-parse@2.7.0:
     resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
 
@@ -3856,6 +4101,9 @@ packages:
   serialize-error@8.1.0:
     resolution: {integrity: sha512-3NnuWfM6vBYoy5gZFvHiYsVbafvI9vZv/+jlIigFn4oP4zjNPK3LhcY0xSCgeb1a5L8jO71Mit9LlNoi2UfDDQ==}
     engines: {node: '>=10'}
+
+  set-blocking@2.0.0:
+    resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
 
   set-cookie-parser@2.7.1:
     resolution: {integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==}
@@ -3898,6 +4146,18 @@ packages:
     peerDependencies:
       zod: ^3
 
+  smart-buffer@4.2.0:
+    resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
+    engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
+
+  socks-proxy-agent@6.2.1:
+    resolution: {integrity: sha512-a6KW9G+6B3nWZ1yB8G7pJwL3ggLy1uTzKAgCb7ttblwqdz9fMGJUuTy3uFzEP48FAs9FLILlmzDlE2JJhVQaXQ==}
+    engines: {node: '>= 10'}
+
+  socks@2.8.4:
+    resolution: {integrity: sha512-D3YaD0aRxR3mEcqnidIs7ReYJFVzWdd6fXJYUM8ixcQcJRGTka/b3saV0KflYhyVJXKhb947GndU35SxYNResQ==}
+    engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
+
   sonic-boom@4.2.0:
     resolution: {integrity: sha512-INb7TM37/mAcsGmc9hyyI6+QR3rR1zVRu36B0NeGXKnOOLiZOfER5SA+N7X7k3yUYRzLWafduTDvJAfDswwEww==}
 
@@ -3915,6 +4175,16 @@ packages:
 
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
+
+  sprintf-js@1.1.3:
+    resolution: {integrity: sha512-Oo+0REFV59/rz3gfJNKQiBlwfHaSESl1pcGyABQsnnIfWOFt6JNj5gCog2U6MLZ//IGYD+nA8nI+mTShREReaA==}
+
+  sqlite3@5.1.7:
+    resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
+
+  ssri@8.0.1:
+    resolution: {integrity: sha512-97qShzy1AiyxvPNIkLWoGua7xoQzzPjQ0HAH4B0rWKo7SZ6USuPcrUiAFrws0UH8RrbWmgq3LMTObhPIHbbBeQ==}
+    engines: {node: '>= 8'}
 
   stacktrace-parser@0.1.11:
     resolution: {integrity: sha512-WjlahMgHmCJpqzU8bIBy4qtsZdU9lRlcZE3Lvyej6t4tuOuv1vk57OW3MBrj6hXBFx/nNoC9MPMTcr5YA7NQbg==}
@@ -4014,6 +4284,10 @@ packages:
   tar-stream@2.2.0:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
     engines: {node: '>=6'}
+
+  tar@6.2.1:
+    resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
+    engines: {node: '>=10'}
 
   tarn@3.0.2:
     resolution: {integrity: sha512-51LAVKUSZSVfI05vjPESNc5vwqqZpbXCsU+/+wxlOrUjk2SnFTt97v9ZgQrD4YmxYW1Px6w2KjaDitCfkvgxMQ==}
@@ -4126,6 +4400,12 @@ packages:
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
+
+  unique-filename@1.1.1:
+    resolution: {integrity: sha512-Vmp0jIp2ln35UTXuryvjzkjGdRyf9b2lTXuSYUiPmzRcl3FDtYqAwOnTJkAngD9SWhnoJzDbTKwaOrZ+STtxNQ==}
+
+  unique-slug@2.0.2:
+    resolution: {integrity: sha512-zoWr9ObaxALD3DOPfjPSqxt4fnZiWblxHIgeWqW8x7UqDzEtHEQLzji2cuJYQFCU6KmoJikOYAZlrTHHebjx2w==}
 
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
@@ -4279,6 +4559,9 @@ packages:
     engines: {node: '>= 8'}
     hasBin: true
 
+  wide-align@1.1.5:
+    resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
+
   wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
     engines: {node: '>=10'}
@@ -4305,6 +4588,9 @@ packages:
   y18n@5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
     engines: {node: '>=10'}
+
+  yallist@4.0.0:
+    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
 
   yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
@@ -4334,14 +4620,8 @@ packages:
   zod@3.24.2:
     resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
 
-  zod@4.0.0-beta.20250412T085909:
-    resolution: {integrity: sha512-W4OjoCnF5XTuljw4X6Hh3Inp45Ug7mmCWzWfFPv+RZcSIAGz7OPqBKOEDtLjfnJAvoxvY3vO0SkxH1zr0Md/Ag==}
-
-  zod@4.0.0-beta.20250417T043022:
-    resolution: {integrity: sha512-zjfYudLXPgHvRdCWzy/iJqhB6suE8tBqnGubbFHSkMvcknI4iexEP53QCO13FoC/EIALseuZReVykCY8yd/skA==}
-
-  zod@4.0.0-beta.20250420T053007:
-    resolution: {integrity: sha512-5pp8Q0PNDaNcUptGiBE9akyioJh3RJpagIxrLtAVMR9IxwcSZiOsJD/1/98CyhItdTlI2H91MfhhLzRlU+fifA==}
+  zod@4.0.0-beta.20250424T163858:
+    resolution: {integrity: sha512-fKhW+lEJnfUGo0fvQjmam39zUytARR2UdCEh7/OXJSBbKScIhD343K74nW+UUHu/r6dkzN6Uc/GqwogFjzpCXg==}
 
 snapshots:
 
@@ -5216,6 +5496,9 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  '@gar/promisify@1.1.3':
+    optional: true
+
   '@hono/node-server@1.14.1(hono@4.7.6)':
     dependencies:
       hono: 4.7.6
@@ -5299,7 +5582,7 @@ snapshots:
       fast-xml-parser: 5.2.0
       ini: 5.0.0
       js-yaml: 4.1.0
-      knex: 3.1.0(better-sqlite3@11.9.1)(pg@8.14.1)
+      knex: 3.1.0(better-sqlite3@11.9.1)(pg@8.14.1)(sqlite3@5.1.7)
       loglayer: 6.3.3
       pino: 9.6.0
       pino-pretty: 13.0.0
@@ -5326,7 +5609,7 @@ snapshots:
       - tedious
       - utf-8-validate
 
-  '@levicape/paloma@0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)':
+  '@levicape/paloma@0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)':
     dependencies:
       '@aws-lambda-powertools/logger': 2.17.0
       '@effect/platform': 0.80.5(effect@3.14.5)
@@ -5338,11 +5621,11 @@ snapshots:
       better-sqlite3: 11.9.1
       consola: 3.4.2
       csv: 6.3.11
-      db0: 0.3.1(better-sqlite3@11.9.1)
+      db0: 0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7)
       destr: 2.0.5
       effect: 3.14.5
       fs-extra: 11.3.0
-      knex: 3.1.0(better-sqlite3@11.9.1)(pg@8.14.1)
+      knex: 3.1.0(better-sqlite3@11.9.1)(pg@8.14.1)(sqlite3@5.1.7)
       ksuid: 3.0.0
       loglayer: 6.3.3
       pino: 9.6.0
@@ -5369,16 +5652,16 @@ snapshots:
       - tedious
       - utf-8-validate
 
-  '@levicape/spork-atlas@0.13.11-main.26':
+  '@levicape/spork-atlas@0.15.0-main.37':
     dependencies:
       destr: 2.0.5
       fs-extra: 11.3.0
       serialize-error: 12.0.0
       std-env: 3.8.1
       verror: 1.10.1
-      zod: 4.0.0-beta.20250420T053007
+      zod: 4.0.0-beta.20250424T163858
 
-  '@levicape/spork@0.13.11-main.26(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)':
+  '@levicape/spork@0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)':
     dependencies:
       '@aws-lambda-powertools/logger': 2.17.0
       '@aws-sdk/client-dynamodb': 3.777.0
@@ -5405,13 +5688,13 @@ snapshots:
       pino: 9.6.0
       pino-pretty: 13.0.0
       serialize-error: 12.0.0
-      slonik: 46.4.0(zod@4.0.0-beta.20250420T053007)
+      slonik: 46.4.0(zod@4.0.0-beta.20250424T163858)
       std-env: 3.8.1
       ts-proto: 2.7.0
       ulidx: 2.4.1
-      unstorage: 1.15.0(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1)
+      unstorage: 1.15.0(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
       verror: 1.10.1
-      zod: 4.0.0-beta.20250420T053007
+      zod: 4.0.0-beta.20250424T163858
     transitivePeerDependencies:
       - '@aws-lambda-powertools/jmespath'
       - '@azure/app-configuration'
@@ -5542,6 +5825,18 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
+
+  '@npmcli/fs@1.1.1':
+    dependencies:
+      '@gar/promisify': 1.1.3
+      semver: 7.7.1
+    optional: true
+
+  '@npmcli/move-file@1.1.2':
+    dependencies:
+      mkdirp: 1.0.4
+      rimraf: 3.0.2
+    optional: true
 
   '@nx/nx-darwin-arm64@20.8.0-rc.0':
     optional: true
@@ -5809,53 +6104,53 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@slonik/driver@46.4.0(zod@4.0.0-beta.20250420T053007)':
+  '@slonik/driver@46.4.0(zod@4.0.0-beta.20250424T163858)':
     dependencies:
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250420T053007)
+      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250424T163858)
       roarr: 7.21.1
       serialize-error: 8.1.0
       strict-event-emitter-types: 2.0.0
-      zod: 4.0.0-beta.20250420T053007
+      zod: 4.0.0-beta.20250424T163858
 
-  '@slonik/errors@46.4.0(zod@4.0.0-beta.20250420T053007)':
+  '@slonik/errors@46.4.0(zod@4.0.0-beta.20250424T163858)':
     dependencies:
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      zod: 4.0.0-beta.20250420T053007
+      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      zod: 4.0.0-beta.20250424T163858
 
-  '@slonik/pg-driver@46.4.0(zod@4.0.0-beta.20250420T053007)':
+  '@slonik/pg-driver@46.4.0(zod@4.0.0-beta.20250424T163858)':
     dependencies:
-      '@slonik/driver': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/sql-tag': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250420T053007)
+      '@slonik/driver': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/sql-tag': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250424T163858)
       pg: 8.14.1
       pg-query-stream: 4.8.1(pg@8.14.1)
       pg-types: 4.0.2
       postgres-array: 3.0.4
-      zod: 4.0.0-beta.20250420T053007
+      zod: 4.0.0-beta.20250424T163858
     transitivePeerDependencies:
       - pg-native
 
-  '@slonik/sql-tag@46.4.0(zod@4.0.0-beta.20250420T053007)':
+  '@slonik/sql-tag@46.4.0(zod@4.0.0-beta.20250424T163858)':
     dependencies:
-      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250420T053007)
+      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
       roarr: 7.21.1
       safe-stable-stringify: 2.5.0
       serialize-error: 8.1.0
-      zod: 4.0.0-beta.20250420T053007
+      zod: 4.0.0-beta.20250424T163858
 
-  '@slonik/types@46.4.0(zod@4.0.0-beta.20250420T053007)':
+  '@slonik/types@46.4.0(zod@4.0.0-beta.20250424T163858)':
     dependencies:
-      zod: 4.0.0-beta.20250420T053007
+      zod: 4.0.0-beta.20250424T163858
 
-  '@slonik/utilities@46.4.0(zod@4.0.0-beta.20250420T053007)':
+  '@slonik/utilities@46.4.0(zod@4.0.0-beta.20250424T163858)':
     dependencies:
-      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      zod: 4.0.0-beta.20250420T053007
+      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      zod: 4.0.0-beta.20250424T163858
 
   '@smithy/abort-controller@4.0.2':
     dependencies:
@@ -6205,6 +6500,9 @@ snapshots:
       tailwindcss: 4.1.3
       vite: 6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1)
 
+  '@tootallnate/once@1.1.2':
+    optional: true
+
   '@tybys/wasm-util@0.9.0':
     dependencies:
       tslib: 2.8.1
@@ -6214,6 +6512,8 @@ snapshots:
       '@types/node': 22.14.0
 
   '@types/cookie@0.6.0': {}
+
+  '@types/dom-navigation@1.0.5': {}
 
   '@types/estree@1.0.7': {}
 
@@ -6319,11 +6619,28 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  '@zod/core@0.4.6': {}
+  '@zod/core@0.9.0': {}
 
-  '@zod/core@0.6.2': {}
+  abbrev@1.1.1:
+    optional: true
 
-  '@zod/core@0.8.1': {}
+  agent-base@6.0.2:
+    dependencies:
+      debug: 4.4.0
+    transitivePeerDependencies:
+      - supports-color
+    optional: true
+
+  agentkeepalive@4.6.0:
+    dependencies:
+      humanize-ms: 1.2.1
+    optional: true
+
+  aggregate-error@3.1.0:
+    dependencies:
+      clean-stack: 2.2.0
+      indent-string: 4.0.0
+    optional: true
 
   ansi-colors@4.1.3: {}
 
@@ -6341,6 +6658,15 @@ snapshots:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
+
+  aproba@2.0.0:
+    optional: true
+
+  are-we-there-yet@3.0.1:
+    dependencies:
+      delegates: 1.0.0
+      readable-stream: 3.6.2
+    optional: true
 
   argparse@1.0.10:
     dependencies:
@@ -6421,6 +6747,30 @@ snapshots:
     dependencies:
       streamsearch: 1.1.0
 
+  cacache@15.3.0:
+    dependencies:
+      '@npmcli/fs': 1.1.1
+      '@npmcli/move-file': 1.1.2
+      chownr: 2.0.0
+      fs-minipass: 2.1.0
+      glob: 7.1.7
+      infer-owner: 1.0.4
+      lru-cache: 6.0.0
+      minipass: 3.3.6
+      minipass-collect: 1.0.2
+      minipass-flush: 1.0.5
+      minipass-pipeline: 1.2.4
+      mkdirp: 1.0.4
+      p-map: 4.0.0
+      promise-inflight: 1.0.1
+      rimraf: 3.0.2
+      ssri: 8.0.1
+      tar: 6.2.1
+      unique-filename: 1.1.1
+    transitivePeerDependencies:
+      - bluebird
+    optional: true
+
   callsite@1.0.0: {}
 
   callsites@3.1.0: {}
@@ -6445,6 +6795,11 @@ snapshots:
       readdirp: 4.1.2
 
   chownr@1.1.4: {}
+
+  chownr@2.0.0: {}
+
+  clean-stack@2.2.0:
+    optional: true
 
   cli-cursor@3.1.0:
     dependencies:
@@ -6483,6 +6838,9 @@ snapshots:
 
   color-name@1.1.4: {}
 
+  color-support@1.1.3:
+    optional: true
+
   colorette@2.0.19: {}
 
   combined-stream@1.0.8:
@@ -6498,6 +6856,9 @@ snapshots:
   concat-map@0.0.1: {}
 
   consola@3.4.2: {}
+
+  console-control-strings@1.1.0:
+    optional: true
 
   cookie-es@1.2.2: {}
 
@@ -6551,9 +6912,10 @@ snapshots:
 
   dateformat@4.6.3: {}
 
-  db0@0.3.1(better-sqlite3@11.9.1):
+  db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7):
     optionalDependencies:
       better-sqlite3: 11.9.1
+      sqlite3: 5.1.7
 
   debug@4.3.4:
     dependencies:
@@ -6584,6 +6946,9 @@ snapshots:
   defu@6.1.4: {}
 
   delayed-stream@1.0.0: {}
+
+  delegates@1.0.0:
+    optional: true
 
   denque@2.1.0:
     optional: true
@@ -6718,6 +7083,11 @@ snapshots:
 
   emoji-regex@8.0.0: {}
 
+  encoding@0.1.13:
+    dependencies:
+      iconv-lite: 0.6.3
+    optional: true
+
   end-of-stream@1.4.4:
     dependencies:
       once: 1.4.0
@@ -6739,6 +7109,9 @@ snapshots:
   entities@4.5.0: {}
 
   env-paths@2.2.1: {}
+
+  err-code@2.0.3:
+    optional: true
 
   error-ex@1.3.2:
     dependencies:
@@ -6891,12 +7264,28 @@ snapshots:
       jsonfile: 6.1.0
       universalify: 2.0.1
 
+  fs-minipass@2.1.0:
+    dependencies:
+      minipass: 3.3.6
+
   fs.realpath@1.0.0: {}
 
   fsevents@2.3.3:
     optional: true
 
   function-bind@1.1.2: {}
+
+  gauge@4.0.4:
+    dependencies:
+      aproba: 2.0.0
+      color-support: 1.1.3
+      console-control-strings: 1.1.0
+      has-unicode: 2.0.1
+      signal-exit: 3.0.7
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      wide-align: 1.1.5
+    optional: true
 
   get-amd-module-type@6.0.1:
     dependencies:
@@ -6996,6 +7385,9 @@ snapshots:
 
   has-flag@4.0.0: {}
 
+  has-unicode@2.0.1:
+    optional: true
+
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
@@ -7035,9 +7427,39 @@ snapshots:
 
   html-rewriter-wasm@0.4.1: {}
 
+  http-cache-semantics@4.1.1:
+    optional: true
+
+  http-proxy-agent@4.0.1:
+    dependencies:
+      '@tootallnate/once': 1.1.2
+      agent-base: 6.0.2
+      debug: 4.4.0
+    transitivePeerDependencies:
+      - supports-color
+    optional: true
+
   http-status-codes@2.3.0: {}
 
+  https-proxy-agent@5.0.1:
+    dependencies:
+      agent-base: 6.0.2
+      debug: 4.4.0
+    transitivePeerDependencies:
+      - supports-color
+    optional: true
+
   human-signals@3.0.1: {}
+
+  humanize-ms@1.2.1:
+    dependencies:
+      ms: 2.1.3
+    optional: true
+
+  iconv-lite@0.6.3:
+    dependencies:
+      safer-buffer: 2.1.2
+    optional: true
 
   ieee754@1.2.1: {}
 
@@ -7049,6 +7471,15 @@ snapshots:
     dependencies:
       parent-module: 1.0.1
       resolve-from: 4.0.0
+
+  imurmurhash@0.1.4:
+    optional: true
+
+  indent-string@4.0.0:
+    optional: true
+
+  infer-owner@1.0.4:
+    optional: true
 
   inflight@1.0.6:
     dependencies:
@@ -7085,6 +7516,12 @@ snapshots:
       - supports-color
     optional: true
 
+  ip-address@9.0.5:
+    dependencies:
+      jsbn: 1.1.0
+      sprintf-js: 1.1.3
+    optional: true
+
   iron-webcrypto@1.2.1: {}
 
   is-arrayish@0.2.1: {}
@@ -7106,6 +7543,9 @@ snapshots:
   is-interactive@1.0.0: {}
 
   is-interactive@2.0.0: {}
+
+  is-lambda@1.0.1:
+    optional: true
 
   is-number@7.0.0: {}
 
@@ -7162,6 +7602,9 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+  jsbn@1.1.0:
+    optional: true
+
   jsesc@2.5.2: {}
 
   jsesc@3.0.2: {}
@@ -7188,7 +7631,7 @@ snapshots:
 
   kleur@4.1.5: {}
 
-  knex@3.1.0(better-sqlite3@11.9.1)(pg@8.14.1):
+  knex@3.1.0(better-sqlite3@11.9.1)(pg@8.14.1)(sqlite3@5.1.7):
     dependencies:
       colorette: 2.0.19
       commander: 10.0.1
@@ -7207,6 +7650,7 @@ snapshots:
     optionalDependencies:
       better-sqlite3: 11.9.1
       pg: 8.14.1
+      sqlite3: 5.1.7
     transitivePeerDependencies:
       - supports-color
 
@@ -7298,9 +7742,37 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
+  lru-cache@6.0.0:
+    dependencies:
+      yallist: 4.0.0
+    optional: true
+
   magic-string@0.30.14:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  make-fetch-happen@9.1.0:
+    dependencies:
+      agentkeepalive: 4.6.0
+      cacache: 15.3.0
+      http-cache-semantics: 4.1.1
+      http-proxy-agent: 4.0.1
+      https-proxy-agent: 5.0.1
+      is-lambda: 1.0.1
+      lru-cache: 6.0.0
+      minipass: 3.3.6
+      minipass-collect: 1.0.2
+      minipass-fetch: 1.4.1
+      minipass-flush: 1.0.5
+      minipass-pipeline: 1.2.4
+      negotiator: 0.6.4
+      promise-retry: 2.0.1
+      socks-proxy-agent: 6.2.1
+      ssri: 8.0.1
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+    optional: true
 
   merge-stream@2.0.0: {}
 
@@ -7349,7 +7821,49 @@ snapshots:
 
   minimist@1.2.8: {}
 
+  minipass-collect@1.0.2:
+    dependencies:
+      minipass: 3.3.6
+    optional: true
+
+  minipass-fetch@1.4.1:
+    dependencies:
+      minipass: 3.3.6
+      minipass-sized: 1.0.3
+      minizlib: 2.1.2
+    optionalDependencies:
+      encoding: 0.1.13
+    optional: true
+
+  minipass-flush@1.0.5:
+    dependencies:
+      minipass: 3.3.6
+    optional: true
+
+  minipass-pipeline@1.2.4:
+    dependencies:
+      minipass: 3.3.6
+    optional: true
+
+  minipass-sized@1.0.3:
+    dependencies:
+      minipass: 3.3.6
+    optional: true
+
+  minipass@3.3.6:
+    dependencies:
+      yallist: 4.0.0
+
+  minipass@5.0.0: {}
+
+  minizlib@2.1.2:
+    dependencies:
+      minipass: 3.3.6
+      yallist: 4.0.0
+
   mkdirp-classic@0.5.3: {}
+
+  mkdirp@1.0.4: {}
 
   mnemonist@0.38.3:
     dependencies:
@@ -7396,9 +7910,12 @@ snapshots:
 
   napi-build-utils@1.0.2: {}
 
+  negotiator@0.6.4:
+    optional: true
+
   node-abi@3.71.0:
     dependencies:
-      semver: 7.6.3
+      semver: 7.7.1
 
   node-addon-api@7.1.1: {}
 
@@ -7409,6 +7926,23 @@ snapshots:
       detect-libc: 2.0.3
     optional: true
 
+  node-gyp@8.4.1:
+    dependencies:
+      env-paths: 2.2.1
+      glob: 7.1.7
+      graceful-fs: 4.2.11
+      make-fetch-happen: 9.1.0
+      nopt: 5.0.0
+      npmlog: 6.0.2
+      rimraf: 3.0.2
+      semver: 7.7.1
+      tar: 6.2.1
+      which: 2.0.2
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+    optional: true
+
   node-machine-id@1.1.12: {}
 
   node-mock-http@1.0.0: {}
@@ -7416,6 +7950,11 @@ snapshots:
   node-source-walk@7.0.1:
     dependencies:
       '@babel/parser': 7.27.0
+
+  nopt@5.0.0:
+    dependencies:
+      abbrev: 1.1.1
+    optional: true
 
   normalize-path@3.0.0: {}
 
@@ -7433,6 +7972,14 @@ snapshots:
   npm-run-path@5.3.0:
     dependencies:
       path-key: 4.0.0
+
+  npmlog@6.0.2:
+    dependencies:
+      are-we-there-yet: 3.0.1
+      console-control-strings: 1.1.0
+      gauge: 4.0.4
+      set-blocking: 2.0.0
+    optional: true
 
   npx-import@1.1.4:
     dependencies:
@@ -7553,6 +8100,11 @@ snapshots:
       stdin-discarder: 0.2.2
       string-width: 7.2.0
       strip-ansi: 7.1.0
+
+  p-map@4.0.0:
+    dependencies:
+      aggregate-error: 3.1.0
+    optional: true
 
   package-manager-detector@1.1.0: {}
 
@@ -7781,6 +8333,15 @@ snapshots:
 
   projen@0.71.163: {}
 
+  promise-inflight@1.0.1:
+    optional: true
+
+  promise-retry@2.0.1:
+    dependencies:
+      err-code: 2.0.3
+      retry: 0.12.0
+    optional: true
+
   prompts@2.4.2:
     dependencies:
       kleur: 3.0.3
@@ -7908,7 +8469,15 @@ snapshots:
       onetime: 7.0.0
       signal-exit: 4.1.0
 
+  retry@0.12.0:
+    optional: true
+
   reusify@1.0.4: {}
+
+  rimraf@3.0.2:
+    dependencies:
+      glob: 7.1.7
+    optional: true
 
   roarr@7.21.1:
     dependencies:
@@ -7954,6 +8523,9 @@ snapshots:
 
   safe-stable-stringify@2.5.0: {}
 
+  safer-buffer@2.1.2:
+    optional: true
+
   secure-json-parse@2.7.0: {}
 
   semver-compare@1.0.0: {}
@@ -7969,6 +8541,9 @@ snapshots:
   serialize-error@8.1.0:
     dependencies:
       type-fest: 0.20.2
+
+  set-blocking@2.0.0:
+    optional: true
 
   set-cookie-parser@2.7.1: {}
 
@@ -7996,22 +8571,40 @@ snapshots:
 
   slash@5.1.0: {}
 
-  slonik@46.4.0(zod@4.0.0-beta.20250420T053007):
+  slonik@46.4.0(zod@4.0.0-beta.20250424T163858):
     dependencies:
-      '@slonik/driver': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/pg-driver': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/sql-tag': 46.4.0(zod@4.0.0-beta.20250420T053007)
-      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250420T053007)
+      '@slonik/driver': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/pg-driver': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/sql-tag': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250424T163858)
       get-stack-trace: 3.1.1
       iso8601-duration: 1.3.0
       postgres-interval: 4.0.2
       roarr: 7.21.1
       serialize-error: 8.1.0
       strict-event-emitter-types: 2.0.0
-      zod: 4.0.0-beta.20250420T053007
+      zod: 4.0.0-beta.20250424T163858
     transitivePeerDependencies:
       - pg-native
+
+  smart-buffer@4.2.0:
+    optional: true
+
+  socks-proxy-agent@6.2.1:
+    dependencies:
+      agent-base: 6.0.2
+      debug: 4.4.0
+      socks: 2.8.4
+    transitivePeerDependencies:
+      - supports-color
+    optional: true
+
+  socks@2.8.4:
+    dependencies:
+      ip-address: 9.0.5
+      smart-buffer: 4.2.0
+    optional: true
 
   sonic-boom@4.2.0:
     dependencies:
@@ -8025,6 +8618,26 @@ snapshots:
   split2@4.2.0: {}
 
   sprintf-js@1.0.3: {}
+
+  sprintf-js@1.1.3:
+    optional: true
+
+  sqlite3@5.1.7:
+    dependencies:
+      bindings: 1.5.0
+      node-addon-api: 7.1.1
+      prebuild-install: 7.1.2
+      tar: 6.2.1
+    optionalDependencies:
+      node-gyp: 8.4.1
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+
+  ssri@8.0.1:
+    dependencies:
+      minipass: 3.3.6
+    optional: true
 
   stacktrace-parser@0.1.11:
     dependencies:
@@ -8131,6 +8744,15 @@ snapshots:
       inherits: 2.0.4
       readable-stream: 3.6.2
 
+  tar@6.2.1:
+    dependencies:
+      chownr: 2.0.0
+      fs-minipass: 2.1.0
+      minipass: 5.0.0
+      minizlib: 2.1.2
+      mkdirp: 1.0.4
+      yallist: 4.0.0
+
   tarn@3.0.2: {}
 
   thread-stream@3.1.0:
@@ -8221,9 +8843,19 @@ snapshots:
 
   unicorn-magic@0.3.0: {}
 
+  unique-filename@1.1.1:
+    dependencies:
+      unique-slug: 2.0.2
+    optional: true
+
+  unique-slug@2.0.2:
+    dependencies:
+      imurmurhash: 0.1.4
+    optional: true
+
   universalify@2.0.1: {}
 
-  unstorage@1.15.0(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1))(ioredis@5.4.1):
+  unstorage@1.15.0(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -8235,7 +8867,7 @@ snapshots:
       ufo: 1.6.1
     optionalDependencies:
       aws4fetch: 1.0.20
-      db0: 0.3.1(better-sqlite3@11.9.1)
+      db0: 0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7)
       ioredis: 5.4.1
 
   urlpattern-polyfill@4.0.3: {}
@@ -8292,6 +8924,11 @@ snapshots:
     dependencies:
       isexe: 2.0.0
 
+  wide-align@1.1.5:
+    dependencies:
+      string-width: 4.2.3
+    optional: true
+
   wrap-ansi@7.0.0:
     dependencies:
       ansi-styles: 4.3.0
@@ -8305,6 +8942,8 @@ snapshots:
   xtend@4.0.2: {}
 
   y18n@5.0.8: {}
+
+  yallist@4.0.0: {}
 
   yaml@1.10.2: {}
 
@@ -8336,14 +8975,6 @@ snapshots:
 
   zod@3.24.2: {}
 
-  zod@4.0.0-beta.20250412T085909:
+  zod@4.0.0-beta.20250424T163858:
     dependencies:
-      '@zod/core': 0.4.6
-
-  zod@4.0.0-beta.20250417T043022:
-    dependencies:
-      '@zod/core': 0.6.2
-
-  zod@4.0.0-beta.20250420T053007:
-    dependencies:
-      '@zod/core': 0.8.1
+      '@zod/core': 0.9.0

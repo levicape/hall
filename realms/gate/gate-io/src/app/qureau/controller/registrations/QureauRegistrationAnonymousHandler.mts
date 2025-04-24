@@ -6,13 +6,7 @@ import {
 } from "@levicape/spork/server/security/IdKeygen";
 import type { Context } from "hono";
 import { validator } from "hono/validator";
-import {
-	filterQuery,
-	normalizeURL,
-	withQuery,
-	withoutFragment,
-	withoutTrailingSlash,
-} from "ufo";
+import { filterQuery, normalizeURL, withQuery, withoutFragment } from "ufo";
 import { prettifyError } from "zod";
 import type { RegistrationRegister } from "../../../../_protocols/qureau/tsnode/domain/registration/register/registration.register.js";
 import { Qureau, type QureauVariables } from "../../Qureau.mjs";
@@ -36,8 +30,8 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 		return principal.$case === "anonymous";
 	}),
 	validator("query", async (s, c: Context<{ Variables: QureauVariables }>) => {
-		const { errorUri, entrypoint } = c.var.Qureau;
-		const query = c.var.QureauQuery.authorize(s);
+		const { errorUri, login: entrypoint } = c.var.Qureau;
+		const query = c.var.Query.authorize(s);
 		if (!query.success) {
 			return c.redirect(
 				withQuery(errorUri, {
@@ -52,7 +46,7 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 		return query.data;
 	}),
 	async (c) => {
-		const { errorUri, entrypoint } = c.var.Qureau;
+		const { errorUri, login: entrypoint } = c.var.Qureau;
 
 		const query = c.req.valid("query");
 		const body = structuredClone(await c.req.parseBody({ dot: true })) ?? {};
@@ -70,7 +64,7 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 
 		const { ext } = form.data;
 		const salt = cuidKeygen.srand();
-		const registerResponse = await c.var.QureauRegistrationService.Register({
+		const registerResponse = await c.var.Registration.Register({
 			request: {
 				user: {
 					timezone: undefined,
@@ -85,6 +79,9 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 					preferredLanguages: [],
 					data: {
 						salt,
+						code_challenge: query.code_challenge,
+						code_challenge_method: query.code_challenge_method,
+						nonce: query.nonce,
 					},
 					twoFactor: undefined,
 					memberships: [],
@@ -95,7 +92,7 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 					roles: [],
 				},
 				eventInfo: {
-					data: undefined,
+					data: {},
 					location: undefined,
 				},
 				generateAuthenticationToken: true,
@@ -121,19 +118,34 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 			);
 		}
 
-		const code = await c.var.QureauJwt.code((jwt) =>
-			jwt.setSubject(registerResponse.registered?.refreshTokenId ?? "<RT>"),
+		const code = Buffer.from(
+			await c.var.Jwt.code(
+				query.client_id,
+				(jwt) =>
+					jwt
+						.setSubject(registerResponse.registered?.user?.id ?? "<UID>")
+						.setJti(registerResponse.registered?.refreshTokenId ?? "<RT>"),
+				{
+					code_challenge: query.code_challenge,
+					code_challenge_method: query.code_challenge_method,
+					nonce: query.nonce,
+				},
+			),
 		);
+
+		// Cookie scoped by client_id
+		// setCookie(
+		// 	c,
+		// 	"code",
+		// 	await jwtCode.encrypt(),
+		// );
 
 		const { redirect_uri } = query;
 		const url = withQuery(
-			withoutTrailingSlash(
-				normalizeURL(filterQuery(withoutFragment(redirect_uri), () => false)),
-				true,
-			),
+			normalizeURL(filterQuery(withoutFragment(redirect_uri), () => false)),
 			{
 				...query,
-				code,
+				code: code.toString("base64"),
 			},
 		);
 		return c.redirect(url);

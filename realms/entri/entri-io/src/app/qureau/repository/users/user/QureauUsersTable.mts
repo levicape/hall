@@ -1,3 +1,20 @@
+/*
+
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠤⠀⠄⢀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⡠⢧⣾⣷⣿⣿⣵⣿⣄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢰⢱⡿⠟⠛⠛⠉⠙⢿⣿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢸⣿⡇⣤⣤⡀⢠⡄⣸⢿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢨⡼⡇⠈⠉⣡⠀⠉⢈⣞⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⠱⢢⡄⠀⣬⣤⠀⣾⠋⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⡎⡇⠀⠈⣿⢻⡋⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣀⣤⣶⣿⣧⢃⠀⠠⣶⣿⢻⣶⣤⣤⣀⠀⠀⠀
+⢀⣤⣶⣿⣿⣿⣿⣿⣿⡤⠱⢀⣹⠋⠈⣿⣿⣿⣿⣿⣦⠀
+⣾⣿⣿⣿⣿⡿⢛⣿⣿⣧⣔⣂⣄⠠⣴⣿⣿⣿⣿⣿⣿⡇
+⡿⣿⣿⣿⣿⣳⠫⠈⣙⣻⡧⠔⢺⣛⣿⣿⣿⣿⣿⣿⣿⡇
+⣿⣿⣿⣿⣿⠄⠀⢀⣨⣿⡯⠭⢭⣶⣿⣿⣿⣿⣿⣿⣿⡇
+
+*/
+
 import type { ITable } from "@levicape/spork/server/client/table/ITable";
 import { MemoryTable } from "@levicape/spork/server/client/table/MemoryTable";
 import { DynamoTable } from "@levicape/spork/server/client/table/aws/DynamoTable";
@@ -18,7 +35,8 @@ if (users !== undefined) {
 
 	if (service.startsWith("postgresql://")) {
 		const { postgres } = users;
-		table = new PostgresTable(
+		PostgresTable.SSL_MODE = "";
+		table = (await PostgresTable.for(
 			{
 				master: postgres?.master ?? "",
 				replica: postgres?.replica ?? postgres?.master ?? "",
@@ -35,7 +53,7 @@ if (users !== undefined) {
 				},
 			},
 			QureauUserRow.getKey,
-		) as unknown as ITable<QureauUserRow<`qureau@${string}`>, QureauUserKey>;
+		)) as unknown as ITable<QureauUserRow<`qureau@${string}`>, QureauUserKey>;
 	}
 
 	if (service.startsWith("dynamodb://")) {

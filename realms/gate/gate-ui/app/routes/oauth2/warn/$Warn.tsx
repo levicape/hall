@@ -18,7 +18,7 @@ const Oauth2Warn: FC<{ query: AuthorizeQueryParams }> = ({ query }) => {
 	);
 };
 
-export function AnonymousLoginPage() {
+export function OAuth2Warning() {
 	const { location } =
 		typeof window !== "undefined"
 			? window

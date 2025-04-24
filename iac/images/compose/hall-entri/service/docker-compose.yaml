@@ -1,9 +1,10 @@
 
 include:
-  - http.docker-compose.yaml
-  - ui.docker-compose.yaml
+  - pgactive.docker-compose.yaml
   - gate.docker-compose.yaml
   - client.docker-compose.yaml
+  - http.docker-compose.yaml
+  - ui.docker-compose.yaml
 services:
   atlas-root:
       image: $APPLICATION_HALL_IMAGE
@@ -34,7 +35,7 @@ services:
         GATE_HTTP_HOST: gate-http:${GATE_HTTP}
         GATE_UI_HOST: gate-ui:${GATE_UI}
       volumes: *caddyfile_volumes
-  atlas:
+  atlas-client:
       image: $APPLICATION_HALL_IMAGE
       depends_on:
         atlas-gate:

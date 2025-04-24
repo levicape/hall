@@ -9,15 +9,18 @@ services:
       PROJECT_PATH: ./realms/entri/entri-io
       PROJECT_COMMAND: http:dev
       PORT: $ENTRI_HTTP
-      ENTRI_DATABASE__NAME: "postgresql://entri_pgactive:5432"
-      ENTRI_DATABASE__HOST: "entri_pgactive"
-      ENTRI_DATABASE__PORT: "5432"
-      ENTRI_DATABASE__SCHEMA: "public"
-      ENTRI_DATABASE__DB_0: "compose"
-      ENTRI_DATABASE__DB_0__OWNER_USERNAME: "pg"
-      ENTRI_DATABASE__DB_0__OWNER_PASSWORD: "qwerasdf"
+      QUREAU_DATABASE__NAME: "postgresql://pgactive:5432"
+      QUREAU_DATABASE__READ: "postgresql://pgactive:5432"
+      QUREAU_DATABASE__HOST: "pgactive"
+      QUREAU_DATABASE__PORT: "5432"
+      QUREAU_DATABASE__SCHEMA: "public"
+      QUREAU_DATABASE__DB_0: "qureau"
+      QUREAU_DATABASE__DB_0__WRITER_username: "pg"
+      QUREAU_DATABASE__DB_0__WRITER_password: "asdf"
+      QUREAU_DATABASE__DB_0__READER_username: "pg"
+      QUREAU_DATABASE__DB_0__READER_password: "asdf"
     depends_on:
-      entri_pgactive:
+      pgactive:
         condition: service_healthy
     volumes: &workspace_volumes
       - ../../../../..:/workspace
@@ -43,26 +46,3 @@ services:
   #   depends_on:
   #     http:
   #       condition: service_healthy
-  entri_pgactive:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: pg
-      POSTGRES_PASSWORD: qwerasdf
-      POSTGRES_DB: compose
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-U", "pg", "-d", "compose"]
-      interval: 1s
-      timeout: 5s
-      retries: 10
-    ports:
-      - $ENTRI_POSTGRES:5432
-    volumes:
-      - entri_active:/var/lib/postgresql/data 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - $ENTRI_ADMINER:8080
-volumes:
-  entri_active:

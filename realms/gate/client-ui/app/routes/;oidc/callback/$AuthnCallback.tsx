@@ -1,5 +1,6 @@
 import { type CSSProperties, useEffect, useMemo } from "hono/jsx";
 import { useOidcClient } from "../../../atoms/authentication/OidcClientAtom.js";
+import type { AuthnAuthorizeUserState } from "../authorize/$AuthnAuthorize.js";
 
 export const AuthnCallback = () => {
 	const { oidc } = useOidcClient();
@@ -25,9 +26,29 @@ export const AuthnCallback = () => {
 						signinError,
 					},
 				});
+				let redirectUrl = "/";
+				const state = status?.state as AuthnAuthorizeUserState;
+				if (state.signInFrom !== undefined) {
+					redirectUrl = state.signInFrom;
+				} else {
+					const navigationEntires = (window.navigation?.entries() ?? [])
+						.filter((e) => {
+							return (
+								!e.sameDocument && e.url !== null && !e.url.includes("/;oidc/")
+							);
+						})
+						.map((e) => {
+							return e.url as string;
+						})
+						.find(() => true);
+					if (navigationEntires !== undefined) {
+						redirectUrl = navigationEntires;
+					}
+				}
+
 				setTimeout(
 					() => {
-						location.assign("/");
+						location.assign(redirectUrl);
 					},
 					Math.random() * 100 + 20,
 				);
@@ -35,28 +56,11 @@ export const AuthnCallback = () => {
 		}
 	}, [oidc, discordEnabled]);
 
-	const style: CSSProperties = useMemo(
-		() => ({
-			display: "none",
-			pointerEvents: "none",
-			touchAction: "none",
-			position: "fixed",
-			visibility: "hidden",
-			width: 0,
-			height: 0,
-			top: 0,
-			left: 0,
-			zIndex: -1,
-		}),
-		[],
-	);
-
 	return (
 		<object
 			aria-hidden
 			typeof={"AuthnCallback"}
 			data-oidc={oidc ? "true" : "false"}
-			style={style}
 			suppressHydrationWarning
 		/>
 	);

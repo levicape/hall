@@ -1,8 +1,5 @@
 import type { ITable } from "@levicape/spork/server/client/table/ITable";
-import {
-	type KeygenKsort,
-	ulidKeygen,
-} from "@levicape/spork/server/security/IdKeygen";
+import type { KeygenKsort } from "@levicape/spork/server/security/IdKeygen";
 import type { RefreshToken } from "../../../../_protocols/qureau/tsnode/domain/token/token._._.js";
 import {
 	type User,
@@ -14,19 +11,14 @@ import {
 	QQUserNameExistsError,
 	QQUsersError,
 } from "../../service/QureauUser.mjs";
-import {
-	type QureauUserTokenRepository,
-	qureauUserTokenRepository,
-} from "./QureauUserRepository.Token.mjs";
-import {
-	type QureauRepositoryProps,
-	type QureauUserRepository,
-	qureauUserRepository,
+import type { QureauUserTokenRepository } from "./QureauUserRepository.Token.mjs";
+import type {
+	QureauRepositoryProps,
+	QureauUserRepository,
 } from "./QureauUserRepository.mjs";
 import { QureauUserApplicationRow } from "./user/QureauUserRow.Application.mjs";
 import type { QureauUserTokenRow } from "./user/QureauUserRow.Token.mjs";
 import type { QureauUserKey, QureauUserRow } from "./user/QureauUserRow.mjs";
-import { qureauUsersApplicationsTable } from "./user/QureauUsersTable.mjs";
 
 export type CreateUserAndRegisterProps = {
 	applicationId: string;
@@ -64,7 +56,7 @@ export class QureauUserRegistrationRepository {
 		userRegistration: UserRegistration,
 		props: QureauRepositoryProps,
 	): Promise<QureauUserApplicationRow> => {
-		const { applicationId } = userRegistration;
+		const { applicationId } = { applicationId: "uwu", ...userRegistration };
 		const nowunix = Date.now();
 		const nowiso = new Date(nowunix).toISOString();
 
@@ -191,11 +183,3 @@ const wrapAndThrow = (error: unknown) => {
 	}
 	throw error;
 };
-
-export const qureauUserRegistrationRepository =
-	new QureauUserRegistrationRepository(
-		ulidKeygen,
-		qureauUsersApplicationsTable,
-		qureauUserRepository,
-		qureauUserTokenRepository,
-	);

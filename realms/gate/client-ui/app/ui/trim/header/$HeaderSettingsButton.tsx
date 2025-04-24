@@ -27,7 +27,7 @@ export const HeaderSettingsButton: FC<
 	const [menuOpen] = useContext(HeaderMenuOpenContext);
 	const [, setHeaderSettingsOpen] = useContext(HeaderSettingsOpenContext);
 
-	const isLoginScreen = pathname === "/;oidc/authorize";
+	const isLoginScreen = pathname.includes("/;oidc/authorize/");
 	const hide = isLoginScreen || menuOpen; // || authReady !== true;
 
 	const menuButtonOnClick = useCallback(() => {

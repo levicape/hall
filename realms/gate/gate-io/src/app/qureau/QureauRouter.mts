@@ -19,8 +19,8 @@ import { QureauUsersPrincipalViewHandler } from "./controller/users/principal/Qu
 export const QureauRouter = Qureau()
 	.createApp()
 	.get(QureauAuthorizationEndpoint, async (c) => {
-		const { entrypoint, errorUri } = c.get("Qureau");
-		const { data, error } = c.var.QureauQuery.authorize(c.req.query());
+		const { login, errorUri } = c.get("Qureau");
+		const { data, error } = c.var.Query.authorize(c.req.query());
 		if (error) {
 			return c.redirect(
 				withQuery(errorUri, {
@@ -29,11 +29,11 @@ export const QureauRouter = Qureau()
 				}),
 			);
 		}
-		return c.redirect(withQuery(entrypoint, data));
+		return c.redirect(withQuery(login, data));
 	})
 	.get(QureauEndSessionEndpoint, async (c) => {
 		const { errorUri } = c.get("Qureau");
-		const { error } = c.var.QureauQuery.authorize(c.req.query());
+		const { error } = c.var.Query.authorize(c.req.query());
 		if (error) {
 			return c.redirect(
 				withQuery(errorUri, {
@@ -43,7 +43,7 @@ export const QureauRouter = Qureau()
 			);
 		}
 
-		return c.redirect("/oauth2/logout");
+		return c.redirect("/oauth2/logout/");
 	})
 	.post("Login/Anonymous", ...QureauRegistrationAnonymousHandler)
 	.post("Login/Session", ...QureauLoginHandler)

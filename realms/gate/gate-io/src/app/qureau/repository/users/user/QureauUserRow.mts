@@ -41,7 +41,7 @@ export class QureauUserRow<Pk extends string = QureauTableId>
 	gsip_pk___perimeter: number;
 	gsi1_pk___tenant: string;
 	gsi1_sk___pk: string;
-	gsi2_pk__pk___username: string;
+	gsi2_pk__pk___username?: string;
 	gsi7_pk__pk___applicationid__username?: string;
 	gsi3_pk__pk___pk__applicationid__email?: string;
 	gsi4_pk__pk___pk__applicationid__providerresolvedid?: string;
@@ -90,7 +90,9 @@ export class QureauUserRow<Pk extends string = QureauTableId>
 		// biome-ignore lint/style/noNonNullAssertion:
 		this.gsi1_pk___tenant = principalBlob.principalId!;
 		this.gsi1_sk___pk = this.sk;
-		this.gsi2_pk__pk___username = `@${principalBlob.principalId}*user!${username};`;
+		if (username) {
+			this.gsi2_pk__pk___username = `@${principalBlob.principalId}*user!${username};`;
+		}
 
 		this.jsondata = JSON.stringify(user);
 		this.protocol = QureauProtocolVersionEnum.QUREAU_P_LATEST;
@@ -136,7 +138,6 @@ export class QureauUserRow<Pk extends string = QureauTableId>
 		const [userId] = partitionKey.split("-");
 		return {
 			pk: `qureau@${userId}`,
-			// TODO: Do I have an enum for this?
 			sk: "&User!;",
 		};
 	}

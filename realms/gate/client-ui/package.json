@@ -40,6 +40,7 @@
     "@hono/vite-dev-server": "catalog:hono",
     "@hono/vite-ssg": "catalog:hono",
     "@tailwindcss/vite": "catalog:web-tailwind",
+    "@types/dom-navigation": "^1.0.5",
     "@types/node": "catalog:types",
     "@types/react": "catalog:types",
     "daisyui": "catalog:web-tailwind",

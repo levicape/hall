@@ -132,9 +132,12 @@ export class QureauUserTokenRow<Pk extends string = QureauTableId>
 		this.signature_pb = Buffer.from(scrypt_pb);
 	}
 
-	// completeUserKey = `${userId}-${applicationId}-${tokenId}`;
-	static getKey(partitionKey: string): QureauUserTokenKey {
-		const [userId, applicationId, tokenId] = partitionKey.split("-");
+	static sk(applicationId: QureauApplicationId, tokenId: string): string {
+		return `${applicationId}-${tokenId}`;
+	}
+
+	static getKey(userId: string, rowKey?: string): QureauUserTokenKey {
+		const [applicationId, tokenId] = (rowKey ?? "-").split("-");
 		return {
 			pk: `qureau@${userId}`,
 			sk: `&User!App&${(applicationId as QureauApplicationId) ?? "uwu"}!Token&${tokenId ?? "uwu"};`,

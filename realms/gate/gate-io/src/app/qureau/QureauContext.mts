@@ -9,6 +9,7 @@ import {
 } from "../../_protocols/qureau/tsnode/table/user/table.user._.js";
 
 export class QureauContext {
+	static QUREAU_DATABASE__HOST = "QUREAU_DATABASE__HOST" as const;
 	static QUREAU_DATABASE__NAME = "QUREAU_DATABASE__NAME" as const;
 	static QUREAU_DATABASE__READ = "QUREAU_DATABASE__READ" as const;
 	static QUREAU_DATABASE__REGION = "QUREAU_DATABASE__REGION" as const;
