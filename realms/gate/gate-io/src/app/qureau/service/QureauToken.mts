@@ -2,6 +2,7 @@ import type { BaseError, ServiceError } from "@levicape/spork/server/Error";
 import type { ITable } from "@levicape/spork/server/client/table/ITable";
 import { LoginToken } from "@levicape/spork/server/security/model/LoginToken";
 import { HTTPException } from "hono/http-exception";
+import { StatusCodes } from "http-status-codes";
 import { ulid } from "ulidx";
 import {
 	type TokenCreate,
@@ -218,11 +219,11 @@ export class QureauTokens
 			tokenId,
 		);
 		if (!row) {
-			throw new HTTPException(404, {
+			throw new HTTPException(StatusCodes.GONE, {
 				res: new Response(
 					JSON.stringify({
 						error: {
-							code: "NOT_FOUND",
+							code: "TOKEN_GONE",
 							reason: "Token not found",
 						},
 					}),

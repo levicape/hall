@@ -31,7 +31,7 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 	}),
 	validator("query", async (s, c: Context<{ Variables: QureauVariables }>) => {
 		const { errorUri, login: entrypoint } = c.var.Qureau;
-		const query = c.var.Query.authorize(s);
+		const query = await c.var.Query.authorize(s);
 		if (!query.success) {
 			return c.redirect(
 				withQuery(errorUri, {
@@ -43,7 +43,20 @@ export const QureauRegistrationAnonymousHandler = Qureau().createHandlers(
 			);
 		}
 
-		return query.data;
+		if (query.data.redirect_uri === undefined) {
+			return c.redirect(
+				withQuery(errorUri, {
+					...s,
+					entrypoint,
+					error: "invalid_request",
+					error_description: "Missing redirect_uri",
+				}),
+			);
+		}
+
+		return query.data as typeof query.data & {
+			redirect_uri: string;
+		};
 	}),
 	async (c) => {
 		const { errorUri, login: entrypoint } = c.var.Qureau;

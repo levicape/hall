@@ -25,11 +25,11 @@ catalogs:
       specifier: 0.3.9-main.3
       version: 0.3.9-main.3
     '@levicape/spork':
-      specifier: 0.15.0-main.37
-      version: 0.15.0-main.37
-    '@levicape/spork-atlas':
-      specifier: 0.15.0-main.37
-      version: 0.15.0-main.37
+      specifier: 0.17.0
+      version: 0.17.0
+    '@levicape/spork-polly':
+      specifier: 0.16.3
+      version: 0.16.3
   dev:
     tsx:
       specifier: ^4.19.3
@@ -244,10 +244,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
-      '@levicape/spork-atlas':
+        version: 0.17.0(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
+      '@levicape/spork-polly':
         specifier: 'catalog:'
-        version: 0.15.0-main.37
+        version: 0.16.3
       effect:
         specifier: catalog:effect
         version: 3.14.5
@@ -299,10 +299,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
-      '@levicape/spork-atlas':
+        version: 0.17.0(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
+      '@levicape/spork-polly':
         specifier: 'catalog:'
-        version: 0.15.0-main.37
+        version: 0.16.3
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -396,10 +396,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
-      '@levicape/spork-atlas':
+        version: 0.17.0(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
+      '@levicape/spork-polly':
         specifier: 'catalog:'
-        version: 0.15.0-main.37
+        version: 0.16.3
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -493,10 +493,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
-      '@levicape/spork-atlas':
+        version: 0.17.0(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
+      '@levicape/spork-polly':
         specifier: 'catalog:'
-        version: 0.15.0-main.37
+        version: 0.16.3
       effect:
         specifier: catalog:effect
         version: 3.14.5
@@ -563,10 +563,10 @@ importers:
         version: 0.3.9-main.3(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(pg@8.14.1)(sqlite3@5.1.7)
       '@levicape/spork':
         specifier: 'catalog:'
-        version: 0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
-      '@levicape/spork-atlas':
+        version: 0.17.0(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
+      '@levicape/spork-polly':
         specifier: 'catalog:'
-        version: 0.15.0-main.37
+        version: 0.16.3
       clsx:
         specifier: catalog:web-style
         version: 2.1.1
@@ -762,6 +762,7 @@ packages:
   '@aws-sdk/lib-dynamodb@3.778.0':
     resolution: {integrity: sha512-zyFo58UldyLOhVdnhvx4u4YkprIcrpMAYX3cI14JIH5KcwebreGrUA4lzko2sn7r/uqEArqFJWgGO3AJLBUW8w==}
     engines: {node: '>=18.0.0'}
+    deprecated: Please upgrade to @aws-sdk/lib-dynamodb@3.850.0 to support Command reuse https://github.com/aws/aws-sdk-js-v3/issues/7217.
     peerDependencies:
       '@aws-sdk/client-dynamodb': ^3.777.0
 
@@ -1368,12 +1369,12 @@ packages:
     engines: {node: 22.13.0}
     hasBin: true
 
-  '@levicape/spork-atlas@0.15.0-main.37':
-    resolution: {integrity: sha512-kqb1GwhXsjmJRiWAear9tq+n58K4V/WPJEojBJLifEXWn8r6nPqcKBraRo8Qjj7D6jRh1/14k5rOAmhJWO55VA==, tarball: https://npm.pkg.github.com/download/@levicape/spork-atlas/0.15.0-main.37/c4866f0de5e4fcd273eb7bbad841fa9270bba1b2}
+  '@levicape/spork-polly@0.16.3':
+    resolution: {integrity: sha512-DzP4gpsimG6pOJ3ovekU+UJc1Ech1dcXtRUWfqv8kEI/F5JUKv6pdKAr9hFS6b14eG5cxPt4RH+zHMP8rJchzA==}
     engines: {node: '22'}
 
-  '@levicape/spork@0.15.0-main.37':
-    resolution: {integrity: sha512-Yd3XWv5PbNyRIIt8fbDCt9jRHxpMX0TzUOlZNsMC5kmwmwAP1Iums0hX6ivDsZqhwX7fgka5WYGqLQqbMrt49A==, tarball: https://npm.pkg.github.com/download/@levicape/spork/0.15.0-main.37/1af503fae357a4adabe728a6e13513c55eba4b31}
+  '@levicape/spork@0.17.0':
+    resolution: {integrity: sha512-X1bY5cZ0keIqRpiEUfvR5r4k5iXOsGJN75Ufhv64kzLyi04hdoPveT+8vEJpOrFgC5c35HAMhWNd61ja0Vru+Q==}
     engines: {node: 22.13.0}
     hasBin: true
 
@@ -4620,6 +4621,9 @@ packages:
   zod@3.24.2:
     resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
 
+  zod@3.25.0-beta.20250519T094321:
+    resolution: {integrity: sha512-FvDMTcBUhM/CZjeT0HJQ8M6KbSGRPHqEx2yLWx9kDU3ufoTiq7tQAI8UyBJ/82CBp1mv6tKVWp00ll6zV/WxmA==}
+
   zod@4.0.0-beta.20250424T163858:
     resolution: {integrity: sha512-fKhW+lEJnfUGo0fvQjmam39zUytARR2UdCEh7/OXJSBbKScIhD343K74nW+UUHu/r6dkzN6Uc/GqwogFjzpCXg==}
 
@@ -5652,16 +5656,16 @@ snapshots:
       - tedious
       - utf-8-validate
 
-  '@levicape/spork-atlas@0.15.0-main.37':
+  '@levicape/spork-polly@0.16.3':
     dependencies:
       destr: 2.0.5
       fs-extra: 11.3.0
       serialize-error: 12.0.0
       std-env: 3.8.1
       verror: 1.10.1
-      zod: 4.0.0-beta.20250424T163858
+      zod: 3.25.0-beta.20250519T094321
 
-  '@levicape/spork@0.15.0-main.37(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)':
+  '@levicape/spork@0.17.0(@effect/cluster@0.29.9(@effect/platform@0.80.5(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(effect@3.14.5))(@effect/rpc@0.55.7(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(@effect/sql@0.33.5(@effect/experimental@0.44.5(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5)(ioredis@5.4.1))(@effect/platform@0.80.5(effect@3.14.5))(effect@3.14.5))(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)':
     dependencies:
       '@aws-lambda-powertools/logger': 2.17.0
       '@aws-sdk/client-dynamodb': 3.777.0
@@ -5688,13 +5692,13 @@ snapshots:
       pino: 9.6.0
       pino-pretty: 13.0.0
       serialize-error: 12.0.0
-      slonik: 46.4.0(zod@4.0.0-beta.20250424T163858)
+      slonik: 46.4.0(zod@3.25.0-beta.20250519T094321)
       std-env: 3.8.1
       ts-proto: 2.7.0
       ulidx: 2.4.1
       unstorage: 1.15.0(aws4fetch@1.0.20)(db0@0.3.1(better-sqlite3@11.9.1)(sqlite3@5.1.7))(ioredis@5.4.1)
       verror: 1.10.1
-      zod: 4.0.0-beta.20250424T163858
+      zod: 3.25.0-beta.20250519T094321
     transitivePeerDependencies:
       - '@aws-lambda-powertools/jmespath'
       - '@azure/app-configuration'
@@ -6104,53 +6108,53 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@slonik/driver@46.4.0(zod@4.0.0-beta.20250424T163858)':
+  '@slonik/driver@46.4.0(zod@3.25.0-beta.20250519T094321)':
     dependencies:
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/types': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/utilities': 46.4.0(zod@3.25.0-beta.20250519T094321)
       roarr: 7.21.1
       serialize-error: 8.1.0
       strict-event-emitter-types: 2.0.0
-      zod: 4.0.0-beta.20250424T163858
+      zod: 3.25.0-beta.20250519T094321
 
-  '@slonik/errors@46.4.0(zod@4.0.0-beta.20250424T163858)':
+  '@slonik/errors@46.4.0(zod@3.25.0-beta.20250519T094321)':
     dependencies:
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      zod: 4.0.0-beta.20250424T163858
+      '@slonik/types': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      zod: 3.25.0-beta.20250519T094321
 
-  '@slonik/pg-driver@46.4.0(zod@4.0.0-beta.20250424T163858)':
+  '@slonik/pg-driver@46.4.0(zod@3.25.0-beta.20250519T094321)':
     dependencies:
-      '@slonik/driver': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/sql-tag': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/driver': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/errors': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/sql-tag': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/types': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/utilities': 46.4.0(zod@3.25.0-beta.20250519T094321)
       pg: 8.14.1
       pg-query-stream: 4.8.1(pg@8.14.1)
       pg-types: 4.0.2
       postgres-array: 3.0.4
-      zod: 4.0.0-beta.20250424T163858
+      zod: 3.25.0-beta.20250519T094321
     transitivePeerDependencies:
       - pg-native
 
-  '@slonik/sql-tag@46.4.0(zod@4.0.0-beta.20250424T163858)':
+  '@slonik/sql-tag@46.4.0(zod@3.25.0-beta.20250519T094321)':
     dependencies:
-      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/errors': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/types': 46.4.0(zod@3.25.0-beta.20250519T094321)
       roarr: 7.21.1
       safe-stable-stringify: 2.5.0
       serialize-error: 8.1.0
-      zod: 4.0.0-beta.20250424T163858
+      zod: 3.25.0-beta.20250519T094321
 
-  '@slonik/types@46.4.0(zod@4.0.0-beta.20250424T163858)':
+  '@slonik/types@46.4.0(zod@3.25.0-beta.20250519T094321)':
     dependencies:
-      zod: 4.0.0-beta.20250424T163858
+      zod: 3.25.0-beta.20250519T094321
 
-  '@slonik/utilities@46.4.0(zod@4.0.0-beta.20250424T163858)':
+  '@slonik/utilities@46.4.0(zod@3.25.0-beta.20250519T094321)':
     dependencies:
-      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/types': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      zod: 4.0.0-beta.20250424T163858
+      '@slonik/errors': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/types': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      zod: 3.25.0-beta.20250519T094321
 
   '@smithy/abort-controller@4.0.2':
     dependencies:
@@ -8571,20 +8575,20 @@ snapshots:
 
   slash@5.1.0: {}
 
-  slonik@46.4.0(zod@4.0.0-beta.20250424T163858):
+  slonik@46.4.0(zod@3.25.0-beta.20250519T094321):
     dependencies:
-      '@slonik/driver': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/errors': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/pg-driver': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/sql-tag': 46.4.0(zod@4.0.0-beta.20250424T163858)
-      '@slonik/utilities': 46.4.0(zod@4.0.0-beta.20250424T163858)
+      '@slonik/driver': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/errors': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/pg-driver': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/sql-tag': 46.4.0(zod@3.25.0-beta.20250519T094321)
+      '@slonik/utilities': 46.4.0(zod@3.25.0-beta.20250519T094321)
       get-stack-trace: 3.1.1
       iso8601-duration: 1.3.0
       postgres-interval: 4.0.2
       roarr: 7.21.1
       serialize-error: 8.1.0
       strict-event-emitter-types: 2.0.0
-      zod: 4.0.0-beta.20250424T163858
+      zod: 3.25.0-beta.20250519T094321
     transitivePeerDependencies:
       - pg-native
 
@@ -8974,6 +8978,8 @@ snapshots:
       yargs-parser: 21.1.1
 
   zod@3.24.2: {}
+
+  zod@3.25.0-beta.20250519T094321: {}
 
   zod@4.0.0-beta.20250424T163858:
     dependencies:

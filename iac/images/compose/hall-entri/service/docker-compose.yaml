@@ -10,7 +10,7 @@ services:
       image: $APPLICATION_HALL_IMAGE
       entrypoint: launcher
       command: |
-        pnpm run -C realms/entri/entri-io atlas
+        pnpm run -C realms/entri/entri-io polly
       environment:
         COMPOSE_PROJECT_NAME: $COMPOSE_PROJECT_NAME
         ATLAS_CADDYFILE: /caddy/Caddyfile
@@ -42,7 +42,7 @@ services:
           condition: service_completed_successfully      
       entrypoint: launcher
       command: |
-        node --experimental-strip-types ./realms/gate/client-ui/src/Atlas.mts
+        node --experimental-strip-types ./realms/gate/client-ui/src/Polly.mts
       environment:
         COMPOSE_PROJECT_NAME: $COMPOSE_PROJECT_NAME 
         ATLAS_CADDYFILE: /caddy/Caddyfile

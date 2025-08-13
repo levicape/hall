@@ -36,7 +36,7 @@ export class QureauUserApplicationRow<Pk extends string = QureauTableId>
 	gsi1_pk___tenant: string;
 	gsi1_sk___pk: string;
 	gsi2_pk__pk___username?: string;
-	gsi7_pk__pk___applicationid__username: string;
+	gsi7_pk__pk___applicationid__username?: string;
 	gsi3_pk__pk___pk__applicationid__email: string;
 	gsi4_pk__pk___pk__applicationid__providerresolvedid?: string;
 	gsi5_pk__pk___pk__applicationid__tokenid?: string;
@@ -92,7 +92,10 @@ export class QureauUserApplicationRow<Pk extends string = QureauTableId>
 			user.email !== undefined
 				? `@${applicationId}*User!${user.email};`
 				: (undefined as unknown as string);
-		this.gsi7_pk__pk___applicationid__username = `@${applicationId}*User!${username};`;
+
+		this.gsi7_pk__pk___applicationid__username = username
+			? `@${applicationId}*User!${username};`
+			: undefined;
 
 		this.jsondata = JSON.stringify(registration);
 		this.protocol = QureauProtocolVersionEnum.QUREAU_P_LATEST;
@@ -195,14 +198,6 @@ export class QureauUserApplicationRow<Pk extends string = QureauTableId>
 
 		try {
 			const userregistration = UserRegistration.decode(row.binpb);
-
-			console.log({
-				REMOVEME: {
-					userregistration,
-					row: JSON.stringify(row),
-				},
-			});
-
 			return UserRegistration.fromPartial({
 				...userregistration,
 				applicationId: applicationId as QureauApplicationId,

@@ -22,7 +22,7 @@ import type {
 	AuthorizeQueryParamScope,
 	AuthorizeQueryParamSubjectType,
 } from "../app/qureau/controller/login/AuthorizeQueryParams.mjs";
-import { HTTP_BASE_PATH } from "./Atlas.mjs";
+import { HTTP_BASE_PATH } from "./Polly.mjs";
 
 export type HttpMiddleware = HonoHttp &
 	HonoHttpAuthentication &
@@ -113,7 +113,10 @@ export const { server } = await HonoHttpServer(
 				await next();
 			});
 			app.use(
-				HonoHttpAuthenticationMiddleware(JwtClaimsCognitoTokenUse("access")),
+				HonoHttpAuthenticationMiddleware(
+					{},
+					JwtClaimsCognitoTokenUse("access"),
+				),
 			);
 			app.use(
 				HonoHttpJwtIssuerMiddleware({

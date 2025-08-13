@@ -17,9 +17,6 @@ import {
 	AuthorizeQueryParamsZod,
 } from "./controller/login/AuthorizeQueryParams.mjs";
 import { TokenQueryParamsZod } from "./controller/tokens/TokenQueryParams.mjs";
-import { QureauUserRegistrationRepository } from "./repository/users/QureauUserRepository.Registration.mjs";
-import { QureauUserTokenRepository } from "./repository/users/QureauUserRepository.Token.mjs";
-import { QureauUserRepository } from "./repository/users/QureauUserRepository.mjs";
 import {
 	qureauUserTokensTable,
 	qureauUsersApplicationsTable,
@@ -31,7 +28,10 @@ import {
 	qureauUsersByUsername,
 	qureauUsersSearchIndex,
 	qureauUsersTable,
-} from "./repository/users/user/QureauUsersTable.mjs";
+} from "./repository/QureauUsersTable.mjs";
+import { QureauUserRegistrationRepository } from "./repository/users/QureauUserRepository.Registration.mjs";
+import { QureauUserTokenRepository } from "./repository/users/QureauUserRepository.Token.mjs";
+import { QureauUserRepository } from "./repository/users/QureauUserRepository.mjs";
 import { QureauRegistration } from "./service/QureauRegistration.mjs";
 import { QureauTokens } from "./service/QureauToken.mjs";
 import { QureauUser } from "./service/QureauUser.mjs";
@@ -48,13 +48,15 @@ export type QureauVariables = {
 				string,
 				string[] | string | undefined | ParsedFormValue | ParsedFormValue[]
 			>,
-		) => ReturnType<ReturnType<typeof AuthorizeQueryParamsZod>["safeParse"]>;
+		) => ReturnType<
+			ReturnType<typeof AuthorizeQueryParamsZod>["safeParseAsync"]
+		>;
 		token: (
 			query: Record<
 				string,
 				string[] | string | undefined | ParsedFormValue | ParsedFormValue[]
 			>,
-		) => ReturnType<ReturnType<typeof TokenQueryParamsZod>["safeParse"]>;
+		) => ReturnType<ReturnType<typeof TokenQueryParamsZod>["safeParseAsync"]>;
 	};
 	Jwt: ReturnType<typeof QureauJwt>;
 	User: QureauUser;
@@ -136,13 +138,17 @@ const factory = createFactory<
 					responseTypes: [...c.var.OauthConfiguration.responseTypes],
 					scopes: c.var.OauthConfiguration.scopes,
 				};
-				const authorizeQuery = AuthorizeQueryParamsZod(queryConfiguration);
+				const authorizeQuery = AuthorizeQueryParamsZod(
+					queryConfiguration,
+					c.var.OauthConfiguration,
+					c.var.JwtVerification,
+				);
 				const tokenQuery = TokenQueryParamsZod(authorizeQuery);
-				authorize = (query) => {
-					return authorizeQuery.safeParse(query);
+				authorize = async (query) => {
+					return authorizeQuery.safeParseAsync(query);
 				};
-				token = (query) => {
-					return tokenQuery.safeParse(query);
+				token = async (query) => {
+					return tokenQuery.safeParseAsync(query);
 				};
 			}
 			c.set("Query", {

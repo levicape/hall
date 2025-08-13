@@ -3,7 +3,7 @@ import { createMiddleware } from "hono/factory";
 import { HTTPException } from "hono/http-exception";
 import { StatusCodes } from "http-status-codes";
 import { type JWK, exportJWK } from "jose";
-import { HTTP_BASE_PATH } from "../../http/Atlas.mjs";
+import { HTTP_BASE_PATH } from "../../http/Polly.mjs";
 import {
 	QureauAuthorizationEndpoint,
 	QureauEndSessionEndpoint,

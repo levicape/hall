@@ -15,7 +15,7 @@ import type { QureauBaseClaims } from "../../QureauJwt.mjs";
 export const QureauTokensRefreshFromRefreshHandler = Qureau().createHandlers(
 	validator("form", async (s, c: Context<{ Variables: QureauVariables }>) => {
 		const { login: entrypoint, errorUri } = c.var.Qureau;
-		const form = c.var.Query.token(s);
+		const form = await c.var.Query.token(s);
 		if (!form.success) {
 			return c.redirect(
 				withQuery(errorUri, {
@@ -74,14 +74,6 @@ export const QureauTokensRefreshFromRefreshHandler = Qureau().createHandlers(
 					c.var.Logging.withMetadata({ error: e }).withError(e);
 				}
 
-				c.var.Logging.withMetadata({
-					QureauLoginHandler: {
-						refresh_token,
-						verified,
-						query,
-						error,
-					},
-				}).info("ATOKO refresh_token");
 				if ((verified as QureauBaseClaims)?.token_use !== "refresh") {
 					c.var.Logging.withMetadata({
 						QureauLoginHandler: {

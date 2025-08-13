@@ -1,4 +1,8 @@
+import { HonoRequestLoggingStorage } from "@levicape/spork/router/hono/middleware/log/HonoRequestLogger";
+import type { JwtVerificationInterface } from "@levicape/spork/server/security/JwtVerification";
+import VError from "verror";
 import Zod from "zod";
+import type { HttpMiddleware } from "../../../../http/HonoApp.mjs";
 
 const validParams = [
 	"response_type",
@@ -77,6 +81,8 @@ export type AuthorizeQueryConfiguration = {
 
 export const AuthorizeQueryParamsZod = (
 	config: AuthorizeQueryConfiguration,
+	oauthConfiguration: HttpMiddleware["Variables"]["OauthConfiguration"],
+	jwtVerification: JwtVerificationInterface,
 ) => {
 	const scopes = new Set(config.scopes);
 	const redirectUris = Object.fromEntries(
@@ -95,7 +101,7 @@ export const AuthorizeQueryParamsZod = (
 				error: "Client ID is not valid",
 			},
 		),
-		redirect_uri: Zod.string(),
+		redirect_uri: Zod.string().optional(),
 		scope: Zod.string()
 			.transform((val) => val.split(" ").filter(Boolean))
 			.refine((scopes) => scopes.includes("openid"), {
@@ -128,6 +134,10 @@ export const AuthorizeQueryParamsZod = (
 	})
 		.refine(
 			(data) => {
+				if (data.redirect_uri === undefined) {
+					return true;
+				}
+
 				const clientId = data.client_id;
 				const redirectUri = data.redirect_uri;
 				if (redirectUris[clientId]) {
@@ -141,7 +151,7 @@ export const AuthorizeQueryParamsZod = (
 		)
 		.extend(
 			Zod.object({
-				redirect_uri: Zod.string(),
+				redirect_uri: Zod.string().optional(),
 			}),
 		);
 };

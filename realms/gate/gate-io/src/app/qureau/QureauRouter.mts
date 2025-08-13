@@ -20,7 +20,7 @@ export const QureauRouter = Qureau()
 	.createApp()
 	.get(QureauAuthorizationEndpoint, async (c) => {
 		const { login, errorUri } = c.get("Qureau");
-		const { data, error } = c.var.Query.authorize(c.req.query());
+		const { data, error } = await c.var.Query.authorize(c.req.query());
 		if (error) {
 			return c.redirect(
 				withQuery(errorUri, {
@@ -33,7 +33,7 @@ export const QureauRouter = Qureau()
 	})
 	.get(QureauEndSessionEndpoint, async (c) => {
 		const { errorUri } = c.get("Qureau");
-		const { error } = c.var.Query.authorize(c.req.query());
+		const { error } = await c.var.Query.authorize(c.req.query());
 		if (error) {
 			return c.redirect(
 				withQuery(errorUri, {

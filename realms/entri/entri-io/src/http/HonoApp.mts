@@ -3,7 +3,7 @@ import type { HonoHttp } from "@levicape/spork/router/hono/middleware/HonoHttpMi
 import { streamHandle } from "hono/aws-lambda";
 import { createFactory } from "hono/factory";
 import { env } from "std-env";
-import { HTTP_BASE_PATH } from "./Atlas.mjs";
+import { HTTP_BASE_PATH } from "./Polly.mjs";
 
 export const { server } = await HonoHttpServer(
 	createFactory<HonoHttp>(),

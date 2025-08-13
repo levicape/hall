@@ -1,9 +1,6 @@
 import { createHash } from "node:crypto";
 import type { IRow } from "@levicape/spork/server/client/table/ITable";
-// import {
-// 	qureauZugZugv1,
-// 	qureauZugZugv1ToJSON,
-// } from "#protocols/qureau/tsnode/domain/scrypt/scrypt._._._.key";
+import VError from "verror";
 import { RefreshToken } from "../../../../../_protocols/qureau/tsnode/domain/token/token._._.js";
 import { QureauDomainablePrincipalBlob } from "../../../../../_protocols/qureau/tsnode/entity/entity._.principal.blob.js";
 import { QureauDomainableRequestBlob } from "../../../../../_protocols/qureau/tsnode/entity/entity._.request.blob.js";
@@ -164,15 +161,8 @@ export class QureauUserTokenRow<Pk extends string = QureauTableId>
 			tokenId = "uwu";
 		}
 
-		// TODO: Confirm
 		try {
 			const refreshtoken = RefreshToken.decode(Uint8Array.from(row.binpb));
-			console.log({
-				REMOVEME: {
-					refreshtoken,
-					row: JSON.stringify(row),
-				},
-			});
 			return RefreshToken.fromPartial({
 				...refreshtoken,
 				applicationId: applicationId as QureauApplicationId,
@@ -188,7 +178,7 @@ export class QureauUserTokenRow<Pk extends string = QureauTableId>
 					},
 				},
 			});
-			throw new Error("No data");
+			throw new VError("No data");
 		}
 
 		const jsondata =
@@ -198,7 +188,7 @@ export class QureauUserTokenRow<Pk extends string = QureauTableId>
 
 		return RefreshToken.fromPartial({
 			...jsondata,
-			userId: `${userId}|`,
+			userId: `${userId}`,
 			applicationId: applicationId as QureauApplicationId,
 			tokenId: tokenId,
 			id: `${userId}-${applicationId}-${tokenId}`,

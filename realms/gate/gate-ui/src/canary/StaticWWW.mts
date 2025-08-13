@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import { Topology } from "@levicape/hall-gate-io/http/Atlas";
+import { Topology } from "@levicape/hall-gate-io/http/Polly";
 import { Canary, PromiseActivity } from "@levicape/paloma";
 import { LoggingContext } from "@levicape/paloma/runtime/server/RuntimeContext";
 import { withStructuredLogging } from "@levicape/paloma/runtime/server/loglayer/LoggingContext";

@@ -17,7 +17,7 @@
     "@levicape/hall-gate-io": "workspace:",
     "@levicape/paloma": "catalog:",
     "@levicape/spork": "catalog:",
-    "@levicape/spork-atlas": "catalog:",
+    "@levicape/spork-polly": "catalog:",
     "clsx": "catalog:web-style",
     "effect": "catalog:effect",
     "hono": "catalog:hono",

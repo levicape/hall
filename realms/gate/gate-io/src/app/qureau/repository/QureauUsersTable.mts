@@ -4,18 +4,21 @@ import { MemoryTable } from "@levicape/spork/server/client/table/MemoryTable";
 import { DynamoTable } from "@levicape/spork/server/client/table/aws/DynamoTable";
 import { PostgresTable } from "@levicape/spork/server/client/table/postgres/PostgresTable";
 import { env } from "std-env";
-import { QureauDatabaseUsersTable } from "../../../../../_protocols/qureau/tsjson/table/user/table.user._.js";
+import { QureauDatabaseUsersTable } from "../../../_protocols/qureau/tsjson/table/user/table.user._.js";
 import {
 	QureauDatabaseTable,
 	qureauDatabaseTableToJSON,
-} from "../../../../../_protocols/qureau/tsnode/table/table._._.js";
-import { QureauContext } from "../../../QureauContext.mjs";
-import type { QureauUserApplicationRow } from "./QureauUserRow.Application.mjs";
+} from "../../../_protocols/qureau/tsnode/table/table._._.js";
+import { QureauContext } from "../QureauContext.mjs";
+import type { QureauUserApplicationRow } from "./users/user/QureauUserRow.Application.mjs";
 import {
 	type QureauUserTokenKey,
 	QureauUserTokenRow,
-} from "./QureauUserRow.Token.mjs";
-import { type QureauUserKey, QureauUserRow } from "./QureauUserRow.mjs";
+} from "./users/user/QureauUserRow.Token.mjs";
+import {
+	type QureauUserKey,
+	QureauUserRow,
+} from "./users/user/QureauUserRow.mjs";
 
 const { users } = QureauContext.fromEnvironmentVariables();
 let usersTable: ITable<QureauUserRow, QureauUserKey> | undefined;

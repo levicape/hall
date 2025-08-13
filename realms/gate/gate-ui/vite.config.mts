@@ -17,7 +17,7 @@ const EPOCH = 1745470700000;
 export default defineConfig(({ mode }) => {
 	if (mode === "client") {
 		const unixtime = Math.floor((Date.now() - EPOCH) / 100);
-		const timehash = unixtime.toString(16);
+		const timehash = unixtime.toString(10);
 		return {
 			esbuild: {
 				jsxImportSource: "hono/jsx",

@@ -14,12 +14,12 @@ export const TODOExtractInferred = (
 	keygen: KeygenKsort,
 ): TokenCreateInferred => {
 	return {
-		principalId: keygen.ksort(),
-		principalService: keygen.ksort(),
+		principalId: "",
+		principalService: "",
 		resourceVersion: resourceVersion,
-		idempotencyId: keygen.ksort(),
-		requestId: keygen.ksort(),
-		responseId: keygen.ksort(),
+		idempotencyId: "",
+		requestId: "",
+		responseId: "",
 	};
 };
 
