@@ -1,0 +1,28 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_service;
+
+import "domain/task.create.proto";
+import "domain/task.get.proto";
+import "domain/task.query.proto";
+import "service/tarrasq._.proto";
+
+
+message TarrasqTasksNoParams {}
+service TarrasqTasksService {
+    rpc Create(tq_task.TaskCreateRequest) returns (tq_task.TaskCreateResponse);
+    rpc Get(tq_task.TaskGetRequest) returns (tq_task.TaskGetResponse);
+    rpc Query(tq_task.TaskQueryRequest) returns (tq_task.TaskQueryResponse);
+    rpc All(TarrasqTasksNoParams) returns (tq_task.TaskQueryResponse);
+}
+service TarrasqTasksRemote {
+    rpc Get(tq_task.TaskGetRequest) returns (TarrasqResponse);
+    rpc Query(tq_task.TaskQueryRequest) returns (TarrasqResponse);
+    rpc All(TarrasqTasksNoParams) returns (TarrasqResponse);
+
+    // Runs should verify that the task is valid and can be run
+    // BEFORE creating the table row 
+    
+    // rpc Validate(tq_task.TaskCreateRequest) returns (TarrasqResponse);
+}

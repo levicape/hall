@@ -1,0 +1,20 @@
+volumes:
+  caddy_data:
+  caddy_config:
+include:
+  - service/docker-compose.yaml
+services:
+  caddy:
+    image: "caddy:2.9"
+    depends_on:
+      atlas-client:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 443:443
+    volumes:
+      - ${HOME}/.cache/levicape/${COMPOSE_PROJECT_NAME}/atlas/caddy:/etc/caddy
+      - caddy_data:/data
+      - caddy_config:/config

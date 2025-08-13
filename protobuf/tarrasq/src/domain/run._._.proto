@@ -1,0 +1,61 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_run;
+import "domain/task._._.proto";
+
+enum TaskRunStatus {
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__STATUS__UNSPECIFIED = 0;
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__STATUS__RESERVED_MIN = 1;
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__STATUS__RESERVED_MAX = 63;
+  CREATED = 64;
+  STARTED = 65;
+  COMPLETED = 67;
+}
+enum TaskRunEventStatus {
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__EVENT_STATUS__UNSPECIFIED = 0;
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__EVENT_STATUS__RESERVED_MIN = 1;
+  __TARRASQ_DOMAIN__RUN__TASK_RUN__EVENT_STATUS__RESERVED_MAX = 63;
+  WAITING = 64;
+  SCHEDULED = 65;
+  LOCKED = 66;
+  COMPLETE = 67;
+  ERROR = 68;
+  RETRY = 69;
+}
+
+message TaskRunDefinition {
+  reserved 1 to 63;
+  reserved "__TARRASQ_DOMAIN__RUN__TASK_RUN_DEFINITION";  
+  string name = 64;
+  repeated tq_task.TaskStep steps = 65;
+}
+
+message TaskRunEvent {
+  reserved 1 to 63;
+  reserved "__TARRASQ_DOMAIN__RUN__TASK_RUN_EVENT";  
+  string taskRunEventId = 64;
+  string taskRunAttempt = 65;
+  tq_task.TaskStep step = 66;
+  string taskRunStepAttempt = 67;
+  TaskRunEventStatus status = 68;
+  string output = 69;
+  string input = 70;
+  uint64 created = 71;
+  uint64 started = 72;  
+  uint64 observed = 73;
+  uint64 completed = 74;  
+}
+
+message TaskRun {
+  reserved 1 to 63;
+  reserved "__TARRASQ_DOMAIN__RUN__TASK_RUN";  
+  string taskRunId = 64;
+  TaskRunStatus status = 65;
+  TaskRunDefinition definition = 66;
+  repeated TaskRunEvent events = 67;
+  uint64 created = 68;
+  uint64 started = 69;  
+  uint64 observed = 70;
+  uint64 completed = 71;
+}

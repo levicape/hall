@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_service;
+
+import "domain/dispatch._.response.proto";
+import "service/tarrasq._.proto";
+
+service TarrasqDispatchService {
+    rpc Events(tq_dispatch.DispatchUnknownRequest) returns (tq_dispatch.DispatchUnknownResponse);
+}
+service TarrasqDispatchRemote {
+    rpc Events(tq_dispatch.DispatchUnknownRequest) returns (TarrasqResponse);
+}

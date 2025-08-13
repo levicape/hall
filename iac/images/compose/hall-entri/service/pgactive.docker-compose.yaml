@@ -1,0 +1,25 @@
+services:
+  pgactive:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: asdf
+      POSTGRES_DB: compose
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "pg", "-d", "compose"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    ports:
+      - $PGACTIVE:5432
+    volumes:
+      - hall_entri_pgactive:/var/lib/postgresql/data 
+      - ./pgactive/qureau.sql:/docker-entrypoint-initdb.d/qureau.sql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - $PGADMINER:8080
+volumes:
+  hall_entri_pgactive:

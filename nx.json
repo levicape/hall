@@ -1,25 +1,40 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "main",
+  "useDaemonProcess": false,
+  "neverConnectToCloud": true,
   "targetDefaults": {
-    "build:http": {
-      "cache": true,
+    "build:tsc": {
+      "cache": false,
+      "outputs": [
+        "{projectRoot}/commonjs",
+        "{projectRoot}/module"
+      ]
+    },
+    "build:esbuild": {
+      "cache": false,
+      "outputs": [
+        "{projectRoot}/output/esbuild"
+      ]
+    },
+    "http:build": {
+      "cache": false,
       "outputs": [
         "{projectRoot}/output/http"
       ]
     },
-    "build:staticwww": {
-      "cache": true,
+    "staticwww:build": {
+      "cache": false,
       "outputs": [
-        "{projectRoot}/output/staticwww"
+        "{projectRoot}/output/staticwww",
+        "{projectRoot}/dist"
       ]
     },    
-    "build:tsc": {
-      "cache": true,
+    "serverwww:build": {
+      "cache": false,
       "outputs": [
-        "{projectRoot}/commonjs",
-        "{projectRoot}/gen",
-        "{projectRoot}/module"
+        "{projectRoot}/output/serverwww",
+        "{projectRoot}/dist"
       ]
     }
   }

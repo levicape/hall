@@ -1,0 +1,39 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_service;
+
+import "domain/run._.response.proto";
+import "domain/dispatch._.response.proto";
+import "domain/task._.response.proto";
+import "service/version.proto";
+
+message TarrasqNoBody {}
+message TarrasqResponse {
+    reserved 1;
+    message ErrorResponse {
+        reserved 1;
+        string code = 2;
+        ErrorResponse cause = 3;
+    }
+      
+    message DataResponse {
+        reserved 1;
+        oneof tarrasq {
+            tq_task.TasksResponse task = 2;
+            tq_run.TaskRunsResponse run = 3;
+            tq_dispatch.DispatchResponse dispatch = 4;
+        }
+    }
+    message VersionResponse {
+        reserved 1;
+        TarrasqResponseVersionEnum response = 2;
+        TarrasqVersionEnum tarrasq = 3;
+    }
+
+    VersionResponse version = 2;
+    oneof response {
+        ErrorResponse error = 3;
+        DataResponse data = 4;
+    }
+}

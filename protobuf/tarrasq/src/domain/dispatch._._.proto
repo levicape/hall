@@ -1,0 +1,51 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_dispatch;
+
+enum DispatchStatus {
+  __TARRASQ_DOMAIN__DISPATCH__STATUS__UNSPECIFIED = 0;
+  __TARRASQ_DOMAIN__DISPATCH__STATUS__RESERVED_MIN = 1;
+  __TARRASQ_DOMAIN__DISPATCH__STATUS__RESERVED_MAX = 63;
+  CREATED = 64;
+  STARTED = 65;
+  COMPLETED = 67;
+}
+
+enum DispatchEventStatus {
+  __TARRASQ_DOMAIN__DISPATCH__EVENT_STATUS__UNSPECIFIED = 0;
+  __TARRASQ_DOMAIN__DISPATCH__EVENT_STATUS__RESERVED_MIN = 1;
+  __TARRASQ_DOMAIN__DISPATCH__EVENT_STATUS__RESERVED_MAX = 63;
+  WAITING = 64;
+  SCHEDULED = 65;
+  LOCKED = 66;
+  COMPLETE = 67;
+  ERROR = 68;
+  RETRY = 69;
+}
+
+message Dispatch {
+  message DispatchEvent {
+    reserved 1 to 63;
+    reserved "__TARRASQ_DOMAIN__RUN__TASK_RUN_EVENT";  
+    string taskRunAttempt = 65;
+    string taskRunStepAttempt = 67;
+    DispatchEventStatus status = 68;
+    string output = 69;
+    string input = 70;
+    uint64 created = 71;
+    uint64 started = 72;  
+    uint64 observed = 73;
+    uint64 completed = 74;  
+  }
+
+  reserved 1 to 63;
+  reserved "__TARRASQ_DOMAIN__RUN__TASK_RUN";  
+  string taskRunId = 64;
+  DispatchStatus status = 65;
+  DispatchEvent event = 67;
+  uint64 created = 68;
+  uint64 started = 69;  
+  uint64 observed = 70;
+  uint64 completed = 71;
+}

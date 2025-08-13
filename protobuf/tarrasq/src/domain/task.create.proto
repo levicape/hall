@@ -1,0 +1,32 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_task;
+
+message TaskCreateRequest {
+  reserved 1 to 255;
+  reserved "__TARRASQ_DOMAIN__TASK__TASK_CREATE_REQUEST"; 
+
+  message TaskDefinitionRequest {
+    reserved 1 to 255;
+    reserved "__TARRASQ_RESPONSE__TASK_CREATE_RESPONSE__TASK_DEFINITION_RESPONSE";  
+    string name = 256;
+    string command = 257;
+  }   
+  TaskDefinitionRequest definition = 256;
+}
+
+message TaskCreateResponse {
+  reserved 1;
+  reserved "__TARRASQ_RESPONSE__TASK_CREATE_RESPONSE__TASK_RESPONSE";  
+
+  message TaskDefinitionResponse {
+    reserved 1;
+    reserved "__TARRASQ_RESPONSE__TASK_CREATE_RESPONSE__TASK_DEFINITION_RESPONSE";  
+    string name = 2;
+    string command = 3;
+  }
+  string taskId = 2;
+  TaskDefinitionResponse definition = 3;
+  string created = 4;
+}

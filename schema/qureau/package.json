@@ -1,0 +1,26 @@
+{
+  "config": {
+    "packagemanager": "pnpm",
+    "packageexecutor": "pnpm exec",
+    "lintpaths": "./src"
+  },
+  "dependencies": {
+    "@levicape/hall-gate-io": "workspace:",
+    "knex": "catalog:database-sql",
+    "pg": "catalog:database-postgres",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:lint",
+    "publint": "catalog:package",
+    "syncpack": "catalog:package",
+    "typescript": "catalog:dev"
+  },
+  "private": true,
+  "scripts": {
+    "dx:prepublish": "$npm_package_config_packagemanager run package:format",
+    "package:fix": "$npm_package_config_packageexecutor syncpack fix-mismatches",
+    "package:format": "$npm_package_config_packageexecutor syncpack format",
+    "package:update": "$npm_package_config_packageexecutor syncpack update"
+  }
+}

@@ -1,0 +1,21 @@
+ syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_queue;
+import "queue/runs.results.progress.proto";
+
+enum TarrasqRunsResultsMethods {
+  reserved 1 to 2139999;
+  __TARRASQ_RUNS__RESULTS__METHOD_DEFAULT__ = 0; 
+  TarrasqRunsResultsProgressReceiverMethod = 2140000;
+}
+
+message TarrasqRunsResultsReceiverMessage {
+  reserved 1 to 255;
+  reserved 268;
+  reserved "__TARRASQ_RUNS__RESULTS__RECEIVERMESSAGE";
+  string method = 256 [json_name = "method"];
+  oneof data {
+    TarrasqRunsResultsProgress progress = 257 [json_name = "data"];
+  }
+}

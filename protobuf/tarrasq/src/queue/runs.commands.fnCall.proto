@@ -1,0 +1,28 @@
+ syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_queue;
+import "queue/queue.domain.blob.proto";
+
+message TarrasqRunsCommandsFnCall {
+  reserved 1 to 255;
+  reserved 263;
+  reserved "__TARRASQ_RUNS__COMMANDS__FNCALL";
+
+  TarrasqQueueRequestBlob requestBlob = 100000 [json_name = "requestBlob"];
+  TarrasqQueuePrincipalBlob principalBlob = 200000 [json_name = "principalBlob"];
+
+  message TaskStep {
+    reserved 1 to 63;
+    reserved "__TARRASQ_RUNS__COMMANDS__TASK_STEP";  
+    string taskId = 64;
+    string args = 65;
+  }
+  string taskRunId = 256 [json_name = "taskRunId"];
+  string taskRunEventId = 261 [json_name = "taskRunEventId"];
+  string protocol = 257 [json_name = "protocol"];
+  string application = 258 [json_name = "application"];
+  string created = 259  [json_name = "created"];
+  repeated string attempts = 260  [json_name = "attempts"];
+  TaskStep taskStep = 262 [json_name = "taskStep"];
+}

@@ -1,27 +1,19 @@
 {
-  "name": "@levicape/greathall",
+  "name": "@levicape/hall",
   "version": "0.0.0-local-0",
+  "author": "Pedro Cardona",
   "config": {
     "packagemanager": "pnpm",
-    "packagebin": "corepack pnpm",
-    "packageexecutor": "corepack pnpm exec",
-    "modulepath": "**/module",
-    "commonjspath": "**/commonjs",
-    "lintpaths": "./iac ./canary ./models",
-    "i18n": "**/_i18n",
-    "protocols": "**/_protocols",
-    "models": "**/_models"
-  },
-  "dependencies": {
-    "better-sqlite3": "catalog:database-sqlite",
-    "knex": "catalog:database-sql"
+    "packagescript": "pnpm run",
+    "packageexecutor": "pnpm exec",
+    "lintpaths": "./iac"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:lint",
     "@levicape/fourtwo": "catalog:",
-    "@levicape/spork": "catalog:",
+    "@types/node": "catalog:types",
     "depcheck": "catalog:package",
-    "nx": "catalog:package",
+    "nx": "catalog:project-nx",
     "publint": "catalog:package",
     "syncpack": "catalog:package",
     "tsx": "catalog:dev"
@@ -30,9 +22,9 @@
     "node": "22"
   },
   "files": [
-    "i18n",
-    "iac",
-    "protocols"
+    "iac/images",
+    "README.md",
+    "LICENSE"
   ],
   "license": "AGPL-3.0-only",
   "nx": {
@@ -40,23 +32,25 @@
       "dx:precommit": {
         "dependsOn": [
           "dx:prepublish",
-          "iac-workflows:dx:precommit"
+          "dx:test"
         ]
       },
       "dx:prepublish": {
         "dependsOn": [
           "dx:prepublish:pre",
           "dx:lint",
-          "@levicape/model-greathall-qureau:dx:precommit",
-          "@levicape/greathall-qureau-io:dx:precommit",
-          "@levicape/greathall-qureau-io-canary:dx:precommit",
-          "@levicape/greathall-iac-stacks:dx:precommit"
+          "@levicape/hall-entri-io:dx:precommit",
+          "@levicape/hall-entri-ui:dx:precommit",
+          "@levicape/hall-gate-io:dx:precommit",
+          "@levicape/hall-gate-ui:dx:precommit",
+          "@levicape/hall-gate-client-ui:dx:precommit",
+          "@levicape/hall-iac-stacks:dx:precommit"
         ]
       },
       "dx:lint": {
         "dependsOn": [
           "nx:compile",
-          "nx:lint:format",
+          "lint:format",
           "package:format"
         ]
       },
@@ -68,16 +62,16 @@
       },
       "nx:clean": {
         "dependsOn": [
-          "clean:commonjs",
-          "clean:modules",
-          "clean:models",
-          "clean:protocols"
+          "clean:module"
         ]
       },
       "nx:compile": {
         "dependsOn": [
-          "@levicape/greathall-qureau-io:nx:compile",
-          "@levicape/greathall-qureau-io-canary:nx:compile"
+          "@levicape/hall-entri-io:nx:compile",
+          "@levicape/hall-entri-ui:nx:compile",
+          "@levicape/hall-gate-io:nx:compile",
+          "@levicape/hall-gate-ui:nx:compile",
+          "@levicape/hall-gate-client-ui:nx:compile"
         ]
       },
       "nx:sync": {
@@ -85,24 +79,13 @@
           "iac-workflows:nx:sync"
         ]
       },
-      "nx:lint": {
-        "dependsOn": [
-          "lint:check",
-          "@levicape/greathall-qureau-io:lint",
-          "@levicape/greathall-qureau-io-canary:lint"
-        ]
-      },
-      "nx:lint:format": {
-        "dependsOn": [
-          "lint:format",
-          "@levicape/greathall-qureau-io:lint:format",
-          "@levicape/greathall-qureau-io-canary:lint:format"
-        ]
-      },
       "nx:test": {
         "dependsOn": [
-          "@levicape/greathall-qureau-io:nx:test",
-          "@levicape/greathall-qureau-io-canary:nx:test"
+          "@levicape/hall-entri-io:nx:test",
+          "@levicape/hall-entri-ui:nx:test",
+          "@levicape/hall-gate-io:nx:test",
+          "@levicape/hall-gate-ui:nx:test",
+          "@levicape/hall-gate-client-ui:nx:test"
         ]
       }
     }
@@ -127,35 +110,32 @@
   },
   "repository": "github:levicape/great-hall",
   "scripts": {
-    "build": "NODE_NO_WARNINGS=1 NPM_CONFIG_UPDATE_NOTIFIER=false $npm_package_config_packageexecutor nx nx:compile",
-    "clean": "$npm_package_config_packageexecutor nx nx:clean --verbose",
-    "clean:commonjs": "rm -rf $npm_package_config_commonjspath",
-    "clean:models": "rm -rf $npm_package_config_models",
-    "clean:modules": "rm -rf $npm_package_config_modulepath",
+    "build": "$npm_package_config_packageexecutor nx nx:compile --verbose",
+    "clean": "$npm_package_config_packageexecutor nx nx:clean",
+    "clean:module": "rm -rf $npm_package_config_outpaths || true",
     "clean:packages": "rm -rf **/node_modules && $npm_package_config_packageexecutor nx reset",
-    "clean:protocols": "pwd && rm -rf $npm_package_config_protocols",
-    "dx:commit": "$npm_package_config_packagebin run clean:packages && $npm_package_config_packageexecutor nx dx:precommit --no-cloud --verbose",
+    "dx:commit": "$npm_package_config_packagescript clean:packages && $npm_package_config_packageexecutor nx dx:precommit --no-cloud --verbose",
+    "dx:image": "$npm_package_config_packageexecutor nx pack:build iac-images-application --verbose",
     "dx:precommit": "$npm_package_config_packageexecutor nx dx:precommit:pre && $npm_package_config_packageexecutor nx dx:sync && $npm_package_config_packageexecutor nx package:deps",
     "dx:precommit:pre": "echo \"Starting precommit dx. This will recompile iac files and check package.json dependencies.\"",
-    "dx:prepublish": "$npm_package_config_packageexecutor nx dx:lint && $npm_package_config_packageexecutor nx prepublish",
-    "dx:prepublish:pre": "echo \"Starting prepublish dx. This will compile packages, run dx:lint and format package.json and verify all exports are valid. \"",
-    "dx:sync": "$npm_package_config_packageexecutor nx dx:sync:pre && $npm_package_config_packageexecutor nx nx:sync",
+    "dx:prepublish": "$npm_package_config_packageexecutor nx prepublishOnly",
+    "dx:prepublish:pre": "echo \"Starting prepublish dx. This will compile the package, lint it, format package.json and verify all exports are valid. \"",
+    "dx:sync": "$npm_package_config_packageexecutor nx dx:sync:pre && $npm_package_config_packageexecutor nx nx:sync --verbose",
     "dx:sync:pre": "echo \"Starting sync dx. This will generate all the workflows and sync them with the repository.\"",
-    "heroku-prebuild": "$npm_package_config_packagemanager rebuild || true",
-    "lint": "$npm_package_config_packageexecutor nx nx:lint --verbose",
-    "lint:check": "$npm_package_config_packageexecutor nx exec -- biome check $npm_package_config_lintpaths",
-    "lint:format": "$npm_package_config_packageexecutor nx exec -- biome check --write $npm_package_config_lintpaths",
-    "lint:unsafe": "$npm_package_config_packageexecutor nx exec -- biome check --write --unsafe $npm_package_config_lintpaths",
+    "lint": "$npm_package_config_packageexecutor biome check $npm_package_config_lintpaths",
+    "lint:format": "$npm_package_config_packageexecutor biome check --write $npm_package_config_lintpaths",
+    "lint:unsafe": "$npm_package_config_packageexecutor biome check --write --unsafe $npm_package_config_lintpaths",
     "package:deps": "$npm_package_config_packageexecutor depcheck",
     "package:fix": "$npm_package_config_packageexecutor syncpack fix-mismatches",
     "package:format": "$npm_package_config_packageexecutor syncpack format",
     "package:update": "$npm_package_config_packageexecutor syncpack update",
-    "postclean:packages": "$npm_package_config_packagebin install",
+    "postclean:packages": "$npm_package_config_packagemanager install --ignore-scripts",
     "precommit": "$npm_package_config_packageexecutor nx dx:prepublish --no-cloud --verbose",
     "predx:lint": "$npm_package_config_packageexecutor nx clean",
-    "prepublish": "$npm_package_config_packageexecutor nx exec -- publint --strict",
+    "prelint": "$npm_package_config_packageexecutor biome format $npm_package_config_lintpaths",
+    "prepublishOnly": "$npm_package_config_packageexecutor publint --strict",
     "test": "$npm_package_config_packageexecutor nx nx:test --verbose",
-    "xx:workflow": "$npm_package_config_packageexecutor nx run-many -t build,lint,test --parallel=1 --verbose --no-cloud"
+    "xx:workflow": "$npm_package_config_packageexecutor nx run-many -t build,lint,test --parallel=1 --verbose --no-cloud && $npm_package_config_packageexecutor nx run-many -t package:deps,prepublish --parallel=1 --verbose --no-cloud"
   },
   "type": "commonjs"
 }

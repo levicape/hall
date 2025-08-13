@@ -1,0 +1,41 @@
+{
+	"files": {
+		"ignore": [
+			"**/commonjs",
+			"**/module",
+			"**/node_modules",
+			"package.json",
+			"package-lock.json",
+			"**/package.json",
+			"**/package-lock.json",
+			"**/_protocols",
+			"**/dist",
+			"*.css"
+		]
+	},
+
+    "linter": {
+		"rules": { 
+		  "correctness": {
+			"useJsxKeyInIterable": "off",
+			"noChildrenProp": "off"
+		  },
+		  "suspicious": {
+			  "noAssignInExpressions": "off",
+			  "noUnsafeDeclarationMerging": "off",
+			  "noControlCharactersInRegex": "off"
+		  },
+		  "style": {
+			"noUnusedTemplateLiteral": "off"
+		  },
+		  "complexity": {
+			  "noStaticOnlyClass": "off",
+			  "noForEach": "off",
+			  "noBannedTypes": "off",
+			  "useLiteralKeys": "off",
+			  "noUselessFragments": "off",
+			  "noUselessConstructor": "off"
+		  }
+		}
+	  }
+}

@@ -1,0 +1,11 @@
+ syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_queue;
+
+enum TarrasqRunsQueue {
+  reserved 3 to 1140000;
+  TARRASQ_RUNS_QUEUE_UNSPECIFIED = 0;
+  tarrasq_runs_commands = 1;
+  tarrasq_runs_results = 2; 
+}

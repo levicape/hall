@@ -1,0 +1,91 @@
+
+services:
+  pg-qureau:
+    image: $APPLICATION_HALL_IMAGE
+    entrypoint: launcher
+    depends_on:
+      pgactive:
+        condition: service_healthy
+    command: |
+      pnpm -C schema/qureau exec knex migrate:latest --env compose
+    environment:
+      QUREAU_DATABASE__HOST: "pgactive"
+      QUREAU_DATABASE__PORT: "5432"
+      QUREAU_DATABASE__DB_0: "qureau"
+      QUREAU_DATABASE__DB_0__WRITER_username: "pg"
+      QUREAU_DATABASE__DB_0__WRITER_password: "asdf"
+  gate-http:
+    image: $APPLICATION_HALL_IMAGE
+    entrypoint: project
+    depends_on:
+      pgactive:
+        condition: service_healthy
+      pg-qureau:
+        condition: service_completed_successfully          
+      atlas-client:
+        condition: service_completed_successfully          
+    environment:      
+      NODE_OPTIONS: $NODE_OPTIONS
+      LOG_LEVEL: $LOG_LEVEL
+      STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+      PROJECT_PATH: ./realms/gate/gate-io
+      PROJECT_COMMAND: http:dev
+      PORT: $GATE_HTTP
+      QUREAU_DATABASE__NAME: "postgresql://pgactive:5432"
+      QUREAU_DATABASE__READ: "postgresql://pgactive:5432"
+      QUREAU_DATABASE__HOST: "pgactive"
+      QUREAU_DATABASE__PORT: "5432"
+      QUREAU_DATABASE__SCHEMA: "public"
+      QUREAU_DATABASE__DB_0: "qureau"
+      QUREAU_DATABASE__DB_0__WRITER_username: "pg"
+      QUREAU_DATABASE__DB_0__WRITER_password: "asdf"
+      QUREAU_DATABASE__DB_0__READER_username: "pg"
+      QUREAU_DATABASE__DB_0__READER_password: "asdf"
+      OAUTH_PUBLIC_OIDC_AUTHORITY: "https://${GATE_DOMAIN}.${ROOT_DOMAIN}"
+      OAUTH_PUBLIC_OIDC_RESPONSE_TYPE: "code"
+      OAUTH_PUBLIC_OIDC_SCOPE: "openid"
+      OAUTH_PUBLIC_OIDC_CLIENT_ID: $COMPOSE_PROJECT_NAME
+      OAUTH_PUBLIC_OIDC_REDIRECT_URI: "https://${CLIENT_DOMAIN}.${ROOT_DOMAIN}/;oidc/callback/"
+      OAUTH_PUBLIC_OIDC_POST_LOGOUT_REDIRECT_URI: "https://${CLIENT_DOMAIN}.${ROOT_DOMAIN}/;oidc/logout/"
+      OAUTH_PUBLIC_OIDC_SILENT_REDIRECT_URI: "https://${CLIENT_DOMAIN}.${ROOT_DOMAIN}/;oidc/renew/"
+    ports:
+      - $GATE_HTTP:$GATE_HTTP
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:$GATE_HTTP/.well-known/healthcheck"]
+      interval: 17s
+      timeout: 8s
+      retries: 5
+  gate-ui:
+    image: $APPLICATION_HALL_IMAGE
+    entrypoint: project
+    environment: 
+      NODE_OPTIONS: $NODE_OPTIONS
+      LOG_LEVEL: $LOG_LEVEL
+      STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+      PROJECT_PATH: ./realms/gate/gate-ui
+      PROJECT_COMMAND: serverwww:dev
+      PORT: $GATE_UI
+    ports:
+      - $GATE_UI:$GATE_UI
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:$GATE_UI/"]
+      interval: 3s
+      timeout: 8s
+      retries: 7
+  # ui-canary:
+  #   image: $ROOT_IMAGE
+  #   entrypoint: project
+  #   environment:
+  #     NODE_OPTIONS: $NODE_OPTIONS
+  #     LOG_LEVEL: $LOG_LEVEL
+  #     STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+  #     PROJECT_PATH: ./realms/entri/entri-ui
+  #     PROJECT_COMMAND: staticwww:canary
+  #     GATE_HTTP_HOST: $ENTRI_HTTP
+  #     GATE_UI_HOST: $ENTRI_UI
+  #   volumes: *workspace_volumes
+  #   depends_on:
+  #     http:
+  #       condition: service_healthy
+  #     ui:
+  #       condition: service_healthy

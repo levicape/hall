@@ -1,0 +1,161 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package tq_table;
+
+enum TarrasqDatabaseTable {
+  reserved 4 to 99;
+  tarrasq_tasks_runs_dispatch = 0;
+  tarrasq_tasks = 1;
+  tarrasq_runs = 2;
+  tarrasq_dispatch = 3;
+}
+
+enum TarrasqDatabaseTasksTable {
+  reserved 1 to 1099;
+  tarrasq_tasks_by_gsi1 = 0;
+}
+
+enum TarrasqDatabaseRunsTable {
+  reserved 1 to 2099;
+  tarrasq_runs_by_gsi1 = 0;
+}
+
+enum TarrasqTableEntityKey {
+  reserved 2 to 9999;
+  pk = 0;
+  sk = 1;
+}
+
+enum TarrasqTableEntityGSII {
+  reserved 2 to 9999;
+  sk____gsii = 0;
+  pk____gsii = 1;
+}
+
+enum TarrasqTableEntityGSIS {
+  reserved 2 to 9999;
+  gsis_pk___shard = 0;
+  pk____gsis = 1;
+}
+
+enum TarrasqTableEntityGSIP {
+  reserved 2 to 9999;
+  gsip_pk___perimeter = 0;
+  pk____gsip = 1;
+}
+
+enum TarrasqTableEntityGSI0 {
+  reserved 2 to 9999;
+  gsi1_pk___tenant = 0;
+  pk____gsi0 = 1;
+}
+
+enum TarrasqTableEntityGSI2 {
+  reserved 2 to 9999;
+  gsi2_pk__pk___tenant__task_name____gsi2 = 0;
+  gsi2_sk___tenant__task_id____gsi2 = 1;
+}
+
+message TarrasqTableTasksEntity {
+  reserved 1 to 255;
+  reserved 279;
+  string pk = 256 [json_name = "pk"];
+  string sk = 257 [json_name = "sk"];
+  // 
+  string gsi1_pk___tenant = 258 [json_name = "gsi1_pk___tenant"];
+  string gsi2_pk__pk___tenant__task_name = 260 [json_name = "gsi2_pk__pk___tenant__task_name"];
+  // string gsi2_sk___tenant__task_id = 267 [json_name = "gsi2_sk___tenant__task_id"];
+  int32 gsis_pk___shard     = 272 [json_name = "gsis_pk___shard"];
+  int32 gsip_pk___perimeter = 278 [json_name = "gsip_pk___perimeter"];
+  //
+
+  string jsondata = 259 [json_name = "jsondata"];
+  bytes binpb = 273 [json_name = "binpb"];
+
+  int64 protocol = 261 [json_name = "protocol"];
+  int64 application = 262 [json_name = "application"];
+
+  string created = 263  [json_name = "created"];
+  string updated = 264 [json_name = "updated"];
+  string deleted = 265 [json_name = "deleted"];
+  int64 expiry_unix_second = 266 [json_name = "expiry_unix_second"];
+  int64 monotonic = 267 [json_name = "monotonic"];
+
+  string owner_blob = 268 [json_name = "owner_blob"];
+  string genesis_blob = 269 [json_name = "genesis_blob"];
+  string principal_blob = 270 [json_name = "principal_blob"];
+  string request_blob = 271 [json_name = "request_blob"];
+
+  bytes owner_pb = 274 [json_name = "owner_pb"];
+  bytes genesis_pb = 275 [json_name = "genesis_pb"];
+  bytes principal_pb = 276 [json_name = "principal_pb"];
+  bytes request_pb = 277 [json_name = "request_pb"];  
+}
+
+message TarrasqTableRunsEntity {
+  reserved 1 to 255;
+  reserved 279;
+  string pk = 256 [json_name = "pk"];
+  string sk = 257 [json_name = "sk"];
+  // 
+  string gsi1_pk___tenant = 258 [json_name = "gsi1_pk___tenant"];
+  int32 gsis_pk___shard     = 272 [json_name = "gsis_pk___shard"];
+  int32 gsip_pk___perimeter = 278 [json_name = "gsip_pk___perimeter"];
+  //
+
+  string jsondata = 259 [json_name = "jsondata"];
+  bytes binpb = 273 [json_name = "binpb"];  
+
+  int64 protocol = 261 [json_name = "protocol"];
+  int64 application = 262 [json_name = "application"];
+  string created = 263  [json_name = "created"];
+  string updated = 264 [json_name = "updated"];
+  string deleted = 265 [json_name = "deleted"];
+  int64 expiry_unix_second = 266 [json_name = "expiry_unix_second"];
+  int64 monotonic = 267 [json_name = "monotonic"];
+
+  string owner_blob = 268 [json_name = "owner_blob"];
+  string genesis_blob = 269 [json_name = "genesis_blob"];
+  string principal_blob = 270 [json_name = "principal_blob"];
+  string request_blob = 271 [json_name = "request_blob"];
+
+  bytes owner_pb = 274 [json_name = "owner_pb"];
+  bytes genesis_pb = 275 [json_name = "genesis_pb"];
+  bytes principal_pb = 276 [json_name = "principal_pb"];
+  bytes request_pb = 277 [json_name = "request_pb"];  
+}
+
+message TarrasqTableDispatchEntity {
+  reserved 1 to 255;
+  reserved 279;
+  string pk = 256 [json_name = "pk"];
+  string sk = 257 [json_name = "sk"];
+  // 
+  string gsi1_pk___tenant   = 258 [json_name = "gsi1_pk___tenant"];
+  int32 gsis_pk___shard     = 272 [json_name = "gsis_pk___shard"];
+  int32 gsip_pk___perimeter = 278 [json_name = "gsip_pk___perimeter"];
+  //
+
+  string jsondata = 259 [json_name = "jsondata"];
+  bytes binpb = 273 [json_name = "binpb"];
+
+  int64 protocol = 261 [json_name = "protocol"];
+  int64 application = 262 [json_name = "application"];
+
+  string created = 263  [json_name = "created"];
+  string updated = 264 [json_name = "updated"];
+  string deleted = 265 [json_name = "deleted"];
+  int64 expiry_unix_second = 266 [json_name = "expiry_unix_second"];
+  int64 monotonic = 267 [json_name = "monotonic"];
+
+  string owner_blob = 268 [json_name = "owner_blob"];
+  string genesis_blob = 269 [json_name = "genesis_blob"];
+  string principal_blob = 270 [json_name = "principal_blob"];
+  string request_blob = 271 [json_name = "request_blob"];
+
+  bytes owner_pb = 274 [json_name = "owner_pb"];
+  bytes genesis_pb = 275 [json_name = "genesis_pb"];
+  bytes principal_pb = 276 [json_name = "principal_pb"];
+  bytes request_pb = 277 [json_name = "request_pb"];  
+}

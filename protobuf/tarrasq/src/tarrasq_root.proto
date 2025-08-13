@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "_/_tq__";
+option java_generate_equals_and_hash = true;
+package _tq_;
+
+enum TARRASQ_ENUM_DO_NOT_USE__ {
+  __TARRASQ_ENUM_ZERO_DO_NOT_USE__ = 0;
+  __TARRASQ_ENUM_DEFAULT_DO_NOT_USE__ = 1;
+  __TARRASQ_ENUM_MININT_LIMIT_DO_NOT_USE__ = -2147483647;
+  __TARRASQ_ENUM_MAXINT_LIMIT_DO_NOT_USE__ = 2147483646;
+  __TARRASQ_ENUM_MININT_DO_NOT_USE__ = -2147483648;
+  __TARRASQ_ENUM_MAXINT_DO_NOT_USE__ = 2147483647;
+}
+message __TARRASQ_MESSAGE_DO_NOT_USE__ {
+  reserved 1 to 18999;
+  reserved 20000 to 536869999;
+  reserved "__TARRASQ__ANCHOR__", "__TARRASQ__ANCHOR";
+  TARRASQ_ENUM_DO_NOT_USE__ __TARRASQ_FIELD_DO_NOT_USE__ = 536870000;
+}

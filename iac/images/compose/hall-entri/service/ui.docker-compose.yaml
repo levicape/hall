@@ -1,0 +1,38 @@
+
+services:
+  ui:
+    image: $APPLICATION_HALL_IMAGE
+    entrypoint: project
+    environment: 
+      NODE_OPTIONS: $NODE_OPTIONS
+      LOG_LEVEL: $LOG_LEVEL
+      STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+      PROJECT_PATH: ./realms/entri/entri-ui
+      PROJECT_COMMAND: serverwww:dev
+      PORT: $ENTRI_UI
+    volumes: &workspace_volumes
+      - ../../../../..:/workspace
+    ports:
+      - $ENTRI_UI:$ENTRI_UI
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:$ENTRI_UI/"]
+      interval: 3s
+      timeout: 8s
+      retries: 5
+  # ui-canary:
+  #   image: $ROOT_IMAGE
+  #   entrypoint: project
+  #   environment:
+  #     NODE_OPTIONS: $NODE_OPTIONS
+  #     LOG_LEVEL: $LOG_LEVEL
+  #     STRUCTURED_LOGGING: $STRUCTURED_LOGGING
+  #     PROJECT_PATH: ./realms/entri/entri-ui
+  #     PROJECT_COMMAND: staticwww:canary
+  #     ENTRI_HTTP: $ENTRI_HTTP
+  #     ENTRI_UI: $ENTRI_UI
+  #   volumes: *workspace_volumes
+  #   depends_on:
+  #     http:
+  #       condition: service_healthy
+  #     ui:
+  #       condition: service_healthy
